@@ -1,0 +1,6 @@
+BlobDesign:
+  Animation:
+    Sound: ENTITY_ENDER_DRAGON_GROWL
+    Volume: 1.0
+    Pitch: 1.0
+    Audience: PLAYER

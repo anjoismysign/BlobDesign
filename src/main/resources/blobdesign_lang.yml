@@ -1,0 +1,20 @@
+BlobDesign:
+  Entity-Removed:
+    Type: TITLE
+    Title: '&c&lERROR'
+    Subtitle: '&7Entity was removed'
+  Block-Cannot-Be-Air:
+    Type: TITLE
+    Title: '&c&lERROR'
+    Subtitle: '&7Block cannot be air'
+  Item-Cannot-Be-Air:
+    Type: TITLE
+    Title: '&c&lERROR'
+    Subtitle: '&7Item cannot be air'
+  Asset-Not-Found:
+    Type: TITLE
+    Title: '&c&lERROR'
+    Subtitle: '&7Asset not found'
+  Asset-Instiation-Succesful:
+    Type: ACTIONBAR
+    Message: '&aDone!'

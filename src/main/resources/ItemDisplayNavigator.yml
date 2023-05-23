@@ -1,0 +1,26 @@
+Title: 'DisplayNavigator > Item'
+Size: 27
+Buttons:
+  AwkwardDesign:
+    ItemStack:
+      Material: GRAY_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: " "
+    Slot: 18-26
+  Next-Page:
+    ItemStack:
+      Material: ARROW
+      DisplayName: "&6Next Page"
+    Slot: 23
+  Previous-Page:
+    ItemStack:
+      Material: ARROW
+      DisplayName: "&6Previous Page"
+    Slot: 22
+  ItemDisplay:
+    ItemStack:
+      Material: AIR
+    Slot: 0-17
+#Built with BlobLib's inventory framework.
+#If you wish to push its limits,
+#feel free contacting anjoismysign (preferably on Discord)

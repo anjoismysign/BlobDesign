@@ -1,0 +1,172 @@
+Title: 'DisplayEditor > Block'
+Size: 54
+Buttons:
+  Background:
+    ItemStack:
+      Material: GRAY_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: " "
+    Slot: 0-53
+  Icon:
+    ItemStack:
+      Material: RED_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Display"
+    Slot: 1
+  UniformScale:
+    ItemStack:
+      Material: YELLOW_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Scale Uniformly"
+    Slot: 2
+  ScaleX:
+    ItemStack:
+      Material: ORANGE_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Scale X"
+      Lore:
+        - "&7Selected: &f%scaleX%"
+    Slot: 3
+  ScaleY:
+    ItemStack:
+      Material: ORANGE_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Scale Y"
+      Lore:
+        - "&7Selected: &f%scaleY%"
+    Slot: 4
+  ScaleZ:
+    ItemStack:
+      Material: ORANGE_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Scale Z"
+      Lore:
+        - "&7Selected: &f%scaleZ%"
+    Slot: 5
+  LeftX:
+    ItemStack:
+      Material: PURPLE_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Left Rotation X"
+      Lore:
+        - "&7Selected: &f%leftRotationX%"
+    Slot: 9
+  LeftY:
+    ItemStack:
+      Material: PURPLE_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Left Rotation Y"
+      Lore:
+        - "&7Selected: &f%leftRotationY%"
+    Slot: 10
+  LeftZ:
+    ItemStack:
+      Material: PURPLE_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Left Rotation Z"
+      Lore:
+        - "&7Selected: &f%leftRotationZ%"
+    Slot: 11
+  LeftW:
+    ItemStack:
+      Material: PURPLE_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Left Rotation W"
+      Lore:
+        - "&7Selected: &f%leftRotationW%"
+    Slot: 12
+  RightX:
+    ItemStack:
+      Material: LIME_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Right Rotation X"
+      Lore:
+        - "&7Selected: &f%rightRotationX%"
+    Slot: 14
+  RightY:
+    ItemStack:
+      Material: LIME_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Right Rotation Y"
+      Lore:
+        - "&7Selected: &f%rightRotationY%"
+    Slot: 15
+  RightZ:
+    ItemStack:
+      Material: LIME_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Right Rotation Z"
+      Lore:
+        - "&7Selected: &f%rightRotationZ%"
+    Slot: 16
+  RightW:
+    ItemStack:
+      Material: LIME_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Right Rotation W"
+      Lore:
+        - "&7Selected: &f%rightRotationW%"
+    Slot: 17
+  UniformTranslation:
+    ItemStack:
+      Material: BLUE_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Translate Uniformly"
+    Slot: 22
+  TranslationX:
+    ItemStack:
+      Material: CYAN_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Translation X"
+      Lore:
+        - "&7Selected: &f%translationX%"
+    Slot: 23
+  TranslationY:
+    ItemStack:
+      Material: CYAN_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Translation Y"
+      Lore:
+        - "&7Selected: &f%translationY%"
+    Slot: 24
+  TranslationZ:
+    ItemStack:
+      Material: CYAN_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Translation Z"
+      Lore:
+        - "&7Selected: &f%translationZ%"
+    Slot: 25
+  Rotate1:
+    ItemStack:
+      Material: BLACK_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Vertical-Rotate 1"
+    Slot: 27
+  Rotate2:
+    ItemStack:
+      Material: BLACK_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Vertical-Rotate 2"
+    Slot: 28
+  Rotate3:
+    ItemStack:
+      Material: BLACK_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Vertical-Rotate 3"
+    Slot: 29
+  Rotate4:
+    ItemStack:
+      Material: BLACK_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Vertical-Rotate 4"
+    Slot: 30
+  Rotate5:
+    ItemStack:
+      Material: BLACK_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Vertical-Rotate 5"
+    Slot: 31
+#Built with BlobLib's inventory framework.
+#If you wish to push its limits,
+#feel free contacting anjoismysign (preferably on Discord)

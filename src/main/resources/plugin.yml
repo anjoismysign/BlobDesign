@@ -1,0 +1,10 @@
+name: BlobDesign
+version: ${project.version}.${buildNumber}
+main: us.mytheria.blobdesign.BlobDesign
+api-version: 1.19
+load: STARTUP
+commands:
+  displayspawner:
+    description: DisplaySpawner UIs
+    usage: /<command>
+    aliases: [ dspawner, dsp, ds ]

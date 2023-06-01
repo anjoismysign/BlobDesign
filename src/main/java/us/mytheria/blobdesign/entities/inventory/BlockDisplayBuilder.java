@@ -1,6 +1,5 @@
 package us.mytheria.blobdesign.entities.inventory;
 
-import me.anjoismysign.anjo.entities.NamingConventions;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
@@ -35,7 +34,7 @@ public class BlockDisplayBuilder extends ObjectBuilder<BlockDisplayAsset> {
         super(blobInventory, builderId, objectDirector);
         ObjectBuilderButton<String> keyButton = ObjectBuilderButtonBuilder.QUICK_STRING(
                 "Key", 300, this);
-        ObjectBuilderButton<Block> iconButton = ObjectBuilderButtonBuilder.QUICK_BLOCK("Icon",
+        ObjectBuilderButton<Block> iconButton = ObjectBuilderButtonBuilder.QUICK_BLOCK("Icon-Block",
                 300, this);
         ObjectBuilderButton<Float> scaleX = ObjectBuilderButtonBuilder.QUICK_FLOAT("ScaleX",
                 300, this);
@@ -49,46 +48,38 @@ public class BlockDisplayBuilder extends ObjectBuilder<BlockDisplayAsset> {
                 300, this);
         ObjectBuilderButton<Float> translationZ = ObjectBuilderButtonBuilder.QUICK_FLOAT("TranslationZ",
                 300, this);
-        ObjectBuilderButton<Float> leftRotationX = ObjectBuilderButtonBuilder.QUICK_FLOAT("LeftRotationX",
+        ObjectBuilderButton<Float> leftRotationX = ObjectBuilderButtonBuilder.QUICK_FLOAT("LeftX",
                 300, this);
-        ObjectBuilderButton<Float> leftRotationY = ObjectBuilderButtonBuilder.QUICK_FLOAT("LeftRotationY",
+        ObjectBuilderButton<Float> leftRotationY = ObjectBuilderButtonBuilder.QUICK_FLOAT("LeftY",
                 300, this);
-        ObjectBuilderButton<Float> leftRotationZ = ObjectBuilderButtonBuilder.QUICK_FLOAT("LeftRotationZ",
+        ObjectBuilderButton<Float> leftRotationZ = ObjectBuilderButtonBuilder.QUICK_FLOAT("LeftZ",
                 300, this);
-        ObjectBuilderButton<Float> leftRotationW = ObjectBuilderButtonBuilder.QUICK_FLOAT("LeftRotationW",
+        ObjectBuilderButton<Float> leftRotationW = ObjectBuilderButtonBuilder.QUICK_FLOAT("LeftW",
                 300, this);
-        ObjectBuilderButton<Float> rightRotationX = ObjectBuilderButtonBuilder.QUICK_FLOAT("RightRotationX",
+        ObjectBuilderButton<Float> rightRotationX = ObjectBuilderButtonBuilder.QUICK_FLOAT("RightX",
                 300, this);
-        ObjectBuilderButton<Float> rightRotationY = ObjectBuilderButtonBuilder.QUICK_FLOAT("RightRotationY",
+        ObjectBuilderButton<Float> rightRotationY = ObjectBuilderButtonBuilder.QUICK_FLOAT("RightY",
                 300, this);
-        ObjectBuilderButton<Float> rightRotationZ = ObjectBuilderButtonBuilder.QUICK_FLOAT("RightRotationZ",
+        ObjectBuilderButton<Float> rightRotationZ = ObjectBuilderButtonBuilder.QUICK_FLOAT("RightZ",
                 300, this);
-        ObjectBuilderButton<Float> rightRotationW = ObjectBuilderButtonBuilder.QUICK_FLOAT("RightRotationW",
+        ObjectBuilderButton<Float> rightRotationW = ObjectBuilderButtonBuilder.QUICK_FLOAT("RightW",
                 300, this);
         Function<Float, Boolean> uniformScaleFunction = value -> {
-            String placeholderRegexX = NamingConventions.toCamelCase("ScaleX");
-            String placeholderRegexY = NamingConventions.toCamelCase("ScaleY");
-            String placeholderRegexZ = NamingConventions.toCamelCase("ScaleZ");
-            this.updateDefaultButton("ScaleX", "%" + placeholderRegexX + "%",
-                    value == null ? "N/A" : "" + value);
-            this.updateDefaultButton("ScaleY", "%" + placeholderRegexY + "%",
-                    value == null ? "N/A" : "" + value);
-            this.updateDefaultButton("ScaleZ", "%" + placeholderRegexZ + "%",
-                    value == null ? "N/A" : "" + value);
-            this.openInventory();
+            ObjectBuilderButton<Float> uniformX = (ObjectBuilderButton<Float>) getObjectBuilderButton("ScaleX");
+            uniformX.set(value);
+            ObjectBuilderButton<Float> uniformY = (ObjectBuilderButton<Float>) getObjectBuilderButton("ScaleY");
+            uniformY.set(value);
+            ObjectBuilderButton<Float> uniformZ = (ObjectBuilderButton<Float>) getObjectBuilderButton("ScaleZ");
+            uniformZ.set(value);
             return true;
         };
         Function<Float, Boolean> uniformTranslationFunction = value -> {
-            String placeholderRegexX = NamingConventions.toCamelCase("TranslationX");
-            String placeholderRegexY = NamingConventions.toCamelCase("TranslationY");
-            String placeholderRegexZ = NamingConventions.toCamelCase("TranslationZ");
-            this.updateDefaultButton("TranslationX", "%" + placeholderRegexX + "%",
-                    value == null ? "N/A" : "" + value);
-            this.updateDefaultButton("TranslationY", "%" + placeholderRegexY + "%",
-                    value == null ? "N/A" : "" + value);
-            this.updateDefaultButton("TranslationZ", "%" + placeholderRegexZ + "%",
-                    value == null ? "N/A" : "" + value);
-            this.openInventory();
+            ObjectBuilderButton<Float> uniformX = (ObjectBuilderButton<Float>) getObjectBuilderButton("TranslationX");
+            uniformX.set(value);
+            ObjectBuilderButton<Float> uniformY = (ObjectBuilderButton<Float>) getObjectBuilderButton("TranslationY");
+            uniformY.set(value);
+            ObjectBuilderButton<Float> uniformZ = (ObjectBuilderButton<Float>) getObjectBuilderButton("TranslationZ");
+            uniformZ.set(value);
             return true;
         };
         addObjectBuilderButton(keyButton)
@@ -158,33 +149,41 @@ public class BlockDisplayBuilder extends ObjectBuilder<BlockDisplayAsset> {
     @Override
     public BlockDisplayAsset construct() {
         ObjectBuilderButton<String> keyButton = (ObjectBuilderButton<String>) getObjectBuilderButton("Key");
-        ObjectBuilderButton<Block> blockDataButton = (ObjectBuilderButton<Block>) getObjectBuilderButton("Icon");
+        ObjectBuilderButton<Block> iconBlockButton = (ObjectBuilderButton<Block>) getObjectBuilderButton("Icon-Block");
         ObjectBuilderButton<Float> scaleXButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("ScaleX");
         ObjectBuilderButton<Float> scaleYButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("ScaleY");
         ObjectBuilderButton<Float> scaleZButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("ScaleZ");
         ObjectBuilderButton<Float> translationXButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("TranslationX");
         ObjectBuilderButton<Float> translationYButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("TranslationY");
         ObjectBuilderButton<Float> translationZButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("TranslationZ");
-        ObjectBuilderButton<Float> leftRotationXButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("LeftRotationX");
-        ObjectBuilderButton<Float> leftRotationYButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("LeftRotationY");
-        ObjectBuilderButton<Float> leftRotationZButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("LeftRotationZ");
-        ObjectBuilderButton<Float> leftRotationWButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("LeftRotationW");
-        ObjectBuilderButton<Float> rightRotationXButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("RightRotationX");
-        ObjectBuilderButton<Float> rightRotationYButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("RightRotationY");
-        ObjectBuilderButton<Float> rightRotationZButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("RightRotationZ");
-        ObjectBuilderButton<Float> rightRotationWButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("RightRotationW");
+        ObjectBuilderButton<Float> leftRotationXButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("LeftX");
+        ObjectBuilderButton<Float> leftRotationYButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("LeftY");
+        ObjectBuilderButton<Float> leftRotationZButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("LeftZ");
+        ObjectBuilderButton<Float> leftRotationWButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("LeftW");
+        ObjectBuilderButton<Float> rightRotationXButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("RightX");
+        ObjectBuilderButton<Float> rightRotationYButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("RightY");
+        ObjectBuilderButton<Float> rightRotationZButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("RightZ");
+        ObjectBuilderButton<Float> rightRotationWButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("RightW");
 
-        if (!keyButton.isValuePresentAndNotNull() || !blockDataButton.isValuePresentAndNotNull() ||
-                !scaleXButton.isValuePresentAndNotNull() || !scaleYButton.isValuePresentAndNotNull() || !scaleZButton.isValuePresentAndNotNull() ||
-                !translationXButton.isValuePresentAndNotNull() || !translationYButton.isValuePresentAndNotNull() ||
-                !translationZButton.isValuePresentAndNotNull() || !leftRotationXButton.isValuePresentAndNotNull() ||
-                !leftRotationYButton.isValuePresentAndNotNull() || !leftRotationZButton.isValuePresentAndNotNull() ||
-                !leftRotationWButton.isValuePresentAndNotNull() || !rightRotationXButton.isValuePresentAndNotNull() ||
-                !rightRotationYButton.isValuePresentAndNotNull() || !rightRotationZButton.isValuePresentAndNotNull() ||
+        if (!keyButton.isValuePresentAndNotNull() ||
+                !iconBlockButton.isValuePresentAndNotNull() ||
+                !scaleXButton.isValuePresentAndNotNull() ||
+                !scaleYButton.isValuePresentAndNotNull() ||
+                !scaleZButton.isValuePresentAndNotNull() ||
+                !translationXButton.isValuePresentAndNotNull() ||
+                !translationYButton.isValuePresentAndNotNull() ||
+                !translationZButton.isValuePresentAndNotNull() ||
+                !leftRotationXButton.isValuePresentAndNotNull() ||
+                !leftRotationYButton.isValuePresentAndNotNull() ||
+                !leftRotationZButton.isValuePresentAndNotNull() ||
+                !leftRotationWButton.isValuePresentAndNotNull() ||
+                !rightRotationXButton.isValuePresentAndNotNull() ||
+                !rightRotationYButton.isValuePresentAndNotNull() ||
+                !rightRotationZButton.isValuePresentAndNotNull() ||
                 !rightRotationWButton.isValuePresentAndNotNull())
             return null;
         String key = keyButton.orNull();
-        BlockData blockData = blockDataButton.orNull().getBlockData();
+        BlockData blockData = iconBlockButton.orNull().getBlockData();
         if (blockData.getMaterial().isAir()) {
             Player player = getPlayer();
             player.closeInventory();

@@ -15,11 +15,11 @@
         <testServer>/Users/lbenav8095/Documents/Dev/Java/anjoismysign/1.19.2 Wild North</testServer>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
     <scm>
-        <connection>scm:git:git@github.com:anjoismysign/BlobRP.git</connection>
-        <developerConnection>scm:git:git@github.com:anjoismysign/BlobRP.git</developerConnection>
-        <url>https://github.com/anjoismysign/BlobRP</url>
+        <connection>scm:git:git@github.com:anjoismysign/BlobDesign.git</connection>
+        <developerConnection>scm:git:git@github.com:anjoismysign/BlobDesign.git</developerConnection>
+        <url>https://github.com/anjoismysign/BlobDesign</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -128,7 +128,7 @@
         <dependency>
             <groupId>us.mytheria</groupId>
             <artifactId>bloblib</artifactId>
-            <version>1.689.4bs</version>
+            <version>1.689.4ms</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

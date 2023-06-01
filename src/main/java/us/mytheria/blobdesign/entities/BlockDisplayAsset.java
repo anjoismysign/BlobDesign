@@ -2,24 +2,21 @@ package us.mytheria.blobdesign.entities;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.BlockDisplay;
-import org.bukkit.entity.Entity;
 import org.bukkit.util.Transformation;
-import org.bukkit.util.Vector;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-import us.mytheria.bloblib.entities.BlobObject;
 
 import java.io.File;
 
 public record BlockDisplayAsset(String key, BlockData blockData, Vector3f scale,
                                 Vector3f translation,
                                 Quaternionf leftRotation,
-                                Quaternionf rightRotation) implements BlobObject {
+                                Quaternionf rightRotation)
+        implements DisplayAsset<BlockDisplay> {
     @SuppressWarnings("DataFlowIssue")
     public static BlockDisplayAsset fromFile(File file) {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -65,12 +62,6 @@ public record BlockDisplayAsset(String key, BlockData blockData, Vector3f scale,
                 blockData, scale, translation, leftRotation, rightRotation);
     }
 
-    /**
-     * Will make an instance of BlockDisplay at given Location
-     *
-     * @param location Location to spawn BlockDisplay
-     * @return BlockDisplay instance
-     */
     public BlockDisplay instantiate(Location location) {
         BlockDisplay itemDisplay = location.getWorld().spawn(location, BlockDisplay.class);
         itemDisplay.setBlock(blockData);
@@ -79,37 +70,14 @@ public record BlockDisplayAsset(String key, BlockData blockData, Vector3f scale,
         return itemDisplay;
     }
 
-    /**
-     * Will make an instance of BlockDisplay at given Entity's Location
-     *
-     * @param entity Entity where to spawn BlockDisplay
-     * @return BlockDisplay instance
-     */
-    public BlockDisplay instantiate(Entity entity) {
-        Location location = entity.getLocation().getBlock().getLocation().clone();
-        location.add(new Vector(0.5, 0, 0.5));
-        return instantiate(location);
-    }
-
-    /**
-     * Will make an instance of BlockDisplay at given Location
-     *
-     * @param block Block where to spawn BlockDisplay
-     * @return BlockDisplay instance
-     */
-    public BlockDisplay instantiate(Block block) {
-        Location location = block.getLocation().clone();
-        location.add(new Vector(0.5, 0, 0.5));
-        return instantiate(location);
-    }
-
     @Override
     public String getKey() {
         return key;
     }
 
     @Override
-    public File saveToFile(File file) {
+    public File saveToFile(File directory) {
+        File file = instanceFile(directory);
         YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(file);
         yamlConfiguration.set("BlockData", blockData.getAsString(true));
         ConfigurationSection scaleSection = yamlConfiguration.createSection("Scale");

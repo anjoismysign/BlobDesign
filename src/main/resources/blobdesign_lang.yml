@@ -1,4 +1,8 @@
 BlobDesign:
+  No-Previous-Work:
+    Type: TITLE
+    Title: '&c&lABSENT'
+    Subtitle: '&7You have no previous work'
   Entity-Removed:
     Type: TITLE
     Title: '&c&lERROR'
@@ -18,3 +22,160 @@ BlobDesign:
   Asset-Instiation-Succesful:
     Type: ACTIONBAR
     Message: '&aDone!'
+Builder:
+  Icon:
+    Type: TITLE
+    Title: '&f&lDROP ITEM'
+    Subtitle: '&7Drop an item to set ItemStack'
+  Icon-Block:
+    Type: ACTIONBAR
+    Message: '&7Click a block. Selected block will be used'
+  Icon-Block-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to select a location'
+    BlobSound: Builder.Timeout
+  UniformScale:
+    Type: TITLE
+    Title: '&f&lSCALE UNIFORMLY'
+    Subtitle: '&7Type in a number'
+  ScaleX:
+    Type: TITLE
+    Title: '&f&lSCALE X'
+    Subtitle: '&7Type in a number'
+  ScaleY:
+    Type: TITLE
+    Title: '&f&lSCALE Y'
+    Subtitle: '&7Type in a number'
+  ScaleZ:
+    Type: TITLE
+    Title: '&f&lSCALE Z'
+    Subtitle: '&7Type in a number'
+  LeftX:
+    Type: TITLE
+    Title: '&f&lLEFT ROTATION X'
+    Subtitle: '&7Type in a number'
+  LeftY:
+    Type: TITLE
+    Title: '&f&lLEFT ROTATION Y'
+    Subtitle: '&7Type in a number'
+  LeftZ:
+    Type: TITLE
+    Title: '&f&lLEFT ROTATION Z'
+    Subtitle: '&7Type in a number'
+  LeftW:
+    Type: TITLE
+    Title: '&f&lLEFT ROTATION W'
+    Subtitle: '&7Type in a number'
+  RightX:
+    Type: TITLE
+    Title: '&f&lRIGHT ROTATION X'
+    Subtitle: '&7Type in a number'
+  RightY:
+    Type: TITLE
+    Title: '&f&lRIGHT ROTATION Y'
+    Subtitle: '&7Type in a number'
+  RightZ:
+    Type: TITLE
+    Title: '&f&lRIGHT ROTATION Z'
+    Subtitle: '&7Type in a number'
+  RightW:
+    Type: TITLE
+    Title: '&f&lRIGHT ROTATION W'
+    Subtitle: '&7Type in a number'
+  UniformTranslation:
+    Type: TITLE
+    Title: '&f&lTRANSLATE UNIFORMLY'
+    Subtitle: '&7Type in a number'
+  TranslationX:
+    Type: TITLE
+    Title: '&f&lTRANSLATE X'
+    Subtitle: '&7Type in a number'
+  TranslationY:
+    Type: TITLE
+    Title: '&f&lTRANSLATE Y'
+    Subtitle: '&7Type in a number'
+  TranslationZ:
+    Type: TITLE
+    Title: '&f&lTRANSLATE Z'
+    Subtitle: '&7Type in a number'
+  UniformScale-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in UniformScale'
+    BlobSound: Builder.Timeout
+  ScaleX-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in ScaleX'
+    BlobSound: Builder.Timeout
+  ScaleY-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in ScaleY'
+    BlobSound: Builder.Timeout
+  ScaleZ-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in ScaleZ'
+    BlobSound: Builder.Timeout
+  LeftX-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in LeftX'
+    BlobSound: Builder.Timeout
+  LeftY-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in LeftY'
+    BlobSound: Builder.Timeout
+  LeftZ-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in LeftZ'
+    BlobSound: Builder.Timeout
+  LeftW-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in LeftW'
+    BlobSound: Builder.Timeout
+  RightX-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in RightX'
+    BlobSound: Builder.Timeout
+  RightY-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in RightY'
+    BlobSound: Builder.Timeout
+  RightZ-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in RightZ'
+    BlobSound: Builder.Timeout
+  RightW-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in RightW'
+    BlobSound: Builder.Timeout
+  UniformTranslation-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in UniformTranslation'
+    BlobSound: Builder.Timeout
+  TranslationX-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in TranslationX'
+    BlobSound: Builder.Timeout
+  TranslationY-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in TranslationY'
+    BlobSound: Builder.Timeout
+  TranslationZ-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in TranslationZ'
+    BlobSound: Builder.Timeout

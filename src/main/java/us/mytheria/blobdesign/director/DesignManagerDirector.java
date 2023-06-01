@@ -2,6 +2,7 @@ package us.mytheria.blobdesign.director;
 
 import us.mytheria.blobdesign.BlobDesign;
 import us.mytheria.blobdesign.director.manager.ConfigManager;
+import us.mytheria.blobdesign.director.manager.InventoryManager;
 import us.mytheria.blobdesign.director.manager.ListenerManager;
 import us.mytheria.blobdesign.entities.BlockDisplayAsset;
 import us.mytheria.blobdesign.entities.ItemDisplayAsset;
@@ -13,6 +14,10 @@ import us.mytheria.bloblib.entities.ObjectDirector;
 public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
     public DesignManagerDirector(BlobDesign plugin) {
         super(plugin);
+        registerAndUpdateBlobInventory("BlockDisplayEditor");
+        registerAndUpdateBlobInventory("BlockDisplayNavigator");
+        registerAndUpdateBlobInventory("ItemDisplayEditor");
+        registerAndUpdateBlobInventory("ItemDisplayNavigator");
         addDirector("BlockDisplay", BlockDisplayAsset::fromFile);
         getBlockDisplayModelDirector().getBuilderManager()
                 .setBuilderBiFunction(BlockDisplayBuilder::build);
@@ -20,6 +25,7 @@ public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
         getItemDisplayModelDirector().getBuilderManager()
                 .setBuilderBiFunction(ItemDisplayBuilder::build);
         addManager("ConfigManager", new ConfigManager(this));
+        addManager("InventoryManager", new InventoryManager(this));
         addManager("ListenerManager", new ListenerManager(this));
     }
 
@@ -42,6 +48,10 @@ public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
 
     public final ConfigManager getConfigManager() {
         return getManager("ConfigManager", ConfigManager.class);
+    }
+
+    public final InventoryManager getInventoryManager() {
+        return getManager("InventoryManager", InventoryManager.class);
     }
 
     public final ListenerManager getListenerManager() {

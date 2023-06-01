@@ -1,126 +1,108 @@
-Title: 'DisplayBuilder > Block'
-Size: 45
+Title: 'DisplayEditor > Item'
+Size: 54
 Buttons:
   Background:
     ItemStack:
       Material: GRAY_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: " "
-    Slot: 0-44
-  Key:
+    Slot: 0-53
+  ItemDisplayTransform:
     ItemStack:
-      Material: BOOK
+      Material: WHITE_STAINED_GLASS_PANE
       CustomModelData: 0
-      DisplayName: "&6Key"
-      Lore:
-        - "&7Selected: &f%key%"
-    Slot: 4
-  Icon-Block:
+      DisplayName: "&6Transform (Switch)"
+    Slot: 1
+  Icon:
     ItemStack:
       Material: RED_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Display"
-    Slot: 10
+    Slot: 2
   UniformScale:
     ItemStack:
-      Material: ORANGE_STAINED_GLASS_PANE
+      Material: YELLOW_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Scale Uniformly"
-    Slot: 11
+    Slot: 3
   ScaleX:
     ItemStack:
-      Material: YELLOW_STAINED_GLASS_PANE
+      Material: ORANGE_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Scale X"
       Lore:
         - "&7Selected: &f%scaleX%"
-    Slot: 12
+    Slot: 4
   ScaleY:
     ItemStack:
-      Material: YELLOW_STAINED_GLASS_PANE
+      Material: ORANGE_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Scale Y"
       Lore:
         - "&7Selected: &f%scaleY%"
-    Slot: 13
+    Slot: 5
   ScaleZ:
     ItemStack:
-      Material: YELLOW_STAINED_GLASS_PANE
+      Material: ORANGE_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Scale Z"
       Lore:
         - "&7Selected: &f%scaleZ%"
-    Slot: 14
+    Slot: 6
   LeftX:
     ItemStack:
       Material: PURPLE_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Left Rotation X"
       Lore:
-        - "&7Selected: &f%leftX%"
-    Slot: 18
+        - "&7Selected: &f%leftRotationX%"
+    Slot: 9
   LeftY:
     ItemStack:
       Material: PURPLE_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Left Rotation Y"
       Lore:
-        - "&7Selected: &f%leftY%"
-    Slot: 19
+        - "&7Selected: &f%leftRotationY%"
+    Slot: 10
   LeftZ:
     ItemStack:
       Material: PURPLE_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Left Rotation Z"
       Lore:
-        - "&7Selected: &f%leftZ%"
-    Slot: 20
-  LeftW:
-    ItemStack:
-      Material: PURPLE_STAINED_GLASS_PANE
-      CustomModelData: 0
-      DisplayName: "&6Left Rotation W"
-      Lore:
-        - "&7Selected: &f%leftW%"
-    Slot: 21
+        - "&7Selected: &f%leftRotationZ%"
+    Slot: 11
   RightX:
     ItemStack:
       Material: LIME_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Right Rotation X"
       Lore:
-        - "&7Selected: &f%rightX%"
-    Slot: 23
+        - "&7Selected: &f%rightRotationX%"
+    Slot: 15
   RightY:
     ItemStack:
       Material: LIME_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Right Rotation Y"
       Lore:
-        - "&7Selected: &f%rightY%"
-    Slot: 24
+        - "&7Selected: &f%rightRotationY%"
+    Slot: 16
   RightZ:
     ItemStack:
       Material: LIME_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Right Rotation Z"
       Lore:
-        - "&7Selected: &f%rightZ%"
-    Slot: 25
-  RightW:
-    ItemStack:
-      Material: LIME_STAINED_GLASS_PANE
-      CustomModelData: 0
-      DisplayName: "&6Right Rotation W"
-      Lore:
-        - "&7Selected: &f%rightW%"
-    Slot: 26
+        - "&7Selected: &f%rightRotationZ%"
+    Slot: 17
   UniformTranslation:
     ItemStack:
       Material: BLUE_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Translate Uniformly"
-    Slot: 31
+    Slot: 22
   TranslationX:
     ItemStack:
       Material: CYAN_STAINED_GLASS_PANE
@@ -128,7 +110,7 @@ Buttons:
       DisplayName: "&6Translation X"
       Lore:
         - "&7Selected: &f%translationX%"
-    Slot: 32
+    Slot: 23
   TranslationY:
     ItemStack:
       Material: CYAN_STAINED_GLASS_PANE
@@ -136,7 +118,7 @@ Buttons:
       DisplayName: "&6Translation Y"
       Lore:
         - "&7Selected: &f%translationY%"
-    Slot: 33
+    Slot: 24
   TranslationZ:
     ItemStack:
       Material: CYAN_STAINED_GLASS_PANE
@@ -144,16 +126,7 @@ Buttons:
       DisplayName: "&6Translation Z"
       Lore:
         - "&7Selected: &f%translationZ%"
-    Slot: 34
-  Build:
-    ItemStack:
-      Material: SLIME_BALL
-      CustomModelData: 0
-      DisplayName: "&6Build"
-      Lore:
-        - "&7Click to add model"
-        - "&7to the files."
-    Slot: 40
+    Slot: 25
 #Built with BlobLib's inventory framework.
 #If you wish to push its limits,
 #feel free contacting anjoismysign (preferably on Discord)

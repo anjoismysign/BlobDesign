@@ -35,7 +35,7 @@ public class DisplaySpawner extends BlobExecutor {
                         return true;
                     }
                     asset.instantiate(player);
-                    BlobLibAssetAPI.getMessage("Asset-Instiation-Succesful")
+                    BlobLibAssetAPI.getMessage("BlobDesign.Asset-Instiation-Succesful")
                             .handle(player);
                     return true;
                 }
@@ -52,7 +52,7 @@ public class DisplaySpawner extends BlobExecutor {
                         return true;
                     }
                     asset.instantiate(player);
-                    BlobLibAssetAPI.getMessage("Asset-Instiation-Succesful")
+                    BlobLibAssetAPI.getMessage("BlobDesign.Asset-Instiation-Succesful")
                             .handle(player);
                     return true;
                 }

@@ -67,14 +67,6 @@ Buttons:
       Lore:
         - "&7Selected: &f%leftRotationZ%"
     Slot: 11
-  LeftW:
-    ItemStack:
-      Material: PURPLE_STAINED_GLASS_PANE
-      CustomModelData: 0
-      DisplayName: "&6Left Rotation W"
-      Lore:
-        - "&7Selected: &f%leftRotationW%"
-    Slot: 12
   RightX:
     ItemStack:
       Material: LIME_STAINED_GLASS_PANE
@@ -82,7 +74,7 @@ Buttons:
       DisplayName: "&6Right Rotation X"
       Lore:
         - "&7Selected: &f%rightRotationX%"
-    Slot: 14
+    Slot: 15
   RightY:
     ItemStack:
       Material: LIME_STAINED_GLASS_PANE
@@ -90,7 +82,7 @@ Buttons:
       DisplayName: "&6Right Rotation Y"
       Lore:
         - "&7Selected: &f%rightRotationY%"
-    Slot: 15
+    Slot: 16
   RightZ:
     ItemStack:
       Material: LIME_STAINED_GLASS_PANE
@@ -98,14 +90,6 @@ Buttons:
       DisplayName: "&6Right Rotation Z"
       Lore:
         - "&7Selected: &f%rightRotationZ%"
-    Slot: 16
-  RightW:
-    ItemStack:
-      Material: LIME_STAINED_GLASS_PANE
-      CustomModelData: 0
-      DisplayName: "&6Right Rotation W"
-      Lore:
-        - "&7Selected: &f%rightRotationW%"
     Slot: 17
   UniformTranslation:
     ItemStack:
@@ -137,36 +121,6 @@ Buttons:
       Lore:
         - "&7Selected: &f%translationZ%"
     Slot: 25
-  Rotate1:
-    ItemStack:
-      Material: BLACK_STAINED_GLASS_PANE
-      CustomModelData: 0
-      DisplayName: "&6Vertical-Rotate 1"
-    Slot: 27
-  Rotate2:
-    ItemStack:
-      Material: BLACK_STAINED_GLASS_PANE
-      CustomModelData: 0
-      DisplayName: "&6Vertical-Rotate 2"
-    Slot: 28
-  Rotate3:
-    ItemStack:
-      Material: BLACK_STAINED_GLASS_PANE
-      CustomModelData: 0
-      DisplayName: "&6Vertical-Rotate 3"
-    Slot: 29
-  Rotate4:
-    ItemStack:
-      Material: BLACK_STAINED_GLASS_PANE
-      CustomModelData: 0
-      DisplayName: "&6Vertical-Rotate 4"
-    Slot: 30
-  Rotate5:
-    ItemStack:
-      Material: BLACK_STAINED_GLASS_PANE
-      CustomModelData: 0
-      DisplayName: "&6Vertical-Rotate 5"
-    Slot: 31
 #Built with BlobLib's inventory framework.
 #If you wish to push its limits,
 #feel free contacting anjoismysign (preferably on Discord)

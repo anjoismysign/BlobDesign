@@ -7,12 +7,14 @@ Buttons:
       CustomModelData: 0
       DisplayName: " "
     Slot: 0-44
-  Icon:
+  Key:
     ItemStack:
-      Material: RED_STAINED_GLASS_PANE
+      Material: BOOK
       CustomModelData: 0
-      DisplayName: "&6Display"
-    Slot: 10
+      DisplayName: "&6Key"
+      Lore:
+        - "&7Selected: &f%key%"
+    Slot: 4
   ItemDisplayTransform:
     ItemStack:
       Material: WHITE_STAINED_GLASS_PANE
@@ -20,16 +22,22 @@ Buttons:
       DisplayName: "&6Transform"
       Lore:
         - "&7Selected: &f%itemDisplayTransform%"
+    Slot: 10
+  Icon:
+    ItemStack:
+      Material: RED_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Display"
     Slot: 11
   UniformScale:
     ItemStack:
-      Material: YELLOW_STAINED_GLASS_PANE
+      Material: ORANGE_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Scale Uniformly"
     Slot: 12
   ScaleX:
     ItemStack:
-      Material: ORANGE_STAINED_GLASS_PANE
+      Material: YELLOW_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Scale X"
       Lore:
@@ -37,7 +45,7 @@ Buttons:
     Slot: 13
   ScaleY:
     ItemStack:
-      Material: ORANGE_STAINED_GLASS_PANE
+      Material: YELLOW_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Scale Y"
       Lore:
@@ -45,7 +53,7 @@ Buttons:
     Slot: 14
   ScaleZ:
     ItemStack:
-      Material: ORANGE_STAINED_GLASS_PANE
+      Material: YELLOW_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Scale Z"
       Lore:
@@ -57,7 +65,7 @@ Buttons:
       CustomModelData: 0
       DisplayName: "&6Left Rotation X"
       Lore:
-        - "&7Selected: &f%leftRotationX%"
+        - "&7Selected: &f%leftX%"
     Slot: 18
   LeftY:
     ItemStack:
@@ -65,7 +73,7 @@ Buttons:
       CustomModelData: 0
       DisplayName: "&6Left Rotation Y"
       Lore:
-        - "&7Selected: &f%leftRotationY%"
+        - "&7Selected: &f%leftY%"
     Slot: 19
   LeftZ:
     ItemStack:
@@ -73,7 +81,7 @@ Buttons:
       CustomModelData: 0
       DisplayName: "&6Left Rotation Z"
       Lore:
-        - "&7Selected: &f%leftRotationZ%"
+        - "&7Selected: &f%leftZ%"
     Slot: 20
   LeftW:
     ItemStack:
@@ -81,7 +89,7 @@ Buttons:
       CustomModelData: 0
       DisplayName: "&6Left Rotation W"
       Lore:
-        - "&7Selected: &f%leftRotationW%"
+        - "&7Selected: &f%leftW%"
     Slot: 21
   RightX:
     ItemStack:
@@ -89,7 +97,7 @@ Buttons:
       CustomModelData: 0
       DisplayName: "&6Right Rotation X"
       Lore:
-        - "&7Selected: &f%rightRotationX%"
+        - "&7Selected: &f%rightX%"
     Slot: 23
   RightY:
     ItemStack:
@@ -97,7 +105,7 @@ Buttons:
       CustomModelData: 0
       DisplayName: "&6Right Rotation Y"
       Lore:
-        - "&7Selected: &f%rightRotationY%"
+        - "&7Selected: &f%rightY%"
     Slot: 24
   RightZ:
     ItemStack:
@@ -105,7 +113,7 @@ Buttons:
       CustomModelData: 0
       DisplayName: "&6Right Rotation Z"
       Lore:
-        - "&7Selected: &f%rightRotationZ%"
+        - "&7Selected: &f%rightZ%"
     Slot: 25
   RightW:
     ItemStack:
@@ -113,7 +121,7 @@ Buttons:
       CustomModelData: 0
       DisplayName: "&6Right Rotation W"
       Lore:
-        - "&7Selected: &f%rightRotationW%"
+        - "&7Selected: &f%rightW%"
     Slot: 26
   UniformTranslation:
     ItemStack:
@@ -145,6 +153,15 @@ Buttons:
       Lore:
         - "&7Selected: &f%translationZ%"
     Slot: 34
+  Build:
+    ItemStack:
+      Material: SLIME_BALL
+      CustomModelData: 0
+      DisplayName: "&6Build"
+      Lore:
+        - "&7Click to add model"
+        - "&7to the files."
+    Slot: 40
 #Built with BlobLib's inventory framework.
 #If you wish to push its limits,
 #feel free contacting anjoismysign (preferably on Discord)

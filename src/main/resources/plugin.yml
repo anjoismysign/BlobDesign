@@ -4,7 +4,19 @@ main: us.mytheria.blobdesign.BlobDesign
 api-version: 1.19
 load: STARTUP
 commands:
+  blockdisplay:
+    description: BlockDisplay UIs
+    usage: /blockdisplay <add/remove>
+    aliases: [ bdisplay, bd ]
+  itemdisplay:
+    description: ItemDisplay UIs
+    usage: /itemdisplay <add/remove>
+    aliases: [ idisplay, id ]
   displayspawner:
     description: DisplaySpawner UIs
-    usage: /<command>
+    usage: /displayspawner <block/item>
     aliases: [ dspawner, dsp, ds ]
+  displayeditor:
+    description: DisplayEditor UIs
+    usage: /displayeditor <block/item> <radius>
+    aliases: [ deditor, de ]

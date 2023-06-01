@@ -1,17 +1,13 @@
 package us.mytheria.blobdesign.entities;
 
 import org.bukkit.Location;
-import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Transformation;
-import org.bukkit.util.Vector;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-import us.mytheria.bloblib.entities.BlobObject;
 
 import java.io.File;
 
@@ -19,7 +15,8 @@ public record ItemDisplayAsset(String key, ItemStack itemStack, Vector3f scale,
                                Vector3f translation,
                                Quaternionf leftRotation,
                                Quaternionf rightRotation,
-                               ItemDisplay.ItemDisplayTransform transform) implements BlobObject {
+                               ItemDisplay.ItemDisplayTransform transform)
+        implements DisplayAsset<ItemDisplay> {
     @SuppressWarnings("DataFlowIssue")
     public static ItemDisplayAsset fromFile(File file) {
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -68,12 +65,6 @@ public record ItemDisplayAsset(String key, ItemStack itemStack, Vector3f scale,
                 itemStack, scale, translation, leftRotation, rightRotation, transform);
     }
 
-    /**
-     * Will make an instance of ItemDisplay at given Location
-     *
-     * @param location Location to spawn ItemDisplay
-     * @return ItemDisplay instance
-     */
     public ItemDisplay instantiate(Location location) {
         ItemDisplay itemDisplay = location.getWorld().spawn(location, ItemDisplay.class);
         itemDisplay.setItemStack(itemStack);
@@ -83,37 +74,14 @@ public record ItemDisplayAsset(String key, ItemStack itemStack, Vector3f scale,
         return itemDisplay;
     }
 
-    /**
-     * Will make an instance of ItemDisplay at given Entity's Location
-     *
-     * @param entity Entity where to spawn ItemDisplay
-     * @return ItemDisplay instance
-     */
-    public ItemDisplay instantiate(Entity entity) {
-        Location location = entity.getLocation().getBlock().getLocation().clone();
-        location.add(new Vector(0.5, 0, 0.5));
-        return instantiate(location);
-    }
-
-    /**
-     * Will make an instance of ItemDisplay at given Location
-     *
-     * @param block Block where to spawn ItemDisplay
-     * @return ItemDisplay instance
-     */
-    public ItemDisplay instantiate(Block block) {
-        Location location = block.getLocation().clone();
-        location.add(new Vector(0.5, 0, 0.5));
-        return instantiate(location);
-    }
-
     @Override
     public String getKey() {
         return key;
     }
 
     @Override
-    public File saveToFile(File file) {
+    public File saveToFile(File directory) {
+        File file = instanceFile(directory);
         YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(file);
         yamlConfiguration.set("ItemStack", itemStack);
         yamlConfiguration.set("Transform", transform.name());

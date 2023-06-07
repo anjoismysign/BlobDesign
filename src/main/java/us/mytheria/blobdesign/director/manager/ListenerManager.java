@@ -10,6 +10,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import us.mytheria.blobdesign.director.DesignManager;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.inventory.InventoryType;
+import us.mytheria.blobdesign.listeners.stepparser.FullQuadRotation;
+import us.mytheria.blobdesign.listeners.stepparser.FullTriRotation;
 import us.mytheria.blobdesign.util.EditorUtil;
 import us.mytheria.bloblib.BlobLibAPI;
 import us.mytheria.bloblib.BlobLibAssetAPI;
@@ -26,6 +28,8 @@ public class ListenerManager extends DesignManager implements Listener {
         inventoryManager = managerDirector.getInventoryManager();
         Bukkit.getPluginManager().registerEvents(this, getPlugin());
         reload();
+        new FullQuadRotation(getPlugin());
+        new FullTriRotation(getPlugin());
     }
 
     @Override

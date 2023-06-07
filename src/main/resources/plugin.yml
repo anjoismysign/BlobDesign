@@ -3,6 +3,7 @@ version: ${project.version}.${buildNumber}
 main: us.mytheria.blobdesign.BlobDesign
 api-version: 1.19
 load: STARTUP
+depend: [ BlobLib ]
 commands:
   blockdisplay:
     description: BlockDisplay UIs

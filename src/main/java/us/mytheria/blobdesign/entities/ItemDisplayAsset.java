@@ -74,12 +74,10 @@ public record ItemDisplayAsset(String key, ItemStack itemStack, Vector3f scale,
         return itemDisplay;
     }
 
-    @Override
     public String getKey() {
         return key;
     }
 
-    @Override
     public File saveToFile(File directory) {
         File file = instanceFile(directory);
         YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(file);

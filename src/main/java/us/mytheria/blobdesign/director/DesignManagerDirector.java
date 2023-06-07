@@ -14,6 +14,9 @@ import us.mytheria.bloblib.entities.ObjectDirector;
 public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
     public DesignManagerDirector(BlobDesign plugin) {
         super(plugin);
+        addManager("ConfigManager", new ConfigManager(this));
+        addManager("InventoryManager", new InventoryManager(this));
+        addManager("ListenerManager", new ListenerManager(this));
         registerAndUpdateBlobInventory("BlockDisplayEditor");
         registerAndUpdateBlobInventory("BlockDisplayNavigator");
         registerAndUpdateBlobInventory("ItemDisplayEditor");
@@ -24,9 +27,6 @@ public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
         addDirector("ItemDisplay", ItemDisplayAsset::fromFile);
         getItemDisplayModelDirector().getBuilderManager()
                 .setBuilderBiFunction(ItemDisplayBuilder::build);
-        addManager("ConfigManager", new ConfigManager(this));
-        addManager("InventoryManager", new InventoryManager(this));
-        addManager("ListenerManager", new ListenerManager(this));
     }
 
     /**

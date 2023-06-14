@@ -3,14 +3,19 @@ package us.mytheria.blobdesign.entities.inventory;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.Transformation;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-import us.mytheria.blobdesign.entities.ItemDisplayAsset;
+import us.mytheria.blobdesign.director.DesignManagerDirector;
+import us.mytheria.blobdesign.entities.DisplayOperator;
+import us.mytheria.blobdesign.entities.ImmutableDisplayOperator;
+import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
 import us.mytheria.bloblib.BlobLibAPI;
 import us.mytheria.bloblib.BlobLibAssetAPI;
 import us.mytheria.bloblib.entities.ObjectDirector;
+import us.mytheria.bloblib.entities.display.DisplayData;
 import us.mytheria.bloblib.entities.inventory.BlobInventory;
-import us.mytheria.bloblib.entities.inventory.ObjectBuilder;
 import us.mytheria.bloblib.entities.inventory.ObjectBuilderButton;
 import us.mytheria.bloblib.entities.inventory.ObjectBuilderButtonBuilder;
 
@@ -20,17 +25,19 @@ import java.util.UUID;
 import java.util.function.Function;
 
 @SuppressWarnings("ConcatenationWithEmptyString")
-public class ItemDisplayBuilder extends ObjectBuilder<ItemDisplayAsset> {
+public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAsset> {
     public static ItemDisplayBuilder build(UUID builderId,
-                                           ObjectDirector<ItemDisplayAsset> objectDirector) {
+                                           ObjectDirector<ItemDisplayPresetAsset> objectDirector,
+                                           DesignManagerDirector director) {
         return new ItemDisplayBuilder(
                 BlobLibAssetAPI.getBlobInventory("ItemDisplayBuilder"),
-                builderId, objectDirector);
+                builderId, objectDirector, director);
     }
 
     private ItemDisplayBuilder(BlobInventory blobInventory, UUID builderId,
-                               ObjectDirector<ItemDisplayAsset> objectDirector) {
-        super(blobInventory, builderId, objectDirector);
+                               ObjectDirector<ItemDisplayPresetAsset> objectDirector,
+                               DesignManagerDirector director) {
+        super(blobInventory, builderId, objectDirector, director);
         ObjectBuilderButton<String> keyButton = ObjectBuilderButtonBuilder.QUICK_STRING(
                 "Key", 300, this);
         ObjectBuilderButton<ItemStack> iconButton = ObjectBuilderButtonBuilder.QUICK_ITEM("Icon",
@@ -133,7 +140,7 @@ public class ItemDisplayBuilder extends ObjectBuilder<ItemDisplayAsset> {
                         uniformTranslationFunction) {
                 })
                 .setFunction(builder -> {
-                    ItemDisplayAsset build = builder.construct();
+                    ItemDisplayPresetAsset build = builder.construct();
                     if (build == null)
                         return null;
                     Player player = getPlayer();
@@ -150,7 +157,7 @@ public class ItemDisplayBuilder extends ObjectBuilder<ItemDisplayAsset> {
     @SuppressWarnings({"unchecked", "DataFlowIssue"})
     @Nullable
     @Override
-    public ItemDisplayAsset construct() {
+    public ItemDisplayPresetAsset construct() {
         ObjectBuilderButton<String> keyButton = (ObjectBuilderButton<String>) getObjectBuilderButton("Key");
         ObjectBuilderButton<ItemStack> itemStackButton = (ObjectBuilderButton<ItemStack>) getObjectBuilderButton("Icon");
         ObjectBuilderButton<Float> scaleXButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("ScaleX");
@@ -213,8 +220,11 @@ public class ItemDisplayBuilder extends ObjectBuilder<ItemDisplayAsset> {
         float rightRotationZ = rightRotationZButton.orNull();
         float rightRotationW = rightRotationWButton.orNull();
         Quaternionf rightRotation = new Quaternionf(rightRotationX, rightRotationY, rightRotationZ, rightRotationW);
-        ItemDisplay.ItemDisplayTransform itemDisplayTransform = itemDislayTransformButton.orNull();
-        return new ItemDisplayAsset(key, icon, scale, translation,
-                leftRotation, rightRotation, itemDisplayTransform);
+        ItemDisplay.ItemDisplayTransform transform = itemDislayTransformButton.orNull();
+        Transformation transformation = new Transformation(translation, leftRotation, scale, rightRotation);
+        JavaPlugin plugin = getManagerDirector().getPlugin();
+        DisplayData displayData = DisplayData.DEFAULT;
+        DisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
+        return new ItemDisplayPresetAsset(key, displayOperator, icon, transform);
     }
 }

@@ -11,14 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransformationStepReader {
-
     public static List<TransformationStep> read(ConfigurationSection section,
-                                                Transformation transformation) {
+                                                Transformation transformation,
+                                                float shadowRadius,
+                                                float shadowStrength) {
         if (!section.isList("TransformationSteps"))
             throw new IllegalArgumentException("No TransformationSteps list found");
         List<TransformationStep> steps = new ArrayList<>();
         Uber<TransformationStep> lastStep = Uber.drive(
                 new TransformationStep(transformation,
+                        shadowRadius,
+                        shadowStrength,
                         20));
         List<String> list = section.getStringList("TransformationSteps");
         list.forEach(string -> {
@@ -28,11 +31,11 @@ public class TransformationStepReader {
             TransformationStepParseEvent event =
                     new TransformationStepParseEvent(split, lastStep.thanks());
             Bukkit.getPluginManager().callEvent(event);
-            TransformationStep step = event.getSteps();
-            if (step == null)
+            List<TransformationStep> eventSteps = event.getSteps();
+            if (eventSteps == null)
                 return;
-            steps.add(step);
-            lastStep.talk(step);
+            steps.addAll(eventSteps);
+            lastStep.talk(eventSteps.get(eventSteps.size() - 1));
         });
         return steps;
     }

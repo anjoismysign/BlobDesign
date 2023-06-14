@@ -2,31 +2,53 @@ package us.mytheria.blobdesign.director;
 
 import us.mytheria.blobdesign.BlobDesign;
 import us.mytheria.blobdesign.director.manager.ConfigManager;
+import us.mytheria.blobdesign.director.manager.DisplayElementAssetDirector;
 import us.mytheria.blobdesign.director.manager.InventoryManager;
 import us.mytheria.blobdesign.director.manager.ListenerManager;
-import us.mytheria.blobdesign.entities.BlockDisplayAsset;
-import us.mytheria.blobdesign.entities.ItemDisplayAsset;
+import us.mytheria.blobdesign.entities.BlockDisplayPresetAsset;
+import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
+import us.mytheria.blobdesign.entities.element.DisplayElementAsset;
 import us.mytheria.blobdesign.entities.inventory.BlockDisplayBuilder;
 import us.mytheria.blobdesign.entities.inventory.ItemDisplayBuilder;
 import us.mytheria.bloblib.entities.GenericManagerDirector;
 import us.mytheria.bloblib.entities.ObjectDirector;
+import us.mytheria.bloblib.entities.ObjectDirectorData;
 
 public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
+    private DisplayElementAssetDirector displayElementAssetDirector;
+
     public DesignManagerDirector(BlobDesign plugin) {
         super(plugin);
-        addManager("ConfigManager", new ConfigManager(this));
-        addManager("InventoryManager", new InventoryManager(this));
-        addManager("ListenerManager", new ListenerManager(this));
         registerAndUpdateBlobInventory("BlockDisplayEditor");
         registerAndUpdateBlobInventory("BlockDisplayNavigator");
         registerAndUpdateBlobInventory("ItemDisplayEditor");
         registerAndUpdateBlobInventory("ItemDisplayNavigator");
-        addDirector("BlockDisplay", BlockDisplayAsset::fromFile);
-        getBlockDisplayModelDirector().getBuilderManager()
-                .setBuilderBiFunction(BlockDisplayBuilder::build);
-        addDirector("ItemDisplay", ItemDisplayAsset::fromFile);
-        getItemDisplayModelDirector().getBuilderManager()
-                .setBuilderBiFunction(ItemDisplayBuilder::build);
+        addManager("ConfigManager", new ConfigManager(this));
+        addManager("InventoryManager", new InventoryManager(this));
+        addManager("ListenerManager", new ListenerManager(this));
+        addDirector("BlockDisplay", file ->
+                BlockDisplayPresetAsset.fromFile(file, plugin));
+        getBlockDisplayAssetDirector().getBuilderManager()
+                .setBuilderBiFunction((uuid, objectDirector) ->
+                        BlockDisplayBuilder.build(uuid, objectDirector,
+                                this));
+        getBlockDisplayAssetDirector().whenObjectManagerFilesLoad(blockDisplayAssetObjectManager -> {
+            addDirector("ItemDisplay", file -> ItemDisplayPresetAsset.fromFile(file, plugin));
+            getItemDisplayAssetDirector().getBuilderManager()
+                    .setBuilderBiFunction((uuid, objectDirector) ->
+                            ItemDisplayBuilder.build(uuid, objectDirector,
+                                    this));
+            getItemDisplayAssetDirector().whenObjectManagerFilesLoad(itemDisplayAssetObjectManager -> {
+                String objectName = "DisplayElement";
+                ObjectDirectorData quickWarpData = ObjectDirectorData.simple(this.getFileManager(), objectName);
+                DesignManagerDirector.this.displayElementAssetDirector = new DisplayElementAssetDirector(this,
+                        quickWarpData, file ->
+                        DisplayElementAsset.fromFile(file, this));
+                this.addManager(objectName + "Director",
+                        displayElementAssetDirector);
+            });
+        });
+        getPlugin().getLogger().severe("Loaded DesignManagerDirector");
     }
 
     /**
@@ -34,16 +56,30 @@ public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
      */
     @Override
     public void reload() {
-        getBlockDisplayModelDirector().reload();
-        getItemDisplayModelDirector().reload();
+        getBlockDisplayAssetDirector().reload();
+        getBlockDisplayAssetDirector().whenObjectManagerFilesLoad(blockDisplayAssetObjectManager -> {
+            getItemDisplayAssetDirector().reload();
+            getItemDisplayAssetDirector().whenObjectManagerFilesLoad(itemDisplayAssetObjectManager -> {
+                getDisplayElementAssetDirector().reload();
+            });
+        });
     }
 
-    public final ObjectDirector<BlockDisplayAsset> getBlockDisplayModelDirector() {
-        return getDirector("BlockDisplay", BlockDisplayAsset.class);
+    @Override
+    public void unload() {
+        getDisplayElementAssetDirector().unload();
     }
 
-    public final ObjectDirector<ItemDisplayAsset> getItemDisplayModelDirector() {
-        return getDirector("ItemDisplay", ItemDisplayAsset.class);
+    public final ObjectDirector<BlockDisplayPresetAsset> getBlockDisplayAssetDirector() {
+        return getDirector("BlockDisplay", BlockDisplayPresetAsset.class);
+    }
+
+    public final ObjectDirector<ItemDisplayPresetAsset> getItemDisplayAssetDirector() {
+        return getDirector("ItemDisplay", ItemDisplayPresetAsset.class);
+    }
+
+    public final DisplayElementAssetDirector getDisplayElementAssetDirector() {
+        return displayElementAssetDirector;
     }
 
     public final ConfigManager getConfigManager() {

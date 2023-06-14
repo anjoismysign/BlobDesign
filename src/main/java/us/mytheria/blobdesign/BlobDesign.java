@@ -1,8 +1,8 @@
 package us.mytheria.blobdesign;
 
-import org.bukkit.Bukkit;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.director.command.DisplayEditor;
+import us.mytheria.blobdesign.director.command.DisplayElementAssetCmd;
 import us.mytheria.blobdesign.director.command.DisplaySpawner;
 import us.mytheria.bloblib.managers.BlobPlugin;
 
@@ -17,13 +17,13 @@ public class BlobDesign extends BlobPlugin {
         director = new DesignManagerDirector(this);
         new DisplaySpawner(this);
         new DisplayEditor(this);
-        Bukkit.getScheduler().runTask(this, () ->
-                director.postWorld());
+        new DisplayElementAssetCmd(this);
     }
 
     @Override
     public void onDisable() {
         unregisterFromBlobLib();
+        director.unload();
     }
 
     @Override

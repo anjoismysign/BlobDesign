@@ -3,14 +3,19 @@ package us.mytheria.blobdesign.entities.inventory;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.Transformation;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-import us.mytheria.blobdesign.entities.BlockDisplayAsset;
+import us.mytheria.blobdesign.director.DesignManagerDirector;
+import us.mytheria.blobdesign.entities.BlockDisplayPresetAsset;
+import us.mytheria.blobdesign.entities.DisplayOperator;
+import us.mytheria.blobdesign.entities.ImmutableDisplayOperator;
 import us.mytheria.bloblib.BlobLibAPI;
 import us.mytheria.bloblib.BlobLibAssetAPI;
 import us.mytheria.bloblib.entities.ObjectDirector;
+import us.mytheria.bloblib.entities.display.DisplayData;
 import us.mytheria.bloblib.entities.inventory.BlobInventory;
-import us.mytheria.bloblib.entities.inventory.ObjectBuilder;
 import us.mytheria.bloblib.entities.inventory.ObjectBuilderButton;
 import us.mytheria.bloblib.entities.inventory.ObjectBuilderButtonBuilder;
 
@@ -20,18 +25,20 @@ import java.util.UUID;
 import java.util.function.Function;
 
 @SuppressWarnings("ConcatenationWithEmptyString")
-public class BlockDisplayBuilder extends ObjectBuilder<BlockDisplayAsset> {
+public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAsset> {
 
     public static BlockDisplayBuilder build(UUID builderId,
-                                            ObjectDirector<BlockDisplayAsset> objectDirector) {
+                                            ObjectDirector<BlockDisplayPresetAsset> objectDirector,
+                                            DesignManagerDirector director) {
         return new BlockDisplayBuilder(
                 BlobLibAssetAPI.getBlobInventory("BlockDisplayBuilder"),
-                builderId, objectDirector);
+                builderId, objectDirector, director);
     }
 
     private BlockDisplayBuilder(BlobInventory blobInventory, UUID builderId,
-                                ObjectDirector<BlockDisplayAsset> objectDirector) {
-        super(blobInventory, builderId, objectDirector);
+                                ObjectDirector<BlockDisplayPresetAsset> objectDirector,
+                                DesignManagerDirector director) {
+        super(blobInventory, builderId, objectDirector, director);
         ObjectBuilderButton<String> keyButton = ObjectBuilderButtonBuilder.QUICK_STRING(
                 "Key", 300, this);
         ObjectBuilderButton<Block> iconButton = ObjectBuilderButtonBuilder.QUICK_BLOCK("Icon-Block",
@@ -130,7 +137,7 @@ public class BlockDisplayBuilder extends ObjectBuilder<BlockDisplayAsset> {
                         uniformTranslationFunction) {
                 })
                 .setFunction(builder -> {
-                    BlockDisplayAsset build = builder.construct();
+                    BlockDisplayPresetAsset build = builder.construct();
                     if (build == null)
                         return null;
                     Player player = getPlayer();
@@ -147,7 +154,7 @@ public class BlockDisplayBuilder extends ObjectBuilder<BlockDisplayAsset> {
     @SuppressWarnings({"unchecked", "DataFlowIssue"})
     @Nullable
     @Override
-    public BlockDisplayAsset construct() {
+    public BlockDisplayPresetAsset construct() {
         ObjectBuilderButton<String> keyButton = (ObjectBuilderButton<String>) getObjectBuilderButton("Key");
         ObjectBuilderButton<Block> iconBlockButton = (ObjectBuilderButton<Block>) getObjectBuilderButton("Icon-Block");
         ObjectBuilderButton<Float> scaleXButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("ScaleX");
@@ -209,7 +216,10 @@ public class BlockDisplayBuilder extends ObjectBuilder<BlockDisplayAsset> {
         float rightRotationZ = rightRotationZButton.orNull();
         float rightRotationW = rightRotationWButton.orNull();
         Quaternionf rightRotation = new Quaternionf(rightRotationX, rightRotationY, rightRotationZ, rightRotationW);
-        return new BlockDisplayAsset(key, blockData, scale, translation,
-                leftRotation, rightRotation);
+        Transformation transformation = new Transformation(translation, leftRotation, scale, rightRotation);
+        JavaPlugin plugin = getManagerDirector().getPlugin();
+        DisplayData displayData = DisplayData.DEFAULT;
+        DisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
+        return new BlockDisplayPresetAsset(key, displayOperator, blockData);
     }
 }

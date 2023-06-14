@@ -1,12 +1,12 @@
 Title: 'DisplayEditor > Item'
-Size: 54
+Size: 27
 Buttons:
   Background:
     ItemStack:
       Material: GRAY_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: " "
-    Slot: 0-53
+    Slot: 0-26
   ItemDisplayTransform:
     ItemStack:
       Material: WHITE_STAINED_GLASS_PANE

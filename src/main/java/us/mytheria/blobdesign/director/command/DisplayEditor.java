@@ -15,6 +15,8 @@ public class DisplayEditor extends BlobExecutor {
     public DisplayEditor(BlobDesign plugin) {
         super(plugin, "displayeditor");
         setCommand((sender, args) -> {
+            if (!hasAdminPermission(sender))
+                return true;
             if (args.length < 2) {
                 if (args.length == 1) {
                     String arg = args[0];

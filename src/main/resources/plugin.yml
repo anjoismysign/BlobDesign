@@ -13,11 +13,14 @@ commands:
     description: ItemDisplay UIs
     usage: /itemdisplay <add/remove>
     aliases: [ idisplay, id ]
+  dilement:
+    description: DisplayElementAsset
+    aliases: [ displayelementasset ]
   displayspawner:
-    description: DisplaySpawner UIs
+    description: DisplaySpawner
     usage: /displayspawner <block/item>
     aliases: [ dspawner, dsp, ds ]
   displayeditor:
     description: DisplayEditor UIs
     usage: /displayeditor <block/item> <radius>
-    aliases: [ deditor, de ]
+    aliases: [ deditor ]

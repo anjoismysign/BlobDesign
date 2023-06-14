@@ -41,7 +41,6 @@ public class InventoryManager extends DesignManager {
     @SuppressWarnings("DataFlowIssue")
     @Override
     public void reload() {
-        super.reload();
         carriers = new HashMap<>();
         carrierTitles = new HashMap<>();
         InventoryBuilderCarrier<InventoryButton> blockNavigator = BlobLibAssetAPI.getInventoryBuilderCarrier("BlockDisplayNavigator");

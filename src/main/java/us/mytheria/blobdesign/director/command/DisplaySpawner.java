@@ -2,8 +2,8 @@ package us.mytheria.blobdesign.director.command;
 
 import org.bukkit.entity.Player;
 import us.mytheria.blobdesign.BlobDesign;
-import us.mytheria.blobdesign.entities.BlockDisplayAsset;
-import us.mytheria.blobdesign.entities.ItemDisplayAsset;
+import us.mytheria.blobdesign.entities.BlockDisplayPresetAsset;
+import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
 import us.mytheria.bloblib.BlobLibAssetAPI;
 import us.mytheria.bloblib.entities.BlobExecutor;
 import us.mytheria.bloblib.entities.BlobObject;
@@ -15,6 +15,8 @@ public class DisplaySpawner extends BlobExecutor {
     public DisplaySpawner(BlobDesign plugin) {
         super(plugin, "displayspawner");
         setCommand((sender, args) -> {
+            if (!hasAdminPermission(sender))
+                return true;
             if (args.length < 2) {
                 sender.sendMessage("Usage: /displayspawner <block/item> <key>");
                 return true;
@@ -26,16 +28,16 @@ public class DisplaySpawner extends BlobExecutor {
                     if (!isInstanceOfPlayer(sender))
                         return true;
                     Player player = (Player) sender;
-                    BlockDisplayAsset asset = plugin.getManagerDirector()
-                            .getBlockDisplayModelDirector().getObjectManager()
+                    BlockDisplayPresetAsset asset = plugin.getManagerDirector()
+                            .getBlockDisplayAssetDirector().getObjectManager()
                             .getObject(key);
                     if (asset == null) {
-                        BlobLibAssetAPI.getMessage("BlobDesign.Asset-Not-Found")
+                        BlobLibAssetAPI.getMessage("BlobDesign.Preset-Not-Found")
                                 .handle(player);
                         return true;
                     }
                     asset.instantiate(player);
-                    BlobLibAssetAPI.getMessage("BlobDesign.Asset-Instiation-Succesful")
+                    BlobLibAssetAPI.getMessage("BlobDesign.Element-Instantiation-Successful")
                             .handle(player);
                     return true;
                 }
@@ -43,16 +45,16 @@ public class DisplaySpawner extends BlobExecutor {
                     if (!isInstanceOfPlayer(sender))
                         return true;
                     Player player = (Player) sender;
-                    ItemDisplayAsset asset = plugin.getManagerDirector()
-                            .getItemDisplayModelDirector().getObjectManager()
+                    ItemDisplayPresetAsset asset = plugin.getManagerDirector()
+                            .getItemDisplayAssetDirector().getObjectManager()
                             .getObject(key);
                     if (asset == null) {
-                        BlobLibAssetAPI.getMessage("BlobDesign.Asset-Not-Found")
+                        BlobLibAssetAPI.getMessage("BlobDesign.Preset-Not-Found")
                                 .handle(player);
                         return true;
                     }
                     asset.instantiate(player);
-                    BlobLibAssetAPI.getMessage("BlobDesign.Asset-Instiation-Succesful")
+                    BlobLibAssetAPI.getMessage("BlobDesign.Element-Instantiation-Successful")
                             .handle(player);
                     return true;
                 }
@@ -64,9 +66,6 @@ public class DisplaySpawner extends BlobExecutor {
         });
         setTabCompleter((sender, args) -> {
             switch (args.length) {
-                case 0 -> {
-                    return List.of();
-                }
                 case 1 -> {
                     return List.of("block", "item");
                 }
@@ -75,25 +74,25 @@ public class DisplaySpawner extends BlobExecutor {
                     switch (arg) {
                         case "block" -> {
                             return plugin.getManagerDirector()
-                                    .getBlockDisplayModelDirector().getObjectManager()
+                                    .getBlockDisplayAssetDirector().getObjectManager()
                                     .values().stream()
                                     .map(BlobObject::getKey)
                                     .collect(Collectors.toList());
                         }
                         case "item" -> {
                             return plugin.getManagerDirector()
-                                    .getItemDisplayModelDirector().getObjectManager()
+                                    .getItemDisplayAssetDirector().getObjectManager()
                                     .values().stream()
                                     .map(BlobObject::getKey)
                                     .collect(Collectors.toList());
                         }
                         default -> {
-                            throw new IllegalStateException("Unexpected value: " + arg);
+                            return null;
                         }
                     }
                 }
                 default -> {
-                    throw new IllegalStateException("Unexpected value: " + args.length);
+                    return null;
                 }
             }
         });

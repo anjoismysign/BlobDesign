@@ -48,7 +48,6 @@ public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
                         displayElementAssetDirector);
             });
         });
-        getPlugin().getLogger().severe("Loaded DesignManagerDirector");
     }
 
     /**

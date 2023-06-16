@@ -30,14 +30,14 @@ public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
         addManager("InventoryManager", new InventoryManager(this));
         addManager("ListenerManager", new ListenerManager(this));
         addDirector("BlockDisplay", file ->
-                DesignProxier.PROXY(BlockDisplayPresetAsset.fromFile(file, plugin)));
+                DesignProxier.PROXY(BlockDisplayPresetAsset.fromFile(file, this)));
         getBlockDisplayAssetDirector().getBuilderManager()
                 .setBuilderBiFunction((uuid, objectDirector) ->
                         BlockDisplayBuilder.build(uuid, objectDirector,
                                 this));
         getBlockDisplayAssetDirector().whenObjectManagerFilesLoad(blockDisplayAssetObjectManager -> {
             addDirector("ItemDisplay", file -> DesignProxier
-                    .PROXY(ItemDisplayPresetAsset.fromFile(file, plugin)));
+                    .PROXY(ItemDisplayPresetAsset.fromFile(file, this)));
             getItemDisplayAssetDirector().getBuilderManager()
                     .setBuilderBiFunction((uuid, objectDirector) ->
                             ItemDisplayBuilder.build(uuid, objectDirector,
@@ -62,9 +62,7 @@ public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
         getBlockDisplayAssetDirector().reload();
         getBlockDisplayAssetDirector().whenObjectManagerFilesLoad(blockDisplayAssetObjectManager -> {
             getItemDisplayAssetDirector().reload();
-            getItemDisplayAssetDirector().whenObjectManagerFilesLoad(itemDisplayAssetObjectManager -> {
-                getDisplayElementAssetDirector().reload();
-            });
+            getItemDisplayAssetDirector().whenObjectManagerFilesLoad(itemDisplayAssetObjectManager -> getDisplayElementAssetDirector().reload());
         });
     }
 

@@ -25,7 +25,8 @@ public class ItemDisplayPresetAsset
         this.designManagerDirector = designManagerDirector;
     }
 
-    public static ItemDisplayPresetAsset fromFile(File file, BlobDesign plugin) {
+    public static ItemDisplayPresetAsset fromFile(File file, DesignManagerDirector director) {
+        BlobDesign plugin = director.getPlugin();
         Logger logger = plugin.getLogger();
         String path = file.getPath();
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -46,7 +47,7 @@ public class ItemDisplayPresetAsset
             transform = ItemDisplay.ItemDisplayTransform.valueOf(config.getString("Transform"));
 
         return new ItemDisplayPresetAsset(file.getName().replace(".yml", ""),
-                displayOperator, itemStack, transform, plugin.getManagerDirector());
+                displayOperator, itemStack, transform, director);
     }
 
     public String getKey() {

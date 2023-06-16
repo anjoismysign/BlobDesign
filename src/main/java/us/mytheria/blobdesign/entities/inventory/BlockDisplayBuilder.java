@@ -11,6 +11,8 @@ import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.BlockDisplayPresetAsset;
 import us.mytheria.blobdesign.entities.DisplayOperator;
 import us.mytheria.blobdesign.entities.ImmutableDisplayOperator;
+import us.mytheria.blobdesign.entities.proxy.BlockDisplayPresetAssetProxy;
+import us.mytheria.blobdesign.entities.proxy.DesignProxier;
 import us.mytheria.bloblib.BlobLibAPI;
 import us.mytheria.bloblib.BlobLibAssetAPI;
 import us.mytheria.bloblib.entities.ObjectDirector;
@@ -25,10 +27,10 @@ import java.util.UUID;
 import java.util.function.Function;
 
 @SuppressWarnings("ConcatenationWithEmptyString")
-public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAsset> {
+public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAssetProxy> {
 
     public static BlockDisplayBuilder build(UUID builderId,
-                                            ObjectDirector<BlockDisplayPresetAsset> objectDirector,
+                                            ObjectDirector<BlockDisplayPresetAssetProxy> objectDirector,
                                             DesignManagerDirector director) {
         return new BlockDisplayBuilder(
                 BlobLibAssetAPI.getBlobInventory("BlockDisplayBuilder"),
@@ -36,7 +38,7 @@ public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAsset> 
     }
 
     private BlockDisplayBuilder(BlobInventory blobInventory, UUID builderId,
-                                ObjectDirector<BlockDisplayPresetAsset> objectDirector,
+                                ObjectDirector<BlockDisplayPresetAssetProxy> objectDirector,
                                 DesignManagerDirector director) {
         super(blobInventory, builderId, objectDirector, director);
         ObjectBuilderButton<String> keyButton = ObjectBuilderButtonBuilder.QUICK_STRING(
@@ -137,7 +139,7 @@ public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAsset> 
                         uniformTranslationFunction) {
                 })
                 .setFunction(builder -> {
-                    BlockDisplayPresetAsset build = builder.construct();
+                    BlockDisplayPresetAssetProxy build = builder.construct();
                     if (build == null)
                         return null;
                     Player player = getPlayer();
@@ -154,7 +156,7 @@ public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAsset> 
     @SuppressWarnings({"unchecked", "DataFlowIssue"})
     @Nullable
     @Override
-    public BlockDisplayPresetAsset construct() {
+    public BlockDisplayPresetAssetProxy construct() {
         ObjectBuilderButton<String> keyButton = (ObjectBuilderButton<String>) getObjectBuilderButton("Key");
         ObjectBuilderButton<Block> iconBlockButton = (ObjectBuilderButton<Block>) getObjectBuilderButton("Icon-Block");
         ObjectBuilderButton<Float> scaleXButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("ScaleX");
@@ -220,6 +222,6 @@ public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAsset> 
         JavaPlugin plugin = getManagerDirector().getPlugin();
         DisplayData displayData = DisplayData.DEFAULT;
         DisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
-        return new BlockDisplayPresetAsset(key, displayOperator, blockData, getManagerDirector());
+        return DesignProxier.PROXY(new BlockDisplayPresetAsset(key, displayOperator, blockData, getManagerDirector()));
     }
 }

@@ -10,7 +10,9 @@ import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
 import us.mytheria.blobdesign.entities.element.DisplayElementAsset;
 import us.mytheria.blobdesign.entities.inventory.BlockDisplayBuilder;
 import us.mytheria.blobdesign.entities.inventory.ItemDisplayBuilder;
+import us.mytheria.blobdesign.entities.proxy.BlockDisplayPresetAssetProxy;
 import us.mytheria.blobdesign.entities.proxy.DesignProxier;
+import us.mytheria.blobdesign.entities.proxy.ItemDisplayPresetAssetProxy;
 import us.mytheria.bloblib.entities.GenericManagerDirector;
 import us.mytheria.bloblib.entities.ObjectDirector;
 import us.mytheria.bloblib.entities.ObjectDirectorData;
@@ -42,7 +44,7 @@ public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
                                     this));
             getItemDisplayAssetDirector().whenObjectManagerFilesLoad(itemDisplayAssetObjectManager -> {
                 String objectName = "DisplayElement";
-                ObjectDirectorData quickWarpData = ObjectDirectorData.simple(this.getFileManager(), objectName);
+                ObjectDirectorData quickWarpData = ObjectDirectorData.simple(this.getRealFileManager(), objectName);
                 DesignManagerDirector.this.displayElementAssetDirector = new DisplayElementAssetDirector(this,
                         quickWarpData, file ->
                         DisplayElementAsset.fromFile(file, this));
@@ -71,12 +73,12 @@ public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
         getDisplayElementAssetDirector().unload();
     }
 
-    public final ObjectDirector<BlockDisplayPresetAsset> getBlockDisplayAssetDirector() {
-        return getDirector("BlockDisplay", BlockDisplayPresetAsset.class);
+    public final ObjectDirector<BlockDisplayPresetAssetProxy> getBlockDisplayAssetDirector() {
+        return getDirector("BlockDisplay", BlockDisplayPresetAssetProxy.class);
     }
 
-    public final ObjectDirector<ItemDisplayPresetAsset> getItemDisplayAssetDirector() {
-        return getDirector("ItemDisplay", ItemDisplayPresetAsset.class);
+    public final ObjectDirector<ItemDisplayPresetAssetProxy> getItemDisplayAssetDirector() {
+        return getDirector("ItemDisplay", ItemDisplayPresetAssetProxy.class);
     }
 
     public final DisplayElementAssetDirector getDisplayElementAssetDirector() {

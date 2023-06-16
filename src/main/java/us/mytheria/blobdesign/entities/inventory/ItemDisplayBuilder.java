@@ -11,6 +11,8 @@ import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.DisplayOperator;
 import us.mytheria.blobdesign.entities.ImmutableDisplayOperator;
 import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
+import us.mytheria.blobdesign.entities.proxy.DesignProxier;
+import us.mytheria.blobdesign.entities.proxy.ItemDisplayPresetAssetProxy;
 import us.mytheria.bloblib.BlobLibAPI;
 import us.mytheria.bloblib.BlobLibAssetAPI;
 import us.mytheria.bloblib.entities.ObjectDirector;
@@ -25,9 +27,9 @@ import java.util.UUID;
 import java.util.function.Function;
 
 @SuppressWarnings("ConcatenationWithEmptyString")
-public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAsset> {
+public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProxy> {
     public static ItemDisplayBuilder build(UUID builderId,
-                                           ObjectDirector<ItemDisplayPresetAsset> objectDirector,
+                                           ObjectDirector<ItemDisplayPresetAssetProxy> objectDirector,
                                            DesignManagerDirector director) {
         return new ItemDisplayBuilder(
                 BlobLibAssetAPI.getBlobInventory("ItemDisplayBuilder"),
@@ -35,7 +37,7 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAsset> {
     }
 
     private ItemDisplayBuilder(BlobInventory blobInventory, UUID builderId,
-                               ObjectDirector<ItemDisplayPresetAsset> objectDirector,
+                               ObjectDirector<ItemDisplayPresetAssetProxy> objectDirector,
                                DesignManagerDirector director) {
         super(blobInventory, builderId, objectDirector, director);
         ObjectBuilderButton<String> keyButton = ObjectBuilderButtonBuilder.QUICK_STRING(
@@ -140,7 +142,7 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAsset> {
                         uniformTranslationFunction) {
                 })
                 .setFunction(builder -> {
-                    ItemDisplayPresetAsset build = builder.construct();
+                    ItemDisplayPresetAssetProxy build = builder.construct();
                     if (build == null)
                         return null;
                     Player player = getPlayer();
@@ -157,7 +159,7 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAsset> {
     @SuppressWarnings({"unchecked", "DataFlowIssue"})
     @Nullable
     @Override
-    public ItemDisplayPresetAsset construct() {
+    public ItemDisplayPresetAssetProxy construct() {
         ObjectBuilderButton<String> keyButton = (ObjectBuilderButton<String>) getObjectBuilderButton("Key");
         ObjectBuilderButton<ItemStack> itemStackButton = (ObjectBuilderButton<ItemStack>) getObjectBuilderButton("Icon");
         ObjectBuilderButton<Float> scaleXButton = (ObjectBuilderButton<Float>) getObjectBuilderButton("ScaleX");
@@ -225,6 +227,6 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAsset> {
         JavaPlugin plugin = getManagerDirector().getPlugin();
         DisplayData displayData = DisplayData.DEFAULT;
         DisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
-        return new ItemDisplayPresetAsset(key, displayOperator, icon, transform, getManagerDirector());
+        return DesignProxier.PROXY(new ItemDisplayPresetAsset(key, displayOperator, icon, transform, getManagerDirector()));
     }
 }

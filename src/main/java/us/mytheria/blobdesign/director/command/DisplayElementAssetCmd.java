@@ -1,13 +1,14 @@
 package us.mytheria.blobdesign.director.command;
 
 import us.mytheria.blobdesign.BlobDesign;
+import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.bloblib.BlobLibAssetAPI;
 import us.mytheria.bloblib.entities.BlobExecutor;
 
 import java.util.List;
 
 public class DisplayElementAssetCmd extends BlobExecutor {
-    public DisplayElementAssetCmd(BlobDesign plugin) {
+    public DisplayElementAssetCmd(BlobDesign plugin, DesignManagerDirector director) {
         super(plugin, "dilement");
         setCommand((sender, args) -> {
             if (!hasAdminPermission(sender))
@@ -18,7 +19,7 @@ public class DisplayElementAssetCmd extends BlobExecutor {
             }
             String arg = args[0];
             if (arg.equalsIgnoreCase("reload")) {
-                plugin.getManagerDirector().getDisplayElementAssetDirector().reload();
+                director.getDisplayElementAssetDirector().reload();
                 BlobLibAssetAPI.getMessage("BlobDesign.Reloaded")
                         .toCommandSender(sender);
                 return true;

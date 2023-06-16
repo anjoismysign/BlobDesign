@@ -10,7 +10,7 @@ import us.mytheria.bloblib.entities.inventory.BlobInventory;
 
 public class BlobDesignAPI {
     private static DesignManagerDirector director() {
-        return BlobDesign.instance.getManagerDirector();
+        return BlobDesign.instance.director;
     }
 
     /**

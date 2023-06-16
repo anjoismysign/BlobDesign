@@ -2,8 +2,9 @@ package us.mytheria.blobdesign.director.command;
 
 import org.bukkit.entity.Player;
 import us.mytheria.blobdesign.BlobDesign;
-import us.mytheria.blobdesign.entities.BlockDisplayPresetAsset;
-import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
+import us.mytheria.blobdesign.director.DesignManagerDirector;
+import us.mytheria.blobdesign.entities.BlockDisplayPreset;
+import us.mytheria.blobdesign.entities.ItemDisplayPreset;
 import us.mytheria.bloblib.BlobLibAssetAPI;
 import us.mytheria.bloblib.entities.BlobExecutor;
 import us.mytheria.bloblib.entities.BlobObject;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DisplaySpawner extends BlobExecutor {
-    public DisplaySpawner(BlobDesign plugin) {
+    public DisplaySpawner(BlobDesign plugin, DesignManagerDirector director) {
         super(plugin, "displayspawner");
         setCommand((sender, args) -> {
             if (!hasAdminPermission(sender))
@@ -28,7 +29,7 @@ public class DisplaySpawner extends BlobExecutor {
                     if (!isInstanceOfPlayer(sender))
                         return true;
                     Player player = (Player) sender;
-                    BlockDisplayPresetAsset asset = plugin.getManagerDirector()
+                    BlockDisplayPreset asset = director
                             .getBlockDisplayAssetDirector().getObjectManager()
                             .getObject(key);
                     if (asset == null) {
@@ -45,7 +46,7 @@ public class DisplaySpawner extends BlobExecutor {
                     if (!isInstanceOfPlayer(sender))
                         return true;
                     Player player = (Player) sender;
-                    ItemDisplayPresetAsset asset = plugin.getManagerDirector()
+                    ItemDisplayPreset asset = director
                             .getItemDisplayAssetDirector().getObjectManager()
                             .getObject(key);
                     if (asset == null) {
@@ -73,14 +74,14 @@ public class DisplaySpawner extends BlobExecutor {
                     String arg = args[0].toLowerCase();
                     switch (arg) {
                         case "block" -> {
-                            return plugin.getManagerDirector()
+                            return director
                                     .getBlockDisplayAssetDirector().getObjectManager()
                                     .values().stream()
                                     .map(BlobObject::getKey)
                                     .collect(Collectors.toList());
                         }
                         case "item" -> {
-                            return plugin.getManagerDirector()
+                            return director
                                     .getItemDisplayAssetDirector().getObjectManager()
                                     .values().stream()
                                     .map(BlobObject::getKey)

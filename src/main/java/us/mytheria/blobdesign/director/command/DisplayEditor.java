@@ -4,6 +4,7 @@ import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import us.mytheria.blobdesign.BlobDesign;
+import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.director.manager.InventoryManager;
 import us.mytheria.bloblib.BlobLibAssetAPI;
 import us.mytheria.bloblib.entities.BlobExecutor;
@@ -12,7 +13,7 @@ import us.mytheria.bloblib.entities.display.DisplayDecorator;
 import java.util.List;
 
 public class DisplayEditor extends BlobExecutor {
-    public DisplayEditor(BlobDesign plugin) {
+    public DisplayEditor(BlobDesign plugin, DesignManagerDirector director) {
         super(plugin, "displayeditor");
         setCommand((sender, args) -> {
             if (!hasAdminPermission(sender))
@@ -24,7 +25,7 @@ public class DisplayEditor extends BlobExecutor {
                         if (!isInstanceOfPlayer(sender))
                             return true;
                         Player player = (Player) sender;
-                        InventoryManager inventoryManager = plugin.getManagerDirector().getInventoryManager();
+                        InventoryManager inventoryManager = director.getInventoryManager();
                         DisplayDecorator<BlockDisplay> blockDecorator = inventoryManager
                                 .getBlockDisplay(player);
                         if (blockDecorator != null) {
@@ -59,7 +60,7 @@ public class DisplayEditor extends BlobExecutor {
                         return true;
                     }
                     Player player = (Player) sender;
-                    plugin.getManagerDirector().getInventoryManager()
+                    director.getInventoryManager()
                             .openBlockNavigator(player, radius);
                     return true;
                 }
@@ -74,7 +75,7 @@ public class DisplayEditor extends BlobExecutor {
                         return true;
                     }
                     Player player = (Player) sender;
-                    plugin.getManagerDirector().getInventoryManager()
+                    director.getInventoryManager()
                             .openItemNavigator(player, radius);
                     return true;
                 }

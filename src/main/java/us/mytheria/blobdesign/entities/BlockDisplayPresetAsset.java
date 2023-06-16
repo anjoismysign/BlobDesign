@@ -25,7 +25,9 @@ public class BlockDisplayPresetAsset
         this.director = director;
     }
 
-    public static BlockDisplayPresetAsset fromFile(File file, BlobDesign plugin) {
+    public static BlockDisplayPresetAsset fromFile(File file,
+                                                   DesignManagerDirector director) {
+        BlobDesign plugin = director.getPlugin();
         Logger logger = plugin.getLogger();
         String path = file.getPath();
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -42,7 +44,7 @@ public class BlockDisplayPresetAsset
             return null;
         }
         return new BlockDisplayPresetAsset(file.getName().replace(".yml", ""),
-                displayOperator, blockData, plugin.getManagerDirector());
+                displayOperator, blockData, director);
     }
 
     public String getKey() {

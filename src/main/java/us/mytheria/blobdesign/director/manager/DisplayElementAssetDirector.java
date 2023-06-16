@@ -28,4 +28,12 @@ public class DisplayElementAssetDirector extends DesignObjectDirector<DisplayEle
     public void unload() {
         getObjectManager().values().forEach(DisplayElementAsset::despawn);
     }
+
+    public void ifExistsRemove(String key) {
+        DisplayElementAsset<?> existent = getObjectManager().getObject(key);
+        if (existent == null)
+            return;
+        getObjectManager().removeObject(key);
+        existent.despawn();
+    }
 }

@@ -3,26 +3,29 @@ package us.mytheria.blobdesign.entities;
 import org.bukkit.Bukkit;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
-import us.mytheria.bloblib.entities.BlobObject;
+import org.bukkit.entity.BlockDisplay;
+import us.mytheria.blobdesign.BlobDesign;
+import us.mytheria.blobdesign.director.DesignManagerDirector;
 
 import java.io.File;
 import java.util.logging.Logger;
 
 public class BlockDisplayPresetAsset
-        extends BlockDisplayPreset
-        implements BlobObject {
-
+        extends AbstractBlockDisplayPreset
+        implements DesignDisplayPreset<BlockDisplay> {
     private final String key;
+    private final DesignManagerDirector director;
 
     public BlockDisplayPresetAsset(String key,
                                    DisplayOperator displayOperator,
-                                   BlockData blockData) {
+                                   BlockData blockData,
+                                   DesignManagerDirector director) {
         super(blockData, displayOperator);
         this.key = key;
+        this.director = director;
     }
 
-    public static BlockDisplayPresetAsset fromFile(File file, JavaPlugin plugin) {
+    public static BlockDisplayPresetAsset fromFile(File file, BlobDesign plugin) {
         Logger logger = plugin.getLogger();
         String path = file.getPath();
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -39,7 +42,7 @@ public class BlockDisplayPresetAsset
             return null;
         }
         return new BlockDisplayPresetAsset(file.getName().replace(".yml", ""),
-                displayOperator, blockData);
+                displayOperator, blockData, plugin.getManagerDirector());
     }
 
     public String getKey() {
@@ -57,5 +60,10 @@ public class BlockDisplayPresetAsset
             e.printStackTrace();
         }
         return file;
+    }
+
+    @Override
+    public DesignManagerDirector getManagerDirector() {
+        return director;
     }
 }

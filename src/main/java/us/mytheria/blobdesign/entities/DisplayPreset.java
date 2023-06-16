@@ -6,7 +6,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Display;
 import org.bukkit.entity.Entity;
 import org.bukkit.util.Vector;
-import us.mytheria.blobdesign.entities.element.BlobDisplayElement;
+import us.mytheria.blobdesign.entities.element.DisplayElement;
 import us.mytheria.bloblib.entities.display.DisplayWriter;
 
 public interface DisplayPreset<T extends Display> extends DisplayOperator {
@@ -18,7 +18,7 @@ public interface DisplayPreset<T extends Display> extends DisplayOperator {
      * @param location Location to spawn the Display entity
      * @return the Display entity instance
      */
-    BlobDisplayElement<T> instantiateElement(Location location);
+    DisplayElement<T> instantiateElement(Location location);
 
     /**
      * Will make an instance of the Display entity at given Entity's Location
@@ -27,7 +27,7 @@ public interface DisplayPreset<T extends Display> extends DisplayOperator {
      * @param entity Entity where to spawn the Display entity
      * @return the Display entity instance
      */
-    default BlobDisplayElement<T> instantiateElement(Entity entity) {
+    default DisplayElement<T> instantiateElement(Entity entity) {
         Block block = entity.getLocation().getBlock();
         return instantiateElement(block);
     }
@@ -39,7 +39,7 @@ public interface DisplayPreset<T extends Display> extends DisplayOperator {
      * @param block Block where to spawn the Display entity
      * @return the Display entity instance
      */
-    default BlobDisplayElement<T> instantiateElement(Block block) {
+    default DisplayElement<T> instantiateElement(Block block) {
         Location location = block.getLocation().clone();
         location.add(new Vector(0.5, 0.5, 0.5));
         return instantiateElement(location);

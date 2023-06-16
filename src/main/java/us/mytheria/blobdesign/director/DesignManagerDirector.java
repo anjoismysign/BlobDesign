@@ -10,6 +10,7 @@ import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
 import us.mytheria.blobdesign.entities.element.DisplayElementAsset;
 import us.mytheria.blobdesign.entities.inventory.BlockDisplayBuilder;
 import us.mytheria.blobdesign.entities.inventory.ItemDisplayBuilder;
+import us.mytheria.blobdesign.entities.proxy.DesignProxier;
 import us.mytheria.bloblib.entities.GenericManagerDirector;
 import us.mytheria.bloblib.entities.ObjectDirector;
 import us.mytheria.bloblib.entities.ObjectDirectorData;
@@ -27,13 +28,14 @@ public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
         addManager("InventoryManager", new InventoryManager(this));
         addManager("ListenerManager", new ListenerManager(this));
         addDirector("BlockDisplay", file ->
-                BlockDisplayPresetAsset.fromFile(file, plugin));
+                DesignProxier.PROXY(BlockDisplayPresetAsset.fromFile(file, plugin)));
         getBlockDisplayAssetDirector().getBuilderManager()
                 .setBuilderBiFunction((uuid, objectDirector) ->
                         BlockDisplayBuilder.build(uuid, objectDirector,
                                 this));
         getBlockDisplayAssetDirector().whenObjectManagerFilesLoad(blockDisplayAssetObjectManager -> {
-            addDirector("ItemDisplay", file -> ItemDisplayPresetAsset.fromFile(file, plugin));
+            addDirector("ItemDisplay", file -> DesignProxier
+                    .PROXY(ItemDisplayPresetAsset.fromFile(file, plugin)));
             getItemDisplayAssetDirector().getBuilderManager()
                     .setBuilderBiFunction((uuid, objectDirector) ->
                             ItemDisplayBuilder.build(uuid, objectDirector,

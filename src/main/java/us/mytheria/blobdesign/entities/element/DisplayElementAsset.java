@@ -94,7 +94,7 @@ public record DisplayElementAsset<T extends Display>(DisplayElement<T> element,
             }
             switch (type) {
                 case BLOCK_DISPLAY -> {
-                    BlockDisplayPresetAsset asset = (BlockDisplayPresetAsset) BlobDesignAPI.getBlockDisplayPreset(displayElementKey);
+                    BlockDisplayPreset asset = BlobDesignAPI.getBlockDisplayPreset(displayElementKey);
                     if (asset == null) {
                         logger.severe("BlockDisplayAsset with key '" + displayElementKey + "' does not exist in file " + path);
                         return null;
@@ -106,7 +106,7 @@ public record DisplayElementAsset<T extends Display>(DisplayElement<T> element,
                     );
                 }
                 case ITEM_DISPLAY -> {
-                    ItemDisplayPresetAsset asset = (ItemDisplayPresetAsset) BlobDesignAPI.getItemDisplayPreset(displayElementKey);
+                    ItemDisplayPreset asset = BlobDesignAPI.getItemDisplayPreset(displayElementKey);
                     if (asset == null) {
                         logger.severe("ItemDisplayAsset with key '" + displayElementKey + "' does not exist in file " + path);
                         return null;

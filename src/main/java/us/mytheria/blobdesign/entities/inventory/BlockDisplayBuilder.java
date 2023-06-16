@@ -220,6 +220,6 @@ public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAsset> 
         JavaPlugin plugin = getManagerDirector().getPlugin();
         DisplayData displayData = DisplayData.DEFAULT;
         DisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
-        return new BlockDisplayPresetAsset(key, displayOperator, blockData);
+        return new BlockDisplayPresetAsset(key, displayOperator, blockData, getManagerDirector());
     }
 }

@@ -225,6 +225,6 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAsset> {
         JavaPlugin plugin = getManagerDirector().getPlugin();
         DisplayData displayData = DisplayData.DEFAULT;
         DisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
-        return new ItemDisplayPresetAsset(key, displayOperator, icon, transform);
+        return new ItemDisplayPresetAsset(key, displayOperator, icon, transform, getManagerDirector());
     }
 }

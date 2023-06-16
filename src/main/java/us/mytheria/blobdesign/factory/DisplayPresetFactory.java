@@ -4,10 +4,10 @@ import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.inventory.ItemStack;
-import us.mytheria.blobdesign.entities.BlockDisplayPreset;
+import us.mytheria.blobdesign.entities.AbstractBlockDisplayPreset;
+import us.mytheria.blobdesign.entities.AbstractItemDisplayPreset;
 import us.mytheria.blobdesign.entities.DisplayOperator;
 import us.mytheria.blobdesign.entities.DisplayPreset;
-import us.mytheria.blobdesign.entities.ItemDisplayPreset;
 
 public class DisplayPresetFactory {
     /**
@@ -21,7 +21,7 @@ public class DisplayPresetFactory {
     public static DisplayPreset<ItemDisplay> ITEM_DISPLAY(ItemStack itemStack,
                                                           ItemDisplay.ItemDisplayTransform transform,
                                                           DisplayOperator operator) {
-        return new ItemDisplayPreset(itemStack, transform, operator) {
+        return new AbstractItemDisplayPreset(itemStack, transform, operator) {
         };
     }
 
@@ -34,7 +34,7 @@ public class DisplayPresetFactory {
      */
     public static DisplayPreset<BlockDisplay> BLOCK_DISPLAY(BlockData blockData,
                                                             DisplayOperator operator) {
-        return new BlockDisplayPreset(blockData, operator) {
+        return new AbstractBlockDisplayPreset(blockData, operator) {
         };
     }
 }

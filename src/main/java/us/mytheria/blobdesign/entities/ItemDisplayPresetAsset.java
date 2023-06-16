@@ -3,26 +3,29 @@ package us.mytheria.blobdesign.entities;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
-import us.mytheria.bloblib.entities.BlobObject;
+import us.mytheria.blobdesign.BlobDesign;
+import us.mytheria.blobdesign.director.DesignManagerDirector;
 
 import java.io.File;
 import java.util.logging.Logger;
 
 public class ItemDisplayPresetAsset
-        extends ItemDisplayPreset
-        implements BlobObject {
+        extends AbstractItemDisplayPreset
+        implements DesignDisplayPreset<ItemDisplay> {
     private final String key;
+    private final DesignManagerDirector designManagerDirector;
 
     public ItemDisplayPresetAsset(String key,
                                   DisplayOperator displayOperator,
                                   ItemStack itemStack,
-                                  ItemDisplay.ItemDisplayTransform transform) {
+                                  ItemDisplay.ItemDisplayTransform transform,
+                                  DesignManagerDirector designManagerDirector) {
         super(itemStack, transform, displayOperator);
         this.key = key;
+        this.designManagerDirector = designManagerDirector;
     }
 
-    public static ItemDisplayPresetAsset fromFile(File file, JavaPlugin plugin) {
+    public static ItemDisplayPresetAsset fromFile(File file, BlobDesign plugin) {
         Logger logger = plugin.getLogger();
         String path = file.getPath();
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
@@ -43,7 +46,7 @@ public class ItemDisplayPresetAsset
             transform = ItemDisplay.ItemDisplayTransform.valueOf(config.getString("Transform"));
 
         return new ItemDisplayPresetAsset(file.getName().replace(".yml", ""),
-                displayOperator, itemStack, transform);
+                displayOperator, itemStack, transform, plugin.getManagerDirector());
     }
 
     public String getKey() {
@@ -62,5 +65,10 @@ public class ItemDisplayPresetAsset
             e.printStackTrace();
         }
         return file;
+    }
+
+    @Override
+    public DesignManagerDirector getManagerDirector() {
+        return designManagerDirector;
     }
 }

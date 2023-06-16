@@ -1,11 +1,10 @@
 package us.mytheria.blobdesign;
 
-import org.bukkit.entity.BlockDisplay;
-import org.bukkit.entity.ItemDisplay;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
-import us.mytheria.blobdesign.entities.DisplayPreset;
+import us.mytheria.blobdesign.entities.BlockDisplayPreset;
+import us.mytheria.blobdesign.entities.ItemDisplayPreset;
 import us.mytheria.blobdesign.entities.inventory.InventoryType;
 import us.mytheria.bloblib.entities.inventory.BlobInventory;
 
@@ -36,7 +35,7 @@ public class BlobDesignAPI {
      * @return the display preset for the given key. null if not found
      */
     @Nullable
-    public static DisplayPreset<BlockDisplay> getBlockDisplayPreset(String key) {
+    public static BlockDisplayPreset getBlockDisplayPreset(String key) {
         return director().getBlockDisplayAssetDirector()
                 .getObjectManager().getObject(key);
     }
@@ -51,7 +50,7 @@ public class BlobDesignAPI {
      * @return the display preset for the given key. null if not found
      */
     @Nullable
-    public static DisplayPreset<ItemDisplay> getItemDisplayPreset(String key) {
+    public static ItemDisplayPreset getItemDisplayPreset(String key) {
         return director().getItemDisplayAssetDirector()
                 .getObjectManager().getObject(key);
     }

@@ -12,7 +12,7 @@ import us.mytheria.blobdesign.entities.BlockDisplayPresetAsset;
 import us.mytheria.blobdesign.entities.DisplayOperator;
 import us.mytheria.blobdesign.entities.ImmutableDisplayOperator;
 import us.mytheria.blobdesign.entities.proxy.BlockDisplayPresetAssetProxy;
-import us.mytheria.blobdesign.entities.proxy.DesignProxier;
+import us.mytheria.blobdesign.entities.proxy.DesignProxifier;
 import us.mytheria.bloblib.BlobLibAPI;
 import us.mytheria.bloblib.BlobLibAssetAPI;
 import us.mytheria.bloblib.entities.ObjectDirector;
@@ -222,6 +222,6 @@ public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAssetPr
         JavaPlugin plugin = getManagerDirector().getPlugin();
         DisplayData displayData = DisplayData.DEFAULT;
         DisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
-        return DesignProxier.PROXY(new BlockDisplayPresetAsset(key, displayOperator, blockData, getManagerDirector()));
+        return DesignProxifier.PROXY(new BlockDisplayPresetAsset(key, displayOperator, blockData, getManagerDirector()));
     }
 }

@@ -2,6 +2,7 @@ package us.mytheria.blobdesign.entities;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Display;
+import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.director.manager.DisplayElementAssetDirector;
 import us.mytheria.blobdesign.entities.element.DisplayElement;
@@ -21,6 +22,7 @@ public interface DesignDisplayPreset<T extends Display> extends DisplayPreset<T>
      * @param overridePreset Whether to override the preset file.
      * @return The DisplayElementAsset that was instantiated.
      */
+    @NotNull
     default DisplayElementAsset<T> instantiateElementAsset(Location location,
                                                            String key,
                                                            boolean overridePreset) {

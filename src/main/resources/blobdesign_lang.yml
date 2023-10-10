@@ -14,15 +14,28 @@ BlobDesign:
     Type: TITLE
     Title: '&c&lERROR'
     Subtitle: '&7Block cannot be air'
+    BlobSound: System.Alert
   Item-Cannot-Be-Air:
     Type: TITLE
     Title: '&c&lERROR'
     Subtitle: '&7Item cannot be air'
+    BlobSound: System.Alert
+  Item-Is-Not-Head:
+    Type: TITLE
+    Title: '&c&lERROR'
+    Subtitle: '&7Item is not a PLAYER_HEAD'
+    BlobSound: System.Alert
   Preset-Not-Found:
     Type: TITLE
     Title: '&c&lERROR'
     Subtitle: '&7Preset not found'
   Element-Instantiation-Successful:
+    Type: ACTIONBAR
+    Message: '&aDone!'
+  HeadPresetBlock-Instantiation-Successful:
+    Type: ACTIONBAR
+    Message: '&aDone!'
+  Placer-Given:
     Type: ACTIONBAR
     Message: '&aDone!'
 Builder:

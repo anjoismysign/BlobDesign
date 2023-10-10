@@ -1,13 +1,14 @@
 package us.mytheria.blobdesign.entities.element;
 
 import org.bukkit.entity.Display;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Transformation;
+import us.mytheria.blobdesign.entities.DisplayOperator;
 import us.mytheria.blobdesign.entities.DisplayPreset;
 import us.mytheria.bloblib.entities.display.DisplayData;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 
-public class BlobDisplayElement<T extends Display> implements DisplayElement<T> {
+public class BlobDisplayElement<T extends Display> implements DisplayElement<T>, DisplayOperator {
     private final DisplayDecorator<T> decorator;
     private final DisplayElementType type;
     private final DisplayPreset<T> preset;
@@ -38,16 +39,16 @@ public class BlobDisplayElement<T extends Display> implements DisplayElement<T> 
      *
      * @return The preset that was used to create this element.
      */
-    public DisplayPreset<T> getPreset() {
+    public DisplayPreset<T> getDisplayPreset() {
         return preset;
     }
 
     /**
-     * Will get the JavaPlugin that created this DisplayElement.
+     * Will get the Plugin that created this DisplayElement.
      *
-     * @return The JavaPlugin that created this DisplayElement.
+     * @return The Plugin that created this DisplayElement.
      */
-    public JavaPlugin getPlugin() {
+    public Plugin getPlugin() {
         return preset.getPlugin();
     }
 

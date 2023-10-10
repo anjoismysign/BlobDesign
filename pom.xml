@@ -6,7 +6,7 @@
 
     <groupId>us.mytheria</groupId>
     <artifactId>BlobDesign</artifactId>
-    <version>1.0</version>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
 
     <name>BlobDesign</name>
@@ -93,7 +93,7 @@
                             <type>jar</type>
                             <overWrite>true</overWrite>
                             <outputDirectory>${testServer}/plugins/</outputDirectory>
-                            <destFileName>BlobDesign-${project.version}.jar</destFileName>
+                            <destFileName>${project.name}-${project.version}.jar</destFileName>
                         </artifactItem>
                     </artifactItems>
                 </configuration>
@@ -128,7 +128,7 @@
         <dependency>
             <groupId>us.mytheria</groupId>
             <artifactId>bloblib</artifactId>
-            <version>1.690.1bs</version>
+            <version>1.697.6</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

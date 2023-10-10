@@ -1,6 +1,5 @@
 package us.mytheria.blobdesign.director.command;
 
-import us.mytheria.blobdesign.BlobDesign;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.bloblib.BlobLibAssetAPI;
 import us.mytheria.bloblib.entities.BlobExecutor;
@@ -8,8 +7,8 @@ import us.mytheria.bloblib.entities.BlobExecutor;
 import java.util.List;
 
 public class DisplayElementAssetCmd extends BlobExecutor {
-    public DisplayElementAssetCmd(BlobDesign plugin, DesignManagerDirector director) {
-        super(plugin, "dilement");
+    public DisplayElementAssetCmd(DesignManagerDirector director) {
+        super(director.getPlugin(), "dilement");
         setCommand((sender, args) -> {
             if (!hasAdminPermission(sender))
                 return true;

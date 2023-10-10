@@ -3,12 +3,12 @@ package us.mytheria.blobdesign.entities;
 import org.bukkit.Location;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Transformation;
+import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.entities.element.BlobDisplayElement;
 import us.mytheria.blobdesign.entities.element.DisplayElementType;
 import us.mytheria.bloblib.entities.display.DisplayData;
-import us.mytheria.bloblib.entities.display.DisplayDecorator;
 
 public abstract class AbstractItemDisplayPreset implements ItemDisplayPreset {
     private final ItemStack itemStack;
@@ -31,7 +31,7 @@ public abstract class AbstractItemDisplayPreset implements ItemDisplayPreset {
         return transform;
     }
 
-    public JavaPlugin getPlugin() {
+    public Plugin getPlugin() {
         return operator.getPlugin();
     }
 
@@ -43,22 +43,19 @@ public abstract class AbstractItemDisplayPreset implements ItemDisplayPreset {
         return operator.getTransformation();
     }
 
-    public ItemDisplay instantiate(Location location) {
+    public @NotNull ItemDisplay instantiate(Location location) {
         ItemDisplay itemDisplay = location.getWorld().spawn(location, ItemDisplay.class);
         itemDisplay.setPersistent(false);
-        itemDisplay.setItemStack(itemStack);
-        itemDisplay.setItemDisplayTransform(transform);
-        operator.getDisplayData().apply(itemDisplay);
-        itemDisplay.setTransformation(operator.getTransformation());
+        itemDisplay.setItemStack(getItemStack());
+        itemDisplay.setItemDisplayTransform(getTransform());
+        getDisplayData().apply(itemDisplay);
+        itemDisplay.setTransformation(getTransformation());
         return itemDisplay;
     }
 
-    public BlobDisplayElement<ItemDisplay> instantiateElement(Location location, JavaPlugin plugin) {
-        return new BlobDisplayElement<>(new DisplayDecorator<>(instantiate(location), plugin),
-                DisplayElementType.ITEM_DISPLAY, this);
-    }
-
+    @NotNull
     public BlobDisplayElement<ItemDisplay> instantiateElement(Location location) {
-        return instantiateElement(location, getPlugin());
+        return new BlobDisplayElement<>(instantiateDecorator(location),
+                DisplayElementType.ITEM_DISPLAY, this);
     }
 }

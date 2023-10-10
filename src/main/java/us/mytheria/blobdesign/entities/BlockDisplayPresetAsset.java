@@ -1,11 +1,18 @@
 package us.mytheria.blobdesign.entities;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.BlockDisplay;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.BlobDesign;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
+import us.mytheria.blobdesign.entities.blockasset.BlockDisplayPresetBlockAsset;
+import us.mytheria.blobdesign.entities.element.DisplayElementType;
+import us.mytheria.blobdesign.entities.proxy.BlockDisplayPresetAssetProxy;
+import us.mytheria.blobdesign.entities.proxy.DesignProxifier;
 
 import java.io.File;
 import java.util.logging.Logger;
@@ -15,6 +22,7 @@ public class BlockDisplayPresetAsset
         implements DesignDisplayPreset<BlockDisplay> {
     private final String key;
     private final DesignManagerDirector director;
+    private final PresetData presetData;
 
     public BlockDisplayPresetAsset(String key,
                                    DisplayOperator displayOperator,
@@ -23,10 +31,11 @@ public class BlockDisplayPresetAsset
         super(blockData, displayOperator);
         this.key = key;
         this.director = director;
+        this.presetData = new PresetData(DisplayElementType.BLOCK_DISPLAY, key);
     }
 
-    public static BlockDisplayPresetAsset fromFile(File file,
-                                                   DesignManagerDirector director) {
+    public static BlockDisplayPresetAssetProxy fromFile(File file,
+                                                        DesignManagerDirector director) {
         BlobDesign plugin = director.getPlugin();
         Logger logger = plugin.getLogger();
         String path = file.getPath();
@@ -43,8 +52,8 @@ public class BlockDisplayPresetAsset
             logger.severe(e.getMessage() + " in file " + path);
             return null;
         }
-        return new BlockDisplayPresetAsset(file.getName().replace(".yml", ""),
-                displayOperator, blockData, director);
+        return DesignProxifier.PROXY(new BlockDisplayPresetAsset(file.getName().replace(".yml", ""),
+                displayOperator, blockData, director));
     }
 
     public String getKey() {
@@ -64,8 +73,29 @@ public class BlockDisplayPresetAsset
         return file;
     }
 
-    @Override
     public DesignManagerDirector getManagerDirector() {
         return director;
+    }
+
+    @Override
+    @NotNull
+    public BlockDisplayPresetBlockAsset instantiateBlockAsset(Location location, String key) {
+        BlockDisplayPresetBlockAsset asset;
+        try {
+            asset = BlockDisplayPresetBlockAsset.of(this, key, location,
+                    getManagerDirector());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        director.getPresetBlockAssetDirector().add(asset, key);
+        return asset;
+    }
+
+    public void serialize(PersistentDataContainer container) {
+        serialize(container, getOperator());
+    }
+
+    public @NotNull PresetData getPresetData() {
+        return presetData;
     }
 }

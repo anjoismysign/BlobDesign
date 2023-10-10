@@ -3,12 +3,12 @@ package us.mytheria.blobdesign.entities;
 import org.bukkit.Location;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.BlockDisplay;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Transformation;
+import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.entities.element.BlobDisplayElement;
 import us.mytheria.blobdesign.entities.element.DisplayElementType;
 import us.mytheria.bloblib.entities.display.DisplayData;
-import us.mytheria.bloblib.entities.display.DisplayDecorator;
 
 public abstract class AbstractBlockDisplayPreset implements BlockDisplayPreset {
     private final BlockData blockData;
@@ -23,7 +23,7 @@ public abstract class AbstractBlockDisplayPreset implements BlockDisplayPreset {
         return blockData;
     }
 
-    public JavaPlugin getPlugin() {
+    public Plugin getPlugin() {
         return operator.getPlugin();
     }
 
@@ -35,21 +35,17 @@ public abstract class AbstractBlockDisplayPreset implements BlockDisplayPreset {
         return operator.getTransformation();
     }
 
-    public BlockDisplay instantiate(Location location) {
+    public @NotNull BlockDisplay instantiate(Location location) {
         BlockDisplay blockDisplay = location.getWorld().spawn(location, BlockDisplay.class);
         blockDisplay.setPersistent(false);
-        blockDisplay.setBlock(blockData);
-        operator.getDisplayData().apply(blockDisplay);
-        blockDisplay.setTransformation(operator.getTransformation());
+        blockDisplay.setBlock(getBlockData());
+        getDisplayData().apply(blockDisplay);
+        blockDisplay.setTransformation(getTransformation());
         return blockDisplay;
     }
 
-    public BlobDisplayElement<BlockDisplay> instantiateElement(Location location, JavaPlugin plugin) {
-        return new BlobDisplayElement<>(new DisplayDecorator<>(instantiate(location), plugin),
+    public @NotNull BlobDisplayElement<BlockDisplay> instantiateElement(Location location) {
+        return new BlobDisplayElement<>(instantiateDecorator(location),
                 DisplayElementType.BLOCK_DISPLAY, this);
-    }
-
-    public BlobDisplayElement<BlockDisplay> instantiateElement(Location location) {
-        return instantiateElement(location, getPlugin());
     }
 }

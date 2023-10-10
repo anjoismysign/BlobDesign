@@ -6,14 +6,12 @@ import us.mytheria.blobdesign.director.DesignObjectDirector;
 import us.mytheria.blobdesign.entities.element.DisplayElementAsset;
 import us.mytheria.bloblib.entities.ObjectDirectorData;
 
-import java.io.File;
-import java.util.function.Function;
-
 public class DisplayElementAssetDirector extends DesignObjectDirector<DisplayElementAsset<?>> {
-    public DisplayElementAssetDirector(DesignManagerDirector managerDirector,
-                                       ObjectDirectorData objectDirectorData,
-                                       Function<File, DisplayElementAsset<?>> readFunction) {
-        super(managerDirector, objectDirectorData, readFunction, false);
+    public DisplayElementAssetDirector(DesignManagerDirector managerDirector) {
+        super(managerDirector, ObjectDirectorData.simple(managerDirector.getRealFileManager(),
+                        "DisplayElement"), file ->
+                        DisplayElementAsset.fromFile(file, managerDirector),
+                false);
     }
 
     @Override
@@ -26,7 +24,7 @@ public class DisplayElementAssetDirector extends DesignObjectDirector<DisplayEle
 
     @Override
     public void unload() {
-        getObjectManager().values().forEach(DisplayElementAsset::despawn);
+        getObjectManager().values().forEach(asset -> asset.element().despawn());
     }
 
     public void ifExistsRemove(String key) {
@@ -34,6 +32,6 @@ public class DisplayElementAssetDirector extends DesignObjectDirector<DisplayEle
         if (existent == null)
             return;
         getObjectManager().removeObject(key);
-        existent.despawn();
+        existent.element().despawn();
     }
 }

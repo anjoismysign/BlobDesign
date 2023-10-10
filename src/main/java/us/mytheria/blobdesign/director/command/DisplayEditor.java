@@ -3,7 +3,6 @@ package us.mytheria.blobdesign.director.command;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
-import us.mytheria.blobdesign.BlobDesign;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.director.manager.InventoryManager;
 import us.mytheria.bloblib.BlobLibAssetAPI;
@@ -13,8 +12,8 @@ import us.mytheria.bloblib.entities.display.DisplayDecorator;
 import java.util.List;
 
 public class DisplayEditor extends BlobExecutor {
-    public DisplayEditor(BlobDesign plugin, DesignManagerDirector director) {
-        super(plugin, "displayeditor");
+    public DisplayEditor(DesignManagerDirector director) {
+        super(director.getPlugin(), "displayeditor");
         setCommand((sender, args) -> {
             if (!hasAdminPermission(sender))
                 return true;

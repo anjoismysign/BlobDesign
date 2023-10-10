@@ -1,7 +1,6 @@
 package us.mytheria.blobdesign.director.command;
 
 import org.bukkit.entity.Player;
-import us.mytheria.blobdesign.BlobDesign;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.BlockDisplayPreset;
 import us.mytheria.blobdesign.entities.ItemDisplayPreset;
@@ -13,8 +12,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DisplaySpawner extends BlobExecutor {
-    public DisplaySpawner(BlobDesign plugin, DesignManagerDirector director) {
-        super(plugin, "displayspawner");
+    public DisplaySpawner(DesignManagerDirector director) {
+        super(director.getPlugin(), "displayspawner");
         setCommand((sender, args) -> {
             if (!hasAdminPermission(sender))
                 return true;

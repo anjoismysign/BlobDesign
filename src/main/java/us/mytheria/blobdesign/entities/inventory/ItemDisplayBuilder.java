@@ -11,7 +11,7 @@ import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.DisplayOperator;
 import us.mytheria.blobdesign.entities.ImmutableDisplayOperator;
 import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
-import us.mytheria.blobdesign.entities.proxy.DesignProxier;
+import us.mytheria.blobdesign.entities.proxy.DesignProxifier;
 import us.mytheria.blobdesign.entities.proxy.ItemDisplayPresetAssetProxy;
 import us.mytheria.bloblib.BlobLibAPI;
 import us.mytheria.bloblib.BlobLibAssetAPI;
@@ -227,6 +227,6 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
         JavaPlugin plugin = getManagerDirector().getPlugin();
         DisplayData displayData = DisplayData.DEFAULT;
         DisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
-        return DesignProxier.PROXY(new ItemDisplayPresetAsset(key, displayOperator, icon, transform, getManagerDirector()));
+        return DesignProxifier.PROXY(new ItemDisplayPresetAsset(key, displayOperator, icon, transform, getManagerDirector()));
     }
 }

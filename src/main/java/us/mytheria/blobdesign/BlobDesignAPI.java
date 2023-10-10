@@ -1,10 +1,11 @@
 package us.mytheria.blobdesign;
 
+import org.bukkit.persistence.PersistentDataContainer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
-import us.mytheria.blobdesign.entities.BlockDisplayPreset;
-import us.mytheria.blobdesign.entities.ItemDisplayPreset;
+import us.mytheria.blobdesign.entities.*;
+import us.mytheria.blobdesign.entities.element.DisplayElementType;
 import us.mytheria.blobdesign.entities.inventory.InventoryType;
 import us.mytheria.bloblib.entities.inventory.BlobInventory;
 
@@ -53,5 +54,53 @@ public class BlobDesignAPI {
     public static ItemDisplayPreset getItemDisplayPreset(String key) {
         return director().getItemDisplayAssetDirector()
                 .getObjectManager().getObject(key);
+    }
+
+    /**
+     * Will get a DisplayPreset for the given type and preset key.
+     *
+     * @param type      the type of preset
+     * @param presetKey the key of the preset
+     * @return the DisplayPreset for the given type and preset key
+     */
+    @Nullable
+    public static DisplayPreset<?> getPreset(DisplayElementType type,
+                                             String presetKey) {
+        switch (type) {
+            case BLOCK_DISPLAY -> {
+                return getBlockDisplayPreset(presetKey);
+            }
+            case ITEM_DISPLAY -> {
+                return getItemDisplayPreset(presetKey);
+            }
+            default -> {
+                return null;
+            }
+        }
+    }
+
+    /**
+     * Will get a DisplayPreset for the given PresetData.
+     *
+     * @param presetData the PresetData to get the PresetPlacer for
+     * @return the DisplayPreset for the given PresetData
+     */
+    @Nullable
+    public static DisplayPreset<?> getPreset(PresetData presetData) {
+        return getPreset(presetData.type(), presetData.key());
+    }
+
+    /**
+     * Will deserialize a DisplayPreset from the given PersistentDataContainer.
+     *
+     * @param container the container to deserialize from
+     * @return the DisplayPreset deserialized from the given container
+     */
+    @Nullable
+    public static DisplayPreset<?> deserializePreset(PersistentDataContainer container) {
+        PresetPlacer placer = PresetPlacer.deserialize(container, director().getPluginOperator());
+        if (placer == null)
+            return null;
+        return getPreset(placer.getPresetData());
     }
 }

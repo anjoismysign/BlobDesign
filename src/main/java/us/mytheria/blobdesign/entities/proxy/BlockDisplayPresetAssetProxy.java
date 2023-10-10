@@ -3,10 +3,14 @@ package us.mytheria.blobdesign.entities.proxy;
 import org.bukkit.Location;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.BlockDisplay;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Transformation;
+import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.entities.BlockDisplayPreset;
 import us.mytheria.blobdesign.entities.BlockDisplayPresetAsset;
+import us.mytheria.blobdesign.entities.PresetData;
+import us.mytheria.blobdesign.entities.blockasset.PresetBlock;
 import us.mytheria.blobdesign.entities.element.DisplayElement;
 import us.mytheria.bloblib.entities.BlobObject;
 import us.mytheria.bloblib.entities.display.DisplayData;
@@ -24,7 +28,7 @@ public class BlockDisplayPresetAssetProxy implements BlockDisplayPreset, BlobObj
         return real.getBlockData();
     }
 
-    public JavaPlugin getPlugin() {
+    public Plugin getPlugin() {
         return real.getPlugin();
     }
 
@@ -36,21 +40,32 @@ public class BlockDisplayPresetAssetProxy implements BlockDisplayPreset, BlobObj
         return real.getTransformation();
     }
 
-    public DisplayElement<BlockDisplay> instantiateElement(Location location) {
+    public @NotNull DisplayElement<BlockDisplay> instantiateElement(Location location) {
         return real.instantiateElement(location);
     }
 
-    public BlockDisplay instantiate(Location location) {
+    public @NotNull BlockDisplay instantiate(Location location) {
         return real.instantiate(location);
     }
 
-    @Override
+    @NotNull
+    public PresetBlock<BlockDisplay> instantiateBlockAsset(Location location, String key) {
+        return real.instantiateBlockAsset(location, key);
+    }
+
     public String getKey() {
         return real.getKey();
     }
 
-    @Override
     public File saveToFile(File file) {
         return real.saveToFile(file);
+    }
+
+    public void serialize(PersistentDataContainer container) {
+        real.serialize(container);
+    }
+
+    public @NotNull PresetData getPresetData() {
+        return real.getPresetData();
     }
 }

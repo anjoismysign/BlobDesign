@@ -3,10 +3,14 @@ package us.mytheria.blobdesign.entities.proxy;
 import org.bukkit.Location;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Transformation;
+import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.entities.ItemDisplayPreset;
 import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
+import us.mytheria.blobdesign.entities.PresetData;
+import us.mytheria.blobdesign.entities.blockasset.PresetBlock;
 import us.mytheria.blobdesign.entities.element.DisplayElement;
 import us.mytheria.bloblib.entities.BlobObject;
 import us.mytheria.bloblib.entities.display.DisplayData;
@@ -21,7 +25,7 @@ public class ItemDisplayPresetAssetProxy implements ItemDisplayPreset, BlobObjec
     }
 
     @Override
-    public JavaPlugin getPlugin() {
+    public Plugin getPlugin() {
         return real.getPlugin();
     }
 
@@ -36,13 +40,18 @@ public class ItemDisplayPresetAssetProxy implements ItemDisplayPreset, BlobObjec
     }
 
     @Override
-    public DisplayElement<ItemDisplay> instantiateElement(Location location) {
+    public @NotNull DisplayElement<ItemDisplay> instantiateElement(Location location) {
         return real.instantiateElement(location);
     }
 
     @Override
-    public ItemDisplay instantiate(Location location) {
+    public @NotNull ItemDisplay instantiate(Location location) {
         return real.instantiate(location);
+    }
+
+    @NotNull
+    public PresetBlock<ItemDisplay> instantiateBlockAsset(Location location, String key) {
+        return real.instantiateBlockAsset(location, key);
     }
 
     @Override
@@ -63,5 +72,15 @@ public class ItemDisplayPresetAssetProxy implements ItemDisplayPreset, BlobObjec
     @Override
     public File saveToFile(File file) {
         return real.saveToFile(file);
+    }
+
+    @Override
+    public void serialize(PersistentDataContainer container) {
+        real.serialize(container);
+    }
+
+    @Override
+    public @NotNull PresetData getPresetData() {
+        return real.getPresetData();
     }
 }

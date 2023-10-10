@@ -165,7 +165,7 @@ public class InventoryManager extends DesignManager {
                 .toList();
         Bukkit.getLogger().info("Found " + nearby.size() + " nearby BlockDisplays");
         BlobSelector<BlockDisplay> selector = BlobSelector.build(inventory, player.getUniqueId(),
-                "BlockDisplay", nearby);
+                "BlockDisplay", nearby, null);
         selector.setItemsPerPage(selector.getSlots("BlockDisplay")
                 == null ? 1 : selector.getSlots("BlockDisplay").size());
         selector.selectElement(player, blockDisplay -> {
@@ -189,7 +189,7 @@ public class InventoryManager extends DesignManager {
                 .map(ItemDisplay.class::cast)
                 .toList();
         BlobSelector<ItemDisplay> selector = BlobSelector.build(inventory, player.getUniqueId(),
-                "ItemDisplay", nearby);
+                "ItemDisplay", nearby, null);
         selector.setItemsPerPage(selector.getSlots("ItemDisplay")
                 == null ? 1 : selector.getSlots("ItemDisplay").size());
         selector.selectElement(player, itemDisplay -> {

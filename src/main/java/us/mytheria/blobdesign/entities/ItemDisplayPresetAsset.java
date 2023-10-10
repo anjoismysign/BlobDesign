@@ -1,10 +1,17 @@
 package us.mytheria.blobdesign.entities;
 
+import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.BlobDesign;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
+import us.mytheria.blobdesign.entities.blockasset.ItemDisplayPresetBlockAsset;
+import us.mytheria.blobdesign.entities.element.DisplayElementType;
+import us.mytheria.blobdesign.entities.proxy.DesignProxifier;
+import us.mytheria.blobdesign.entities.proxy.ItemDisplayPresetAssetProxy;
 
 import java.io.File;
 import java.util.logging.Logger;
@@ -13,19 +20,21 @@ public class ItemDisplayPresetAsset
         extends AbstractItemDisplayPreset
         implements DesignDisplayPreset<ItemDisplay> {
     private final String key;
-    private final DesignManagerDirector designManagerDirector;
+    private final DesignManagerDirector director;
+    private final PresetData presetData;
 
     public ItemDisplayPresetAsset(String key,
                                   DisplayOperator displayOperator,
                                   ItemStack itemStack,
                                   ItemDisplay.ItemDisplayTransform transform,
-                                  DesignManagerDirector designManagerDirector) {
+                                  DesignManagerDirector director) {
         super(itemStack, transform, displayOperator);
         this.key = key;
-        this.designManagerDirector = designManagerDirector;
+        this.director = director;
+        presetData = new PresetData(DisplayElementType.ITEM_DISPLAY, key);
     }
 
-    public static ItemDisplayPresetAsset fromFile(File file, DesignManagerDirector director) {
+    public static ItemDisplayPresetAssetProxy fromFile(File file, DesignManagerDirector director) {
         BlobDesign plugin = director.getPlugin();
         Logger logger = plugin.getLogger();
         String path = file.getPath();
@@ -45,9 +54,8 @@ public class ItemDisplayPresetAsset
         ItemDisplay.ItemDisplayTransform transform = ItemDisplay.ItemDisplayTransform.NONE;
         if (config.isString("Transform"))
             transform = ItemDisplay.ItemDisplayTransform.valueOf(config.getString("Transform"));
-
-        return new ItemDisplayPresetAsset(file.getName().replace(".yml", ""),
-                displayOperator, itemStack, transform, director);
+        return DesignProxifier.PROXY(new ItemDisplayPresetAsset(file.getName().replace(".yml", ""),
+                displayOperator, itemStack, transform, director));
     }
 
     public String getKey() {
@@ -68,8 +76,29 @@ public class ItemDisplayPresetAsset
         return file;
     }
 
-    @Override
     public DesignManagerDirector getManagerDirector() {
-        return designManagerDirector;
+        return director;
+    }
+
+    @Override
+    @NotNull
+    public ItemDisplayPresetBlockAsset instantiateBlockAsset(Location location, String key) {
+        ItemDisplayPresetBlockAsset asset;
+        try {
+            asset = ItemDisplayPresetBlockAsset.of(this, key, location,
+                    getManagerDirector());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        director.getPresetBlockAssetDirector().add(asset, key);
+        return asset;
+    }
+
+    public void serialize(PersistentDataContainer container) {
+        serialize(container, getOperator());
+    }
+
+    public @NotNull PresetData getPresetData() {
+        return presetData;
     }
 }

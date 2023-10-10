@@ -1,17 +1,21 @@
 name: BlobDesign
-version: ${project.version}.${buildNumber}
+version: ${project.version}
 main: us.mytheria.blobdesign.BlobDesign
 api-version: 1.19
 load: STARTUP
 depend: [ BlobLib ]
 commands:
+  headpresetblock:
+    description: HeadPresetBlock
+    usage: /headpresetblock <key>
+    aliases: [ hpb ]
   blockdisplay:
-    description: BlockDisplay UIs
-    usage: /blockdisplay <add/remove>
+    description: BlockDisplay
+    usage: /blockdisplay <add/remove/placer>
     aliases: [ bdisplay, bd ]
   itemdisplay:
-    description: ItemDisplay UIs
-    usage: /itemdisplay <add/remove>
+    description: ItemDisplay
+    usage: /itemdisplay <add/remove/placer>
     aliases: [ idisplay, id ]
   dilement:
     description: DisplayElementAsset

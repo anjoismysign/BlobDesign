@@ -11,27 +11,32 @@ import us.mytheria.blobdesign.director.DesignManager;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.inventory.InventoryType;
 import us.mytheria.blobdesign.util.EditorUtil;
-import us.mytheria.bloblib.BlobLibAssetAPI;
+import us.mytheria.bloblib.api.BlobLibInventoryAPI;
 import us.mytheria.bloblib.entities.BlobEditor;
 import us.mytheria.bloblib.entities.BlobSelector;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 import us.mytheria.bloblib.entities.inventory.BlobInventory;
 import us.mytheria.bloblib.entities.inventory.InventoryBuilderCarrier;
 import us.mytheria.bloblib.entities.inventory.InventoryButton;
+import us.mytheria.bloblib.entities.inventory.InventoryDataRegistry;
 import us.mytheria.bloblib.itemstack.ItemStackBuilder;
 import us.mytheria.bloblib.utilities.ItemStackUtil;
 
 import java.util.*;
 
 public class InventoryManager extends DesignManager {
-    private Map<InventoryType, InventoryBuilderCarrier<InventoryButton>> carriers;
-    private Map<InventoryType, String> carrierTitles;
+    private final Map<InventoryType, InventoryDataRegistry<InventoryButton>> registries;
+    private final Map<InventoryType, InventoryBuilderCarrier<InventoryButton>> carriers;
+    private final Map<InventoryType, String> carrierTitles;
     private final Map<String, BlobEditor<?>> editorMap;
     private final Map<String, DisplayDecorator<BlockDisplay>> blockDisplayMap;
     private final Map<String, DisplayDecorator<ItemDisplay>> itemDisplayMap;
 
     public InventoryManager(DesignManagerDirector managerDirector) {
         super(managerDirector);
+        registries = new HashMap<>();
+        carriers = new HashMap<>();
+        carrierTitles = new HashMap<>();
         editorMap = new HashMap<>();
         blockDisplayMap = new HashMap<>();
         itemDisplayMap = new HashMap<>();
@@ -41,20 +46,23 @@ public class InventoryManager extends DesignManager {
     @SuppressWarnings("DataFlowIssue")
     @Override
     public void reload() {
-        carriers = new HashMap<>();
-        carrierTitles = new HashMap<>();
-        InventoryBuilderCarrier<InventoryButton> blockNavigator = BlobLibAssetAPI.getInventoryBuilderCarrier("BlockDisplayNavigator");
+        BlobLibInventoryAPI inventoryAPI = BlobLibInventoryAPI.getInstance();
+        InventoryBuilderCarrier<InventoryButton> blockNavigator = inventoryAPI.getInventoryBuilderCarrier("BlockDisplayNavigator");
         carriers.put(InventoryType.BLOCK_DISPLAY_NAVIGATOR, blockNavigator);
         carrierTitles.put(InventoryType.BLOCK_DISPLAY_NAVIGATOR, blockNavigator.title());
-        InventoryBuilderCarrier<InventoryButton> blockEditor = BlobLibAssetAPI.getInventoryBuilderCarrier("BlockDisplayEditor");
+        InventoryBuilderCarrier<InventoryButton> blockEditor = inventoryAPI.getInventoryBuilderCarrier("BlockDisplayEditor");
         carriers.put(InventoryType.BLOCK_DISPLAY_EDITOR, blockEditor);
         carrierTitles.put(InventoryType.BLOCK_DISPLAY_EDITOR, blockEditor.title());
-        InventoryBuilderCarrier<InventoryButton> itemNavigator = BlobLibAssetAPI.getInventoryBuilderCarrier("ItemDisplayNavigator");
+        InventoryBuilderCarrier<InventoryButton> itemNavigator = inventoryAPI.getInventoryBuilderCarrier("ItemDisplayNavigator");
         carriers.put(InventoryType.ITEM_DISPLAY_NAVIGATOR, itemNavigator);
         carrierTitles.put(InventoryType.ITEM_DISPLAY_NAVIGATOR, itemNavigator.title());
-        InventoryBuilderCarrier<InventoryButton> itemEditor = BlobLibAssetAPI.getInventoryBuilderCarrier("ItemDisplayEditor");
+        InventoryBuilderCarrier<InventoryButton> itemEditor = inventoryAPI.getInventoryBuilderCarrier("ItemDisplayEditor");
         carriers.put(InventoryType.ITEM_DISPLAY_EDITOR, itemEditor);
         carrierTitles.put(InventoryType.ITEM_DISPLAY_EDITOR, itemEditor.title());
+        registries.put(InventoryType.ITEM_DISPLAY_EDITOR, InventoryType.ITEM_DISPLAY_EDITOR.getRegistry());
+        registries.put(InventoryType.BLOCK_DISPLAY_EDITOR, InventoryType.BLOCK_DISPLAY_EDITOR.getRegistry());
+        registries.put(InventoryType.ITEM_DISPLAY_NAVIGATOR, InventoryType.ITEM_DISPLAY_NAVIGATOR.getRegistry());
+        registries.put(InventoryType.BLOCK_DISPLAY_NAVIGATOR, InventoryType.BLOCK_DISPLAY_NAVIGATOR.getRegistry());
     }
 
     /**

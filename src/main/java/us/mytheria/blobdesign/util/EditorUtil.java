@@ -10,7 +10,8 @@ import org.joml.Vector3f;
 import us.mytheria.blobdesign.BlobDesignAPI;
 import us.mytheria.blobdesign.entities.inventory.InventoryType;
 import us.mytheria.bloblib.BlobLibAPI;
-import us.mytheria.bloblib.BlobLibAssetAPI;
+import us.mytheria.bloblib.api.BlobLibMessageAPI;
+import us.mytheria.bloblib.api.BlobLibSoundAPI;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 import us.mytheria.bloblib.entities.inventory.BlobInventory;
 import us.mytheria.bloblib.entities.inventory.InventoryButton;
@@ -28,7 +29,9 @@ public class EditorUtil {
         if (button == null)
             throw new IllegalStateException("InventoryButton is null. Report to BlobDesign developer.");
         if (button.containsSlot(slot)) {
-            BlobLibAssetAPI.getSound("Builder.Button-Click").handle(player);
+            BlobLibSoundAPI.getInstance()
+                    .getSound("Builder.Button-Click")
+                    .handle(player);
             consumer.accept(button);
             return true;
         }
@@ -52,7 +55,9 @@ public class EditorUtil {
                             new Vector3f(input),
                             transformation.getRightRotation()));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.UniformScale-Timeout", "Builder.UniformScale");
         }))
@@ -70,7 +75,9 @@ public class EditorUtil {
                             new Vector3f(input, scale.y, scale.z),
                             transformation.getRightRotation()));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.ScaleX-Timeout", "Builder.ScaleX");
         }))
@@ -88,7 +95,9 @@ public class EditorUtil {
                             new Vector3f(scale.x, input, scale.z),
                             transformation.getRightRotation()));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.ScaleY-Timeout", "Builder.ScaleY");
         }))
@@ -106,7 +115,9 @@ public class EditorUtil {
                             new Vector3f(scale.x, scale.y, input),
                             transformation.getRightRotation()));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.ScaleZ-Timeout", "Builder.ScaleZ");
         }))
@@ -126,7 +137,9 @@ public class EditorUtil {
                             transformation.getScale(),
                             transformation.getRightRotation()));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.LeftX-Timeout", "Builder.LeftX");
         }))
@@ -146,7 +159,9 @@ public class EditorUtil {
                             transformation.getScale(),
                             transformation.getRightRotation()));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.LeftY-Timeout", "Builder.LeftY");
         }))
@@ -166,7 +181,9 @@ public class EditorUtil {
                             transformation.getScale(),
                             transformation.getRightRotation()));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.LeftZ-Timeout", "Builder.LeftZ");
         }))
@@ -186,7 +203,9 @@ public class EditorUtil {
                             transformation.getScale(),
                             new Quaternionf().rotationXYZ(input, vector3f.y, vector3f.z)));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.RightX-Timeout", "Builder.RightX");
         }))
@@ -206,7 +225,9 @@ public class EditorUtil {
                             transformation.getScale(),
                             new Quaternionf().rotationXYZ(vector3f.x, input, vector3f.z)));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.RightY-Timeout", "Builder.RightY");
         }))
@@ -226,7 +247,9 @@ public class EditorUtil {
                             transformation.getScale(),
                             new Quaternionf().rotationXYZ(vector3f.x, vector3f.y, input)));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.RightZ-Timeout", "Builder.RightZ");
         }))
@@ -242,7 +265,9 @@ public class EditorUtil {
                             call.getTransformation().getScale(),
                             call.getTransformation().getRightRotation()));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.UniformTranslation-Timeout", "Builder.UniformTranslation");
         }))
@@ -260,7 +285,9 @@ public class EditorUtil {
                             transformation.getScale(),
                             transformation.getRightRotation()));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.TranslationX-Timeout", "Builder.TranslationX");
         }))
@@ -278,7 +305,9 @@ public class EditorUtil {
                             transformation.getScale(),
                             transformation.getRightRotation()));
                 } catch (NumberFormatException var6) {
-                    BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("Builder.Number-Exception", player)
+                            .handle(player);
                 }
             }, "Builder.TranslationY-Timeout", "Builder.TranslationY");
         }))
@@ -296,7 +325,9 @@ public class EditorUtil {
                                     transformation.getScale(),
                                     transformation.getRightRotation()));
                         } catch (NumberFormatException var6) {
-                            BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                            BlobLibMessageAPI.getInstance()
+                                    .getMessage("Builder.Number-Exception", player)
+                                    .handle(player);
                         }
                     }, "Builder.TranslationZ-Timeout", "Builder.TranslationZ");
                 }

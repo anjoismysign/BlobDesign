@@ -16,7 +16,7 @@ import us.mytheria.blobdesign.listeners.stepparser.FullQuadRotation;
 import us.mytheria.blobdesign.listeners.stepparser.FullTriRotation;
 import us.mytheria.blobdesign.util.EditorUtil;
 import us.mytheria.bloblib.BlobLibAPI;
-import us.mytheria.bloblib.BlobLibAssetAPI;
+import us.mytheria.bloblib.api.BlobLibSoundAPI;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 import us.mytheria.bloblib.entities.inventory.InventoryButton;
 
@@ -101,7 +101,7 @@ public class ListenerManager extends DesignManager implements Listener {
         if (button == null)
             throw new IllegalStateException("InventoryButton is null. Report to BlobDesign developer.");
         if (button.containsSlot(slot)) {
-            BlobLibAssetAPI.getSound("Builder.Button-Click").handle(player);
+            BlobLibSoundAPI.getInstance().getSound("Builder.Button-Click").handle(player);
             consumer.accept(button);
             return true;
         }

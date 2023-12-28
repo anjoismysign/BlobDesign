@@ -5,7 +5,7 @@ import org.bukkit.entity.ItemDisplay;
 import org.bukkit.entity.Player;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.director.manager.InventoryManager;
-import us.mytheria.bloblib.BlobLibAssetAPI;
+import us.mytheria.bloblib.api.BlobLibMessageAPI;
 import us.mytheria.bloblib.entities.BlobExecutor;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 
@@ -37,7 +37,8 @@ public class DisplayEditor extends BlobExecutor {
                             inventoryManager.openItemEditor(player);
                             return true;
                         }
-                        BlobLibAssetAPI.getMessage("BlobDesign.No-Previous-Work")
+                        BlobLibMessageAPI.getInstance()
+                                .getMessage("BlobDesign.No-Previous-Work", player)
                                 .handle(player);
                         return true;
                     }

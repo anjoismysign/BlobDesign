@@ -15,7 +15,7 @@ import us.mytheria.blobdesign.entities.DisplayOperator;
 import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
 import us.mytheria.blobdesign.entities.proxy.DesignProxifier;
 import us.mytheria.blobdesign.entities.proxy.ItemDisplayPresetAssetProxy;
-import us.mytheria.bloblib.BlobLibAssetAPI;
+import us.mytheria.bloblib.api.BlobLibMessageAPI;
 import us.mytheria.bloblib.entities.BlobExecutor;
 import us.mytheria.bloblib.entities.ObjectDirector;
 import us.mytheria.bloblib.entities.ObjectManager;
@@ -78,7 +78,9 @@ public class HeadPresetBlock extends BlobExecutor {
                     director));
             objectManager.addObject(key, itemDisplay);
             player.getInventory().setItemInMainHand(itemDisplay.createPlacer());
-            BlobLibAssetAPI.getMessage("BlobDesign.HeadPresetBlock-Instantiation-Successful")
+            BlobLibMessageAPI.getInstance()
+                    .getMessage("BlobDesign.HeadPresetBlock-Instantiation-Successful",
+                            player)
                     .handle(player);
             return true;
         });

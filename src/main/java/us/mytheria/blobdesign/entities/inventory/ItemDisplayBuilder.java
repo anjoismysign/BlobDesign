@@ -14,7 +14,9 @@ import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
 import us.mytheria.blobdesign.entities.proxy.DesignProxifier;
 import us.mytheria.blobdesign.entities.proxy.ItemDisplayPresetAssetProxy;
 import us.mytheria.bloblib.BlobLibAPI;
-import us.mytheria.bloblib.BlobLibAssetAPI;
+import us.mytheria.bloblib.api.BlobLibInventoryAPI;
+import us.mytheria.bloblib.api.BlobLibMessageAPI;
+import us.mytheria.bloblib.api.BlobLibSoundAPI;
 import us.mytheria.bloblib.entities.ObjectDirector;
 import us.mytheria.bloblib.entities.display.DisplayData;
 import us.mytheria.bloblib.entities.inventory.BlobInventory;
@@ -32,7 +34,8 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
                                            ObjectDirector<ItemDisplayPresetAssetProxy> objectDirector,
                                            DesignManagerDirector director) {
         return new ItemDisplayBuilder(
-                BlobLibAssetAPI.getBlobInventory("ItemDisplayBuilder"),
+                BlobLibInventoryAPI.getInstance()
+                        .getBlobInventory("ItemDisplayBuilder"),
                 builderId, objectDirector, director);
     }
 
@@ -121,7 +124,9 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
                                 if (uniformScaleFunction.apply(input))
                                     button.set(input);
                             } catch (NumberFormatException ignored) {
-                                BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                                BlobLibMessageAPI.getInstance()
+                                        .getMessage("Builder.Number-Exception", player)
+                                        .handle(player);
                             }
                         }, "Builder.UniformScale-Timeout", "Builder.UniformScale"),
                         uniformScaleFunction) {
@@ -136,7 +141,9 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
                                 if (uniformTranslationFunction.apply(input))
                                     button.set(input);
                             } catch (NumberFormatException ignored) {
-                                BlobLibAssetAPI.getMessage("Builder.Number-Exception").handle(player);
+                                BlobLibMessageAPI.getInstance()
+                                        .getMessage("Builder.Number-Exception", player)
+                                        .handle(player);
                             }
                         }, "Builder.UniformTranslation-Timeout", "Builder.UniformTranslation"),
                         uniformTranslationFunction) {
@@ -146,7 +153,8 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
                     if (build == null)
                         return null;
                     Player player = getPlayer();
-                    BlobLibAssetAPI.getSound("Builder.Build-Complete")
+                    BlobLibSoundAPI.getInstance()
+                            .getSound("Builder.Build-Complete")
                             .handle(player);
                     player.closeInventory();
                     build.saveToFile(objectDirector.getObjectManager().getLoadFilesDirectory());
@@ -200,7 +208,8 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
         if (icon.getType().isAir()) {
             Player player = getPlayer();
             player.closeInventory();
-            BlobLibAssetAPI.getMessage("BlobDesign.Item-Cannot-Be-Air")
+            BlobLibMessageAPI.getInstance()
+                    .getMessage("BlobDesign.Item-Cannot-Be-Air", player)
                     .handle(player);
             return null;
         }

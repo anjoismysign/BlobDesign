@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.BlockDisplayPreset;
 import us.mytheria.blobdesign.entities.ItemDisplayPreset;
-import us.mytheria.bloblib.BlobLibAssetAPI;
+import us.mytheria.bloblib.api.BlobLibMessageAPI;
 import us.mytheria.bloblib.entities.BlobExecutor;
 import us.mytheria.bloblib.entities.BlobObject;
 
@@ -32,12 +32,14 @@ public class DisplaySpawner extends BlobExecutor {
                             .getBlockDisplayAssetDirector().getObjectManager()
                             .getObject(key);
                     if (asset == null) {
-                        BlobLibAssetAPI.getMessage("BlobDesign.Preset-Not-Found")
+                        BlobLibMessageAPI.getInstance()
+                                .getMessage("BlobDesign.Preset-Not-Found", player)
                                 .handle(player);
                         return true;
                     }
                     asset.instantiate(player);
-                    BlobLibAssetAPI.getMessage("BlobDesign.Element-Instantiation-Successful")
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("BlobDesign.Element-Instantiation-Successful", player)
                             .handle(player);
                     return true;
                 }
@@ -49,12 +51,14 @@ public class DisplaySpawner extends BlobExecutor {
                             .getItemDisplayAssetDirector().getObjectManager()
                             .getObject(key);
                     if (asset == null) {
-                        BlobLibAssetAPI.getMessage("BlobDesign.Preset-Not-Found")
+                        BlobLibMessageAPI.getInstance()
+                                .getMessage("BlobDesign.Preset-Not-Found", player)
                                 .handle(player);
                         return true;
                     }
                     asset.instantiate(player);
-                    BlobLibAssetAPI.getMessage("BlobDesign.Element-Instantiation-Successful")
+                    BlobLibMessageAPI.getInstance()
+                            .getMessage("BlobDesign.Element-Instantiation-Successful", player)
                             .handle(player);
                     return true;
                 }

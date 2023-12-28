@@ -7,7 +7,7 @@ import us.mytheria.blobdesign.entities.ItemDisplayPreset;
 import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
 import us.mytheria.blobdesign.entities.inventory.ItemDisplayBuilder;
 import us.mytheria.blobdesign.entities.proxy.ItemDisplayPresetAssetProxy;
-import us.mytheria.bloblib.BlobLibAssetAPI;
+import us.mytheria.bloblib.api.BlobLibMessageAPI;
 import us.mytheria.bloblib.entities.BlobChildCommand;
 import us.mytheria.bloblib.entities.BlobExecutor;
 import us.mytheria.bloblib.entities.ObjectDirectorData;
@@ -43,7 +43,8 @@ public class ItemDisplayPresetAssetDirector extends DesignObjectDirector<ItemDis
                             return;
                         }
                         preset.givePlacer(player);
-                        BlobLibAssetAPI.getMessage("BlobDesign.Placer-Given")
+                        BlobLibMessageAPI.getInstance()
+                                .getMessage("BlobDesign.Placer-Given", player)
                                 .handle(player);
                     });
         });

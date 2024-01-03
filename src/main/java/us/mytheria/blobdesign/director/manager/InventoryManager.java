@@ -1,6 +1,5 @@
 package us.mytheria.blobdesign.director.manager;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemDisplay;
@@ -159,6 +158,32 @@ public class InventoryManager extends DesignManager {
     }
 
     /**
+     * Will cache a BlockDisplay
+     *
+     * @param player       The player to cache the editor
+     * @param blockDisplay The block display to cache
+     */
+    public DisplayDecorator<BlockDisplay> addBlockDisplay(Player player, BlockDisplay blockDisplay) {
+        itemDisplayMap.remove(player.getName());
+        DisplayDecorator<BlockDisplay> decorator = new DisplayDecorator<>(blockDisplay, getPlugin());
+        blockDisplayMap.put(player.getName(), decorator);
+        return decorator;
+    }
+
+    /**
+     * Will cache an ItemDisplay
+     *
+     * @param player      The player to cache the editor
+     * @param itemDisplay The item display to cache
+     */
+    public DisplayDecorator<ItemDisplay> addItemDisplay(Player player, ItemDisplay itemDisplay) {
+        blockDisplayMap.remove(player.getName());
+        DisplayDecorator<ItemDisplay> decorator = new DisplayDecorator<>(itemDisplay, getPlugin());
+        itemDisplayMap.put(player.getName(), decorator);
+        return decorator;
+    }
+
+    /**
      * Will get all BlockDisplays that are in the given world inside
      * player's radius.
      *
@@ -171,14 +196,12 @@ public class InventoryManager extends DesignManager {
                 .filter(entity -> entity.getType() == EntityType.BLOCK_DISPLAY)
                 .map(BlockDisplay.class::cast)
                 .toList();
-        Bukkit.getLogger().info("Found " + nearby.size() + " nearby BlockDisplays");
         BlobSelector<BlockDisplay> selector = BlobSelector.build(inventory, player.getUniqueId(),
                 "BlockDisplay", nearby, null);
         selector.setItemsPerPage(selector.getSlots("BlockDisplay")
                 == null ? 1 : selector.getSlots("BlockDisplay").size());
         selector.selectElement(player, blockDisplay -> {
-            itemDisplayMap.remove(player.getName());
-            blockDisplayMap.put(player.getName(), new DisplayDecorator<>(blockDisplay, getPlugin()));
+            addBlockDisplay(player, blockDisplay);
             openBlockEditor(player);
         }, null, blockDisplay -> {
             ItemStack current = new ItemStack(blockDisplay.getBlock().getMaterial());
@@ -201,8 +224,7 @@ public class InventoryManager extends DesignManager {
         selector.setItemsPerPage(selector.getSlots("ItemDisplay")
                 == null ? 1 : selector.getSlots("ItemDisplay").size());
         selector.selectElement(player, itemDisplay -> {
-            blockDisplayMap.remove(player.getName());
-            itemDisplayMap.put(player.getName(), new DisplayDecorator<>(itemDisplay, getPlugin()));
+            addItemDisplay(player, itemDisplay);
             openItemEditor(player);
         }, null, itemDisplay -> {
             ItemStack current = itemDisplay.getItemStack();

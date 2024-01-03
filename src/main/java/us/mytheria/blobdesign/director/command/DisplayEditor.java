@@ -86,9 +86,11 @@ public class DisplayEditor extends BlobExecutor {
             }
         });
         setTabCompleter((sender, args) -> {
-            if (args.length == 1)
-                return List.of("previous", "block", "item");
-            return List.of();
+            if (args.length != 1)
+                return null;
+            if (!hasAdminPermission(sender))
+                return null;
+            return List.of("previous", "block", "item");
         });
     }
 }

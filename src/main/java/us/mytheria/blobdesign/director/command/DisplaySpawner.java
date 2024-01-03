@@ -69,6 +69,8 @@ public class DisplaySpawner extends BlobExecutor {
             }
         });
         setTabCompleter((sender, args) -> {
+            if (!hasAdminPermission(sender))
+                return null;
             switch (args.length) {
                 case 1 -> {
                     return List.of("block", "item");

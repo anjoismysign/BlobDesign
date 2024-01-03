@@ -77,7 +77,7 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
                 300, this);
         ObjectBuilderButton<ItemDisplay.ItemDisplayTransform> itemDislayTransform = ObjectBuilderButtonBuilder.ENUM_NAVIGATOR("ItemDisplayTransform",
                 ItemDisplay.ItemDisplayTransform.class, this);
-        itemDislayTransform.set(ItemDisplay.ItemDisplayTransform.NONE);
+        itemDislayTransform.set(ItemDisplay.ItemDisplayTransform.FIXED);
         Function<Float, Boolean> uniformScaleFunction = value -> {
             ObjectBuilderButton<Float> uniformX = (ObjectBuilderButton<Float>) getObjectBuilderButton("ScaleX");
             uniformX.set(value);

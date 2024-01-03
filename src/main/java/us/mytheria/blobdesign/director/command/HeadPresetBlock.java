@@ -53,7 +53,7 @@ public class HeadPresetBlock extends BlobExecutor {
                                 Display.Billboard.FIXED, 0, 1, 1,
                                 0, 0, Color.WHITE, false);
                         private final Transformation transformation = new Transformation(
-                                new Vector3f(0, 0.4715f, 0),
+                                new Vector3f(0, 0, 0),
                                 new Quaternionf(0, 0, 0, 1),
                                 new Vector3f(1.885f, 1.885f, 1.885f),
                                 new Quaternionf(0, 0, 0, 1));
@@ -74,7 +74,7 @@ public class HeadPresetBlock extends BlobExecutor {
                         }
                     },
                     new ItemStack(hand),
-                    ItemDisplay.ItemDisplayTransform.NONE,
+                    ItemDisplay.ItemDisplayTransform.FIXED,
                     director));
             objectManager.addObject(key, itemDisplay);
             player.getInventory().setItemInMainHand(itemDisplay.createPlacer());
@@ -85,10 +85,11 @@ public class HeadPresetBlock extends BlobExecutor {
             return true;
         });
         setTabCompleter((sender, args) -> {
-            if (args.length == 1) {
-                return List.of("Write key for", "the new itemDisplay");
-            }
-            return null;
+            if (args.length != 1)
+                return null;
+            if (!hasAdminPermission(sender))
+                return null;
+            return List.of("Write key for", "the new itemDisplay");
         });
     }
 }

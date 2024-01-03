@@ -20,11 +20,15 @@ commands:
   dilement:
     description: DisplayElementAsset
     aliases: [ displayelementasset ]
+  displaysummoner:
+    description: DisplaySummoner
+    usage: /disu <item_display/block_display>
+    aliases: [ dsummoner, disu ]
   displayspawner:
     description: DisplaySpawner
-    usage: /displayspawner <block/item>
-    aliases: [ dspawner, dsp, ds ]
+    usage: /disp <block/item>
+    aliases: [ dspawner, disp ]
   displayeditor:
     description: DisplayEditor UIs
-    usage: /displayeditor <block/item> <radius>
-    aliases: [ deditor ]
+    usage: /dedit <block/item> <radius>
+    aliases: [ deditor, dedit ]

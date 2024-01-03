@@ -51,7 +51,7 @@ public class ItemDisplayPresetAsset
             return null;
         }
         ItemStack itemStack = config.getItemStack("ItemStack");
-        ItemDisplay.ItemDisplayTransform transform = ItemDisplay.ItemDisplayTransform.NONE;
+        ItemDisplay.ItemDisplayTransform transform = ItemDisplay.ItemDisplayTransform.FIXED;
         if (config.isString("Transform"))
             transform = ItemDisplay.ItemDisplayTransform.valueOf(config.getString("Transform"));
         return DesignProxifier.PROXY(new ItemDisplayPresetAsset(file.getName().replace(".yml", ""),

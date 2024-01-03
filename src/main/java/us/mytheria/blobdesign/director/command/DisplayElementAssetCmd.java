@@ -29,9 +29,11 @@ public class DisplayElementAssetCmd extends BlobExecutor {
             return true;
         });
         setTabCompleter((sender, args) -> {
-            if (args.length == 1)
-                return List.of("reload");
-            return null;
+            if (args.length != 1)
+                return null;
+            if (!hasAdminPermission(sender))
+                return null;
+            return List.of("reload");
         });
     }
 }

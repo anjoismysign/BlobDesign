@@ -99,6 +99,10 @@ Builder:
     Type: TITLE
     Title: '&f&lRIGHT ROTATION W'
     Subtitle: '&7Type in a number'
+  TranslationScaleFactor:
+    Type: TITLE
+    Title: '&f&lTRANSLATE SCALE FACTOR'
+    Subtitle: '&7Type in a number'
   UniformTranslation:
     Type: TITLE
     Title: '&f&lTRANSLATE UNIFORMLY'
@@ -115,6 +119,11 @@ Builder:
     Type: TITLE
     Title: '&f&lTRANSLATE Z'
     Subtitle: '&7Type in a number'
+  TranslationScaleFactor-Timeout:
+    Type: TITLE
+    Title: '&c&lTIMEOUT'
+    Subtitle: '&7You took too long to type in TranslationScaleFactor'
+    BlobSound: Builder.Timeout
   UniformScale-Timeout:
     Type: TITLE
     Title: '&c&lTIMEOUT'

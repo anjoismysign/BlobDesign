@@ -91,15 +91,23 @@ Buttons:
       Lore:
         - "&7Selected: &f%rightRotationZ%"
     Slot: 17
-  UniformTranslation:
+  TranslationScaleFactor:
     ItemStack:
       Material: BLUE_STAINED_GLASS_PANE
+      CustomModelData: 0
+      DisplayName: "&6Translation Scale Factor"
+      Lore:
+        - "&7Selected: &f%translationScaleFactor%"
+    Slot: 21
+  UniformTranslation:
+    ItemStack:
+      Material: CYAN_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Translate Uniformly"
     Slot: 22
   TranslationX:
     ItemStack:
-      Material: CYAN_STAINED_GLASS_PANE
+      Material: LIGHT_BLUE_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Translation X"
       Lore:
@@ -107,7 +115,7 @@ Buttons:
     Slot: 23
   TranslationY:
     ItemStack:
-      Material: CYAN_STAINED_GLASS_PANE
+      Material: LIGHT_BLUE_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Translation Y"
       Lore:
@@ -115,7 +123,7 @@ Buttons:
     Slot: 24
   TranslationZ:
     ItemStack:
-      Material: CYAN_STAINED_GLASS_PANE
+      Material: LIGHT_BLUE_STAINED_GLASS_PANE
       CustomModelData: 0
       DisplayName: "&6Translation Z"
       Lore:

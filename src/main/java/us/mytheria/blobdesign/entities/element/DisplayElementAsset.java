@@ -9,8 +9,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import us.mytheria.blobdesign.BlobDesignAPI;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.BlockDisplayPreset;
-import us.mytheria.blobdesign.entities.DisplayOperator;
-import us.mytheria.blobdesign.entities.DisplayOperatorReader;
+import us.mytheria.blobdesign.entities.DesignDisplayOperator;
+import us.mytheria.blobdesign.entities.DesignDisplayOperatorReader;
 import us.mytheria.blobdesign.entities.ItemDisplayPreset;
 import us.mytheria.bloblib.entities.BlobObject;
 import us.mytheria.bloblib.utilities.BukkitUtil;
@@ -106,9 +106,9 @@ public record DisplayElementAsset<T extends Display>(DisplayElement<T> element,
                 }
             }
         else {
-            DisplayOperator operator;
+            DesignDisplayOperator operator;
             try {
-                operator = DisplayOperatorReader.READ(config, path, plugin);
+                operator = DesignDisplayOperatorReader.CONVERT(config, path, plugin);
             } catch (Exception e) {
                 logger.severe(e.getMessage() + " in file " + path);
                 return null;

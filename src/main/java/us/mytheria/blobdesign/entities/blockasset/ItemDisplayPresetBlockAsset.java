@@ -7,6 +7,7 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.ItemDisplayPreset;
+import us.mytheria.blobdesign.entities.element.DisplayElementType;
 import us.mytheria.bloblib.entities.BukkitPluginOperator;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 
@@ -47,6 +48,11 @@ public class ItemDisplayPresetBlockAsset
 
     public Location getLocation() {
         return getDecorator().call().getLocation();
+    }
+
+    @Override
+    public DisplayElementType getType() {
+        return DisplayElementType.ITEM_DISPLAY;
     }
 
     @Override

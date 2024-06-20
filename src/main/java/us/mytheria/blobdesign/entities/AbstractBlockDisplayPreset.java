@@ -12,9 +12,9 @@ import us.mytheria.bloblib.entities.display.DisplayData;
 
 public abstract class AbstractBlockDisplayPreset implements BlockDisplayPreset {
     private final BlockData blockData;
-    private final DisplayOperator operator;
+    private final DesignDisplayOperator operator;
 
-    public AbstractBlockDisplayPreset(BlockData blockData, DisplayOperator operator) {
+    public AbstractBlockDisplayPreset(BlockData blockData, DesignDisplayOperator operator) {
         this.blockData = blockData;
         this.operator = operator;
     }

@@ -6,7 +6,7 @@ import us.mytheria.bloblib.entities.display.DisplayData;
 
 public record ImmutableDisplayOperator(JavaPlugin plugin,
                                        DisplayData displayData,
-                                       Transformation transformation) implements DisplayOperator {
+                                       Transformation transformation) implements DesignDisplayOperator {
 
     public JavaPlugin getPlugin() {
         return plugin;

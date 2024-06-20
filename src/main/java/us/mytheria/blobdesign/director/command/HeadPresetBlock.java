@@ -11,7 +11,7 @@ import org.bukkit.util.Transformation;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
-import us.mytheria.blobdesign.entities.DisplayOperator;
+import us.mytheria.blobdesign.entities.DesignDisplayOperator;
 import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
 import us.mytheria.blobdesign.entities.proxy.DesignProxifier;
 import us.mytheria.blobdesign.entities.proxy.ItemDisplayPresetAssetProxy;
@@ -48,10 +48,11 @@ public class HeadPresetBlock extends BlobExecutor {
             if (hand.getType() != Material.PLAYER_HEAD)
                 return true;
             ItemDisplayPresetAssetProxy itemDisplay = DesignProxifier.PROXY(new ItemDisplayPresetAsset(key,
-                    new DisplayOperator() {
+                    new DesignDisplayOperator() {
                         private final DisplayData displayData = new DisplayData(new Display.Brightness(15, 15),
                                 Display.Billboard.FIXED, 0, 1, 1,
-                                0, 0, Color.WHITE, false);
+                                0, 0, Color.WHITE, false,
+                                1, 1, 1);
                         private final Transformation transformation = new Transformation(
                                 new Vector3f(0, 0, 0),
                                 new Quaternionf(0, 0, 0, 1),

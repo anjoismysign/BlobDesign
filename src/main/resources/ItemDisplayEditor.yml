@@ -97,6 +97,22 @@ Buttons:
       Lore:
         - "&7Selected: &f%rightRotationZ%"
     Slot: 17
+  Delete:
+    ItemStack:
+      Material: BARRIER
+      DisplayName: "&cDelete"
+      Lore:
+        - '&7WARNING!'
+        - '&7This action is irreversible.'
+    Slot: 18
+  Clone:
+    ItemStack:
+      Material: SLIME_BALL
+      DisplayName: "&aClone"
+      Lore:
+        - '&7Will set the clone as your new previous'
+        - '&7whenever doing &f/dedit previous'
+    Slot: 19
   TranslationScaleFactor:
     ItemStack:
       Material: BLUE_STAINED_GLASS_PANE

@@ -1,24 +1,28 @@
 package us.mytheria.blobdesign.util;
 
-import org.bukkit.entity.Display;
-import org.bukkit.entity.Player;
+import org.bukkit.Location;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Transformation;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import us.mytheria.blobdesign.BlobDesignAPI;
+import us.mytheria.blobdesign.director.manager.InventoryManager;
 import us.mytheria.blobdesign.entities.DisplayController;
 import us.mytheria.blobdesign.entities.inventory.InventoryType;
 import us.mytheria.bloblib.BlobLibAPI;
 import us.mytheria.bloblib.api.BlobLibMessageAPI;
 import us.mytheria.bloblib.api.BlobLibSoundAPI;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
+import us.mytheria.bloblib.entities.display.DisplayInfo;
 import us.mytheria.bloblib.entities.inventory.BlobInventory;
 import us.mytheria.bloblib.entities.inventory.InventoryButton;
 import us.mytheria.bloblib.utilities.ItemStackUtil;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class EditorUtil {
@@ -38,10 +42,17 @@ public class EditorUtil {
         return false;
     }
 
-    public static void listenDisplayEditor(Player player, int slot,
-                                           DisplayDecorator<?> decorator,
-                                           InventoryType inventoryType,
-                                           Runnable openEditor) {
+    public static void listenDisplayEditor(@NotNull Player player,
+                                           int slot,
+                                           @NotNull DisplayDecorator<?> decorator,
+                                           @NotNull InventoryType inventoryType,
+                                           @NotNull Runnable openEditor,
+                                           @NotNull InventoryManager inventoryManager) {
+        Objects.requireNonNull(player, "'player' cannot be null");
+        Objects.requireNonNull(decorator, "'decorator' cannot be null");
+        Objects.requireNonNull(inventoryType, "'inventoryType' cannot be null");
+        Objects.requireNonNull(openEditor, "'openEditor' cannot be null");
+        Objects.requireNonNull(inventoryManager, "'inventoryManager' cannot be null");
         Display call = decorator.call();
         if (containsSlot(player, slot, inventoryType, "UniformScale", button -> {
             player.closeInventory();
@@ -193,6 +204,38 @@ public class EditorUtil {
             }, "Builder.RightZ-Timeout", "Builder.RightZ");
         }))
             return;
+        if (containsSlot(player, slot, inventoryType, "Delete", button -> {
+            player.closeInventory();
+            decorator.call().remove();
+            inventoryManager.removeMapping(player);
+        }))
+            return;
+        if (containsSlot(player, slot, inventoryType, "Clone", button -> {
+            player.closeInventory();
+            if (decorator.call() instanceof BlockDisplay current) {
+                DisplayInfo currentInfo = DisplayInfo.of(current);
+                Location location = current.getLocation().clone();
+                BlockDisplay blockDisplay = (BlockDisplay) player.getWorld().spawnEntity(location,
+                        EntityType.BLOCK_DISPLAY);
+                currentInfo.apply(blockDisplay);
+                blockDisplay.setBlock(current.getBlock());
+                inventoryManager.addBlockDisplay(player, blockDisplay);
+                inventoryManager.openBlockEditor(player);
+                return;
+            }
+            if (decorator.call() instanceof ItemDisplay current) {
+                DisplayInfo currentInfo = DisplayInfo.of(current);
+                Location location = current.getLocation().clone();
+                ItemDisplay itemDisplay = (ItemDisplay) player.getWorld().spawnEntity(location,
+                        EntityType.ITEM_DISPLAY);
+                currentInfo.apply(itemDisplay);
+                itemDisplay.setItemStack(current.getItemStack());
+                inventoryManager.addItemDisplay(player, itemDisplay);
+                inventoryManager.openItemEditor(player);
+                return;
+            }
+        }))
+            return;
         if (containsSlot(player, slot, inventoryType, "TranslationScaleFactor", button -> {
             player.closeInventory();
             BlobLibAPI.addChatListener(player, 300, string -> {
@@ -279,7 +322,6 @@ public class EditorUtil {
         Vector3f left = leftRotation.getEulerAnglesXYZ(new Vector3f());
         Quaternionf rightRotation = transformation.getRightRotation();
         Vector3f right = rightRotation.getEulerAnglesXYZ(new Vector3f());
-        Vector3f translation = transformation.getTranslation();
         InventoryButton scaleX = inventory.getButton("ScaleX");
         scaleX.getSlots().forEach(slot -> {
             ItemStack itemStack = inventory.getButton(slot);
@@ -338,6 +380,16 @@ public class EditorUtil {
             ItemStack itemStack = inventory.getButton(slot);
             ItemStackUtil.replace(itemStack, "%rightRotationZ%",
                     displayDegrees(Math.toDegrees(right.z)) + "");
+            inventory.setButton(slot, itemStack);
+        });
+        InventoryButton delete = inventory.getButton("Delete");
+        delete.getSlots().forEach(slot -> {
+            ItemStack itemStack = inventory.getButton(slot);
+            inventory.setButton(slot, itemStack);
+        });
+        InventoryButton clone = inventory.getButton("Clone");
+        clone.getSlots().forEach(slot -> {
+            ItemStack itemStack = inventory.getButton(slot);
             inventory.setButton(slot, itemStack);
         });
         InventoryButton translationScaleFactor = inventory.getButton("TranslationScaleFactor");

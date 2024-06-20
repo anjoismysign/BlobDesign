@@ -3,12 +3,12 @@ package us.mytheria.blobdesign.entities.element;
 import org.bukkit.entity.Display;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Transformation;
-import us.mytheria.blobdesign.entities.DisplayOperator;
+import us.mytheria.blobdesign.entities.DesignDisplayOperator;
 import us.mytheria.blobdesign.entities.DisplayPreset;
 import us.mytheria.bloblib.entities.display.DisplayData;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 
-public class BlobDisplayElement<T extends Display> implements DisplayElement<T>, DisplayOperator {
+public class BlobDisplayElement<T extends Display> implements DisplayElement<T>, DesignDisplayOperator {
     private final DisplayDecorator<T> decorator;
     private final DisplayElementType type;
     private final DisplayPreset<T> preset;

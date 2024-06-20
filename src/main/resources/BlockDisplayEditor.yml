@@ -4,25 +4,21 @@ Buttons:
   Background:
     ItemStack:
       Material: GRAY_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: " "
     Slot: 0-26
   Icon:
     ItemStack:
       Material: RED_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Display"
     Slot: 1
   UniformScale:
     ItemStack:
       Material: YELLOW_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Scale Uniformly"
     Slot: 2
   ScaleX:
     ItemStack:
       Material: ORANGE_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Scale X"
       Lore:
         - "&7Selected: &f%scaleX%"
@@ -30,7 +26,6 @@ Buttons:
   ScaleY:
     ItemStack:
       Material: ORANGE_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Scale Y"
       Lore:
         - "&7Selected: &f%scaleY%"
@@ -38,7 +33,6 @@ Buttons:
   ScaleZ:
     ItemStack:
       Material: ORANGE_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Scale Z"
       Lore:
         - "&7Selected: &f%scaleZ%"
@@ -46,7 +40,6 @@ Buttons:
   LeftX:
     ItemStack:
       Material: PURPLE_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Left Rotation X"
       Lore:
         - "&7Selected: &f%leftRotationX%"
@@ -54,7 +47,6 @@ Buttons:
   LeftY:
     ItemStack:
       Material: PURPLE_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Left Rotation Y"
       Lore:
         - "&7Selected: &f%leftRotationY%"
@@ -62,7 +54,6 @@ Buttons:
   LeftZ:
     ItemStack:
       Material: PURPLE_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Left Rotation Z"
       Lore:
         - "&7Selected: &f%leftRotationZ%"
@@ -70,7 +61,6 @@ Buttons:
   RightX:
     ItemStack:
       Material: LIME_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Right Rotation X"
       Lore:
         - "&7Selected: &f%rightRotationX%"
@@ -78,7 +68,6 @@ Buttons:
   RightY:
     ItemStack:
       Material: LIME_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Right Rotation Y"
       Lore:
         - "&7Selected: &f%rightRotationY%"
@@ -86,15 +75,29 @@ Buttons:
   RightZ:
     ItemStack:
       Material: LIME_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Right Rotation Z"
       Lore:
         - "&7Selected: &f%rightRotationZ%"
     Slot: 17
+  Delete:
+    ItemStack:
+      Material: BARRIER
+      DisplayName: "&cDelete"
+      Lore:
+        - '&7WARNING!'
+        - '&7This action is irreversible.'
+    Slot: 18
+  Clone:
+    ItemStack:
+      Material: SLIME_BALL
+      DisplayName: "&aClone"
+      Lore:
+        - '&7Will set the clone as your new previous'
+        - '&7whenever doing &f/dedit previous'
+    Slot: 19
   TranslationScaleFactor:
     ItemStack:
       Material: BLUE_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Translation Scale Factor"
       Lore:
         - "&7Selected: &f%translationScaleFactor%"
@@ -102,13 +105,11 @@ Buttons:
   UniformTranslation:
     ItemStack:
       Material: CYAN_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Translate Uniformly"
     Slot: 22
   TranslationX:
     ItemStack:
       Material: LIGHT_BLUE_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Translation X"
       Lore:
         - "&7Selected: &f%translationX%"
@@ -116,7 +117,6 @@ Buttons:
   TranslationY:
     ItemStack:
       Material: LIGHT_BLUE_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Translation Y"
       Lore:
         - "&7Selected: &f%translationY%"
@@ -124,7 +124,6 @@ Buttons:
   TranslationZ:
     ItemStack:
       Material: LIGHT_BLUE_STAINED_GLASS_PANE
-      CustomModelData: 0
       DisplayName: "&6Translation Z"
       Lore:
         - "&7Selected: &f%translationZ%"

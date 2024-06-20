@@ -9,7 +9,7 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.BlockDisplayPresetAsset;
-import us.mytheria.blobdesign.entities.DisplayOperator;
+import us.mytheria.blobdesign.entities.DesignDisplayOperator;
 import us.mytheria.blobdesign.entities.ImmutableDisplayOperator;
 import us.mytheria.blobdesign.entities.proxy.BlockDisplayPresetAssetProxy;
 import us.mytheria.blobdesign.entities.proxy.DesignProxifier;
@@ -229,7 +229,7 @@ public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAssetPr
         Transformation transformation = new Transformation(translation, leftRotation, scale, rightRotation);
         JavaPlugin plugin = getManagerDirector().getPlugin();
         DisplayData displayData = DisplayData.DEFAULT;
-        DisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
+        DesignDisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
         return DesignProxifier.PROXY(new BlockDisplayPresetAsset(key, displayOperator, blockData, getManagerDirector()));
     }
 }

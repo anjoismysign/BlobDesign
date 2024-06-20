@@ -15,7 +15,7 @@ import us.mytheria.bloblib.entities.display.DisplayData;
 
 public interface ItemDisplayPreset extends DisplayPreset<ItemDisplay> {
 
-    default ItemDisplayPreset override(DisplayOperator operator) {
+    default ItemDisplayPreset override(DesignDisplayOperator operator) {
         return new ItemDisplayPreset() {
 
             @Override

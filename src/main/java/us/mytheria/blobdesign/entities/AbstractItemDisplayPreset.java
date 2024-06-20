@@ -13,11 +13,11 @@ import us.mytheria.bloblib.entities.display.DisplayData;
 public abstract class AbstractItemDisplayPreset implements ItemDisplayPreset {
     private final ItemStack itemStack;
     private final ItemDisplay.ItemDisplayTransform transform;
-    private final DisplayOperator operator;
+    private final DesignDisplayOperator operator;
 
     public AbstractItemDisplayPreset(ItemStack itemStack,
                                      ItemDisplay.ItemDisplayTransform transform,
-                                     DisplayOperator operator) {
+                                     DesignDisplayOperator operator) {
         this.itemStack = itemStack;
         this.transform = transform;
         this.operator = operator;

@@ -8,7 +8,7 @@ import org.bukkit.util.Transformation;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
-import us.mytheria.blobdesign.entities.DisplayOperator;
+import us.mytheria.blobdesign.entities.DesignDisplayOperator;
 import us.mytheria.blobdesign.entities.ImmutableDisplayOperator;
 import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
 import us.mytheria.blobdesign.entities.proxy.DesignProxifier;
@@ -28,7 +28,6 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
 
-@SuppressWarnings("ConcatenationWithEmptyString")
 public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProxy> {
     public static ItemDisplayBuilder build(UUID builderId,
                                            ObjectDirector<ItemDisplayPresetAssetProxy> objectDirector,
@@ -235,7 +234,7 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
         Transformation transformation = new Transformation(translation, leftRotation, scale, rightRotation);
         JavaPlugin plugin = getManagerDirector().getPlugin();
         DisplayData displayData = DisplayData.DEFAULT;
-        DisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
+        DesignDisplayOperator displayOperator = new ImmutableDisplayOperator(plugin, displayData, transformation);
         return DesignProxifier.PROXY(new ItemDisplayPresetAsset(key, displayOperator, icon, transform, getManagerDirector()));
     }
 }

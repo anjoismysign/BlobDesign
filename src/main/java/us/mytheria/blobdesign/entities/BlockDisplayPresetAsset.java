@@ -25,7 +25,7 @@ public class BlockDisplayPresetAsset
     private final PresetData presetData;
 
     public BlockDisplayPresetAsset(String key,
-                                   DisplayOperator displayOperator,
+                                   DesignDisplayOperator displayOperator,
                                    BlockData blockData,
                                    DesignManagerDirector director) {
         super(blockData, displayOperator);
@@ -45,9 +45,9 @@ public class BlockDisplayPresetAsset
             return null;
         }
         BlockData blockData = Bukkit.createBlockData(config.getString("BlockData"));
-        DisplayOperator displayOperator;
+        DesignDisplayOperator displayOperator;
         try {
-            displayOperator = DisplayOperatorReader.READ(config, path, plugin);
+            displayOperator = DesignDisplayOperatorReader.CONVERT(config, path, plugin);
         } catch (Exception e) {
             logger.severe(e.getMessage() + " in file " + path);
             return null;

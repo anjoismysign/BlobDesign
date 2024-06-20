@@ -143,8 +143,4 @@ public abstract class PresetBlockAsset<T extends Display>
     public DisplayDecorator<T> getDecorator() {
         return decorator;
     }
-
-    public DisplayElementType getType() {
-        return DisplayElementType.ITEM_DISPLAY;
-    }
 }

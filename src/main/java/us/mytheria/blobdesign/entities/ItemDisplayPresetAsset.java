@@ -24,7 +24,7 @@ public class ItemDisplayPresetAsset
     private final PresetData presetData;
 
     public ItemDisplayPresetAsset(String key,
-                                  DisplayOperator displayOperator,
+                                  DesignDisplayOperator displayOperator,
                                   ItemStack itemStack,
                                   ItemDisplay.ItemDisplayTransform transform,
                                   DesignManagerDirector director) {
@@ -43,9 +43,9 @@ public class ItemDisplayPresetAsset
             logger.severe("ItemStack is not valid in file " + path);
             return null;
         }
-        DisplayOperator displayOperator;
+        DesignDisplayOperator displayOperator;
         try {
-            displayOperator = DisplayOperatorReader.READ(config, path, plugin);
+            displayOperator = DesignDisplayOperatorReader.CONVERT(config, path, plugin);
         } catch (Exception e) {
             logger.severe(e.getMessage() + " in file " + path);
             return null;

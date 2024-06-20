@@ -67,8 +67,13 @@ public class ListenerManager extends DesignManager implements Listener {
             }, "Builder.Icon");
         }))
             return;
-        EditorUtil.listenDisplayEditor(player, slot, decorator,
-                InventoryType.ITEM_DISPLAY_EDITOR, () -> inventoryManager.openItemEditor(player));
+        EditorUtil.listenDisplayEditor(
+                player,
+                slot,
+                decorator,
+                InventoryType.ITEM_DISPLAY_EDITOR,
+                () -> inventoryManager.openItemEditor(player),
+                inventoryManager);
     }
 
     @EventHandler
@@ -90,8 +95,13 @@ public class ListenerManager extends DesignManager implements Listener {
             }, "Builder.Icon-Block-Timeout", "Builder.Icon-Block");
         }))
             return;
-        EditorUtil.listenDisplayEditor(player, slot, decorator,
-                InventoryType.BLOCK_DISPLAY_EDITOR, () -> inventoryManager.openBlockEditor(player));
+        EditorUtil.listenDisplayEditor(
+                player,
+                slot,
+                decorator,
+                InventoryType.BLOCK_DISPLAY_EDITOR,
+                () -> inventoryManager.openBlockEditor(player),
+                inventoryManager);
     }
 
     private boolean ifContainsSlot(Player player, int slot, InventoryType inventoryType, String buttonKey,

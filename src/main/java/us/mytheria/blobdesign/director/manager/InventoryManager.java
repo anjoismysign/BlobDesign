@@ -12,7 +12,6 @@ import us.mytheria.blobdesign.entities.inventory.InventoryType;
 import us.mytheria.blobdesign.util.EditorUtil;
 import us.mytheria.bloblib.api.BlobLibInventoryAPI;
 import us.mytheria.bloblib.entities.BlobEditor;
-import us.mytheria.bloblib.entities.BlobSelector;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 import us.mytheria.bloblib.entities.inventory.BlobInventory;
 import us.mytheria.bloblib.entities.inventory.InventoryBuilderCarrier;
@@ -30,9 +29,11 @@ public class InventoryManager extends DesignManager {
     private final Map<String, BlobEditor<?>> editorMap;
     private final Map<String, DisplayDecorator<BlockDisplay>> blockDisplayMap;
     private final Map<String, DisplayDecorator<ItemDisplay>> itemDisplayMap;
+    private final BlobLibInventoryAPI inventoryAPI;
 
     public InventoryManager(DesignManagerDirector managerDirector) {
         super(managerDirector);
+        inventoryAPI = BlobLibInventoryAPI.getInstance();
         registries = new HashMap<>();
         carriers = new HashMap<>();
         carrierTitles = new HashMap<>();
@@ -190,50 +191,52 @@ public class InventoryManager extends DesignManager {
      * @param player the player to get the BlockDisplays for
      */
     public void openBlockNavigator(Player player, double radius) {
-        BlobInventory inventory = getInventory(InventoryType.BLOCK_DISPLAY_NAVIGATOR);
         List<BlockDisplay> nearby = player.getWorld().getNearbyEntities(player.getLocation(),
                         radius, radius, radius).stream()
                 .filter(entity -> entity.getType() == EntityType.BLOCK_DISPLAY)
                 .map(BlockDisplay.class::cast)
                 .toList();
-        BlobSelector<BlockDisplay> selector = BlobSelector.build(inventory, player.getUniqueId(),
-                "BlockDisplay", nearby, null);
-        selector.setItemsPerPage(selector.getSlots("BlockDisplay")
-                == null ? 1 : selector.getSlots("BlockDisplay").size());
-        selector.selectElement(player, blockDisplay -> {
-            addBlockDisplay(player, blockDisplay);
-            openBlockEditor(player);
-        }, null, blockDisplay -> {
-            ItemStack current = new ItemStack(blockDisplay.getBlock().getMaterial());
-            String displayName = ItemStackUtil.display(current);
-            ItemStackBuilder builder = ItemStackBuilder.build(current);
-            builder.displayName(displayName);
-            return builder.build();
-        });
+        inventoryAPI.customSelector(
+                InventoryType.BLOCK_DISPLAY_NAVIGATOR.getRegistryKey(),
+                player,
+                "BlockDisplay",
+                "BlockDisplay",
+                () -> nearby,
+                blockDisplay -> {
+                    addBlockDisplay(player, blockDisplay);
+                    openBlockEditor(player);
+                }, blockDisplay -> {
+                    ItemStack current = new ItemStack(blockDisplay.getBlock().getMaterial());
+                    String displayName = ItemStackUtil.display(current);
+                    ItemStackBuilder builder = ItemStackBuilder.build(current);
+                    builder.displayName(displayName);
+                    return builder.build();
+                });
     }
 
     public void openItemNavigator(Player player, double radius) {
-        BlobInventory inventory = getInventory(InventoryType.ITEM_DISPLAY_NAVIGATOR);
         List<ItemDisplay> nearby = player.getWorld().getNearbyEntities(player.getLocation(),
                         radius, radius, radius).stream()
                 .filter(entity -> entity.getType() == EntityType.ITEM_DISPLAY)
                 .map(ItemDisplay.class::cast)
                 .toList();
-        BlobSelector<ItemDisplay> selector = BlobSelector.build(inventory, player.getUniqueId(),
-                "ItemDisplay", nearby, null);
-        selector.setItemsPerPage(selector.getSlots("ItemDisplay")
-                == null ? 1 : selector.getSlots("ItemDisplay").size());
-        selector.selectElement(player, itemDisplay -> {
-            addItemDisplay(player, itemDisplay);
-            openItemEditor(player);
-        }, null, itemDisplay -> {
-            ItemStack current = itemDisplay.getItemStack();
-            if (current == null)
-                return null;
-            String displayName = ItemStackUtil.display(current);
-            ItemStackBuilder builder = ItemStackBuilder.build(current);
-            builder.displayName(displayName);
-            return builder.build();
-        });
+        inventoryAPI.customSelector(
+                InventoryType.ITEM_DISPLAY_NAVIGATOR.getRegistryKey(),
+                player,
+                "ItemDisplay",
+                "ItemDisplay",
+                () -> nearby,
+                itemDisplay -> {
+                    addItemDisplay(player, itemDisplay);
+                    openItemEditor(player);
+                }, itemDisplay -> {
+                    ItemStack current = itemDisplay.getItemStack();
+                    if (current == null)
+                        return null;
+                    String displayName = ItemStackUtil.display(current);
+                    ItemStackBuilder builder = ItemStackBuilder.build(current);
+                    builder.displayName(displayName);
+                    return builder.build();
+                });
     }
 }

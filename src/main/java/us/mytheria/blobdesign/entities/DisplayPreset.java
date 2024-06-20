@@ -12,7 +12,7 @@ import us.mytheria.blobdesign.entities.element.DisplayElement;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 import us.mytheria.bloblib.entities.display.DisplayWriter;
 
-public interface DisplayPreset<T extends Display> extends DisplayOperator, PresetPlacer {
+public interface DisplayPreset<T extends Display> extends DesignDisplayOperator, PresetPlacer {
 
     /**
      * Will make an instance of the Display entity at given Location

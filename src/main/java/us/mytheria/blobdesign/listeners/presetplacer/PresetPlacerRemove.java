@@ -12,7 +12,7 @@ import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.director.manager.PresetBlockAssetDirector;
 import us.mytheria.blobdesign.entities.DisplayPreset;
 import us.mytheria.blobdesign.entities.PresetPlacer;
-import us.mytheria.blobdesign.entities.blockasset.PresetBlockAsset;
+import us.mytheria.blobdesign.entities.presetblock.PresetBlockAsset;
 import us.mytheria.blobdesign.listeners.DesignListener;
 
 public class PresetPlacerRemove extends DesignListener {

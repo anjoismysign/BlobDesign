@@ -9,7 +9,7 @@ import us.mytheria.blobdesign.BlobDesignAPI;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.DisplayPreset;
 import us.mytheria.blobdesign.entities.PresetPlacer;
-import us.mytheria.blobdesign.entities.blockasset.PresetBlock;
+import us.mytheria.blobdesign.entities.presetblock.PresetBlock;
 import us.mytheria.blobdesign.listeners.DesignListener;
 
 public class PresetPlacerPlace extends DesignListener {

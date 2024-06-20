@@ -7,10 +7,10 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Transformation;
 import org.jetbrains.annotations.NotNull;
-import us.mytheria.blobdesign.entities.blockasset.PresetBlock;
 import us.mytheria.blobdesign.entities.element.BlobDisplayElement;
 import us.mytheria.blobdesign.entities.element.DisplayElement;
 import us.mytheria.blobdesign.entities.element.DisplayElementType;
+import us.mytheria.blobdesign.entities.presetblock.PresetBlock;
 import us.mytheria.bloblib.entities.display.DisplayData;
 
 public interface ItemDisplayPreset extends DisplayPreset<ItemDisplay> {

@@ -26,27 +26,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>buildnumber-maven-plugin</artifactId>
-                <version>3.0.0</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>create</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <format>{0,number}</format>
-                    <items>
-                        <item>buildNumber0</item>
-                    </items>
-                    <doCheck>true</doCheck>
-                    <doUpdate>true</doUpdate>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>

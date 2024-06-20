@@ -5,7 +5,7 @@ import org.bukkit.util.BlockVector;
 import org.jetbrains.annotations.Nullable;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.director.DesignObjectDirector;
-import us.mytheria.blobdesign.entities.blockasset.PresetBlockAsset;
+import us.mytheria.blobdesign.entities.presetblock.PresetBlockAsset;
 import us.mytheria.bloblib.entities.ObjectDirectorData;
 import us.mytheria.bloblib.entities.ObjectManager;
 

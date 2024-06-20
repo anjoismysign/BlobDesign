@@ -10,8 +10,8 @@ import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.entities.ItemDisplayPreset;
 import us.mytheria.blobdesign.entities.ItemDisplayPresetAsset;
 import us.mytheria.blobdesign.entities.PresetData;
-import us.mytheria.blobdesign.entities.blockasset.PresetBlock;
 import us.mytheria.blobdesign.entities.element.DisplayElement;
+import us.mytheria.blobdesign.entities.presetblock.PresetBlock;
 import us.mytheria.bloblib.entities.BlobObject;
 import us.mytheria.bloblib.entities.display.DisplayData;
 

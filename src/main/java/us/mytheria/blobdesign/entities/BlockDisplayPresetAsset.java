@@ -9,8 +9,8 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.BlobDesign;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
-import us.mytheria.blobdesign.entities.blockasset.BlockDisplayPresetBlockAsset;
 import us.mytheria.blobdesign.entities.element.DisplayElementType;
+import us.mytheria.blobdesign.entities.presetblock.BlockDisplayPresetBlockAsset;
 import us.mytheria.blobdesign.entities.proxy.BlockDisplayPresetAssetProxy;
 import us.mytheria.blobdesign.entities.proxy.DesignProxifier;
 

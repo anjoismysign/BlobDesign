@@ -7,8 +7,8 @@ import org.bukkit.entity.Display;
 import org.bukkit.entity.Entity;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
-import us.mytheria.blobdesign.entities.blockasset.PresetBlock;
 import us.mytheria.blobdesign.entities.element.DisplayElement;
+import us.mytheria.blobdesign.entities.presetblock.PresetBlock;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 import us.mytheria.bloblib.entities.display.DisplayWriter;
 

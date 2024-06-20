@@ -1,4 +1,4 @@
-package us.mytheria.blobdesign.entities.blockasset;
+package us.mytheria.blobdesign.entities.presetblock;
 
 import org.bukkit.Location;
 import org.bukkit.Material;

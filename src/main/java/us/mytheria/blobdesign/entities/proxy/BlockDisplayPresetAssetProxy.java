@@ -49,8 +49,8 @@ public class BlockDisplayPresetAssetProxy implements BlockDisplayPreset, BlobObj
     }
 
     @NotNull
-    public PresetBlock<BlockDisplay> instantiateBlockAsset(Location location, String key) {
-        return real.instantiateBlockAsset(location, key);
+    public PresetBlock<BlockDisplay> instantiatePresetBlock(Location location, String key) {
+        return real.instantiatePresetBlock(location, key);
     }
 
     public String getKey() {

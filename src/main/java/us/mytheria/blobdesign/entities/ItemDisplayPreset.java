@@ -40,8 +40,8 @@ public interface ItemDisplayPreset extends DisplayPreset<ItemDisplay> {
             }
 
             @NotNull
-            public PresetBlock<ItemDisplay> instantiateBlockAsset(Location location, String key) {
-                return ItemDisplayPreset.this.instantiateBlockAsset(location, key);
+            public PresetBlock<ItemDisplay> instantiatePresetBlock(Location location, String key) {
+                return ItemDisplayPreset.this.instantiatePresetBlock(location, key);
             }
 
             @Override

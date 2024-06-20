@@ -79,7 +79,7 @@ public class BlockDisplayPresetAsset
 
     @Override
     @NotNull
-    public BlockDisplayPresetBlockAsset instantiateBlockAsset(Location location, String key) {
+    public BlockDisplayPresetBlockAsset instantiatePresetBlock(Location location, String key) {
         BlockDisplayPresetBlockAsset asset;
         try {
             asset = BlockDisplayPresetBlockAsset.of(this, key, location,
@@ -87,7 +87,7 @@ public class BlockDisplayPresetAsset
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        director.getPresetBlockAssetDirector().add(asset, key);
+        director.getPresetBlockAssetDirector().add(asset);
         return asset;
     }
 

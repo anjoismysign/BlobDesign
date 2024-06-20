@@ -1,6 +1,7 @@
 package us.mytheria.blobdesign.listeners.presetplacer;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -32,8 +33,9 @@ public class PresetPlacerPlace extends DesignListener {
         PresetBlock<?> presetBlock;
         try {
             Block placed = event.getBlockPlaced();
-            presetBlock = preset.instantiateBlockAsset(placed,
-                    placed.getLocation().toVector().toString());
+            Location location = placed.getLocation();
+            presetBlock = preset.instantiatePresetBlock(placed,
+                    location.getWorld().getName() + "," + location.toVector());
         } catch (Exception e) {
             e.printStackTrace();
             return;

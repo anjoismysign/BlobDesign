@@ -50,8 +50,8 @@ public class ItemDisplayPresetAssetProxy implements ItemDisplayPreset, BlobObjec
     }
 
     @NotNull
-    public PresetBlock<ItemDisplay> instantiateBlockAsset(Location location, String key) {
-        return real.instantiateBlockAsset(location, key);
+    public PresetBlock<ItemDisplay> instantiatePresetBlock(Location location, String key) {
+        return real.instantiatePresetBlock(location, key);
     }
 
     @Override

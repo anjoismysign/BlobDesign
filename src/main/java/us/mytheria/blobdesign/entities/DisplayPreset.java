@@ -123,8 +123,8 @@ public interface DisplayPreset<T extends Display> extends DesignDisplayOperator,
      * @return The PresetBlock that was instantiated.
      */
     @NotNull
-    PresetBlock<T> instantiateBlockAsset(Location location,
-                                         String key);
+    PresetBlock<T> instantiatePresetBlock(Location location,
+                                          String key);
 
     /**
      * Will make an instance of the Display entity at given Entity's Location
@@ -136,9 +136,9 @@ public interface DisplayPreset<T extends Display> extends DesignDisplayOperator,
      * @return The PresetBlock that was instantiated.
      */
     @NotNull
-    default PresetBlock<T> instantiateBlockAsset(Entity entity,
-                                                 String key) {
-        return instantiateBlockAsset(entity.getLocation().getBlock(), key);
+    default PresetBlock<T> instantiatePresetBlock(Entity entity,
+                                                  String key) {
+        return instantiatePresetBlock(entity.getLocation().getBlock(), key);
     }
 
     /**
@@ -151,10 +151,10 @@ public interface DisplayPreset<T extends Display> extends DesignDisplayOperator,
      * @return The PresetBlock that was instantiated.
      */
     @NotNull
-    default PresetBlock<T> instantiateBlockAsset(Block block,
-                                                 String key) {
+    default PresetBlock<T> instantiatePresetBlock(Block block,
+                                                  String key) {
         Location location = block.getLocation().clone();
         location.add(new Vector(0.5, 0.5, 0.5));
-        return instantiateBlockAsset(location, key);
+        return instantiatePresetBlock(location, key);
     }
 }

@@ -3,6 +3,7 @@ package us.mytheria.blobdesign.listeners.presetplacer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -32,10 +33,11 @@ public class PresetPlacerRemove extends DesignListener {
         if (preset == null)
             return;
         Block broken = event.getBlock();
+        World world = broken.getWorld();
         event.setCancelled(true);
         PresetBlockAssetDirector assetDirector = getManagerDirector().getPresetBlockAssetDirector();
         PresetBlockAsset<?> asset = assetDirector
-                .get(broken.getLocation().toVector().toBlockVector());
+                .get(world, broken.getLocation().toVector().toBlockVector());
         if (asset == null)
             return;
         Location location = asset.getLocation().clone();

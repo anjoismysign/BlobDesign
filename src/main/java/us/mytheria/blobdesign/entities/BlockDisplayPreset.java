@@ -34,8 +34,8 @@ public interface BlockDisplayPreset extends DisplayPreset<BlockDisplay> {
             }
 
             @NotNull
-            public PresetBlock<BlockDisplay> instantiateBlockAsset(Location location, String key) {
-                return BlockDisplayPreset.this.instantiateBlockAsset(location, key);
+            public PresetBlock<BlockDisplay> instantiatePresetBlock(Location location, String key) {
+                return BlockDisplayPreset.this.instantiatePresetBlock(location, key);
             }
 
             @Override

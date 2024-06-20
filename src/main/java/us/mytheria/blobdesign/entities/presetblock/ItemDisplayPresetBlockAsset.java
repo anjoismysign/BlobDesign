@@ -14,7 +14,6 @@ import us.mytheria.bloblib.entities.display.DisplayDecorator;
 public class ItemDisplayPresetBlockAsset
         extends PresetBlockAsset<ItemDisplay>
         implements BukkitPluginOperator {
-    private final ItemDisplayPreset displayPreset;
 
     /**
      * Will create a new ItemDisplayBlockAsset with the given preset, key, and location.
@@ -42,8 +41,7 @@ public class ItemDisplayPresetBlockAsset
                                         ItemDisplayPreset displayPreset,
                                         DisplayDecorator<ItemDisplay> decorator,
                                         DesignManagerDirector director) {
-        super(key, decorator, director);
-        this.displayPreset = displayPreset;
+        super(key, decorator, displayPreset, director);
     }
 
     public Location getLocation() {
@@ -55,12 +53,7 @@ public class ItemDisplayPresetBlockAsset
         return DisplayElementType.ITEM_DISPLAY;
     }
 
-    @Override
-    public ItemDisplayPreset getDisplayPreset() {
-        return displayPreset;
-    }
-
     public Plugin getPlugin() {
-        return displayPreset.getPlugin();
+        return getDisplayPreset().getPlugin();
     }
 }

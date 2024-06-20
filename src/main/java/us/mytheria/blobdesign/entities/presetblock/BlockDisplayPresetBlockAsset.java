@@ -15,7 +15,6 @@ import us.mytheria.bloblib.entities.display.DisplayDecorator;
 public class BlockDisplayPresetBlockAsset
         extends PresetBlockAsset<BlockDisplay>
         implements BlobObject, BukkitPluginOperator {
-    private final BlockDisplayPreset displayPreset;
 
     /**
      * Will create a new BlockDisplayBlockAsset with the given preset, key, and location.
@@ -43,8 +42,7 @@ public class BlockDisplayPresetBlockAsset
                                          BlockDisplayPreset displayPreset,
                                          DisplayDecorator<BlockDisplay> decorator,
                                          DesignManagerDirector director) {
-        super(key, decorator, director);
-        this.displayPreset = displayPreset;
+        super(key, decorator, displayPreset, director);
     }
 
     @Override
@@ -57,12 +55,7 @@ public class BlockDisplayPresetBlockAsset
         return DisplayElementType.BLOCK_DISPLAY;
     }
 
-    @Override
-    public BlockDisplayPreset getDisplayPreset() {
-        return displayPreset;
-    }
-
     public Plugin getPlugin() {
-        return displayPreset.getPlugin();
+        return getDisplayPreset().getPlugin();
     }
 }

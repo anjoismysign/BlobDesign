@@ -48,7 +48,19 @@ public interface PresetBlock<T extends Display> extends DisplayElement<T> {
      */
     @Override
     default void despawn() {
-        getLocation().getBlock().setType(Material.AIR);
+        despawn(true);
+    }
+
+    /**
+     * Will despawn the entity (as the Minecraft entity that's
+     * inside the Minecraft World) associated with this asset.
+     *
+     * @param removeBlock Whether to remove the block that's in the
+     *                    location of this asset.
+     */
+    default void despawn(boolean removeBlock) {
+        if (removeBlock)
+            getLocation().getBlock().setType(Material.AIR);
         DisplayDecorator<?> decorator = getDecorator();
         decorator.stopClock();
         decorator.call().remove();

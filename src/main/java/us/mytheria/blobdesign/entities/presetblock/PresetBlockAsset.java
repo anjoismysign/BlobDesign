@@ -11,6 +11,7 @@ import us.mytheria.blobdesign.BlobDesignAPI;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.director.manager.PresetBlockAssetDirector;
 import us.mytheria.blobdesign.entities.BlockDisplayPreset;
+import us.mytheria.blobdesign.entities.DisplayPreset;
 import us.mytheria.blobdesign.entities.ItemDisplayPreset;
 import us.mytheria.blobdesign.entities.element.DisplayElementType;
 import us.mytheria.bloblib.entities.BlobObject;
@@ -25,7 +26,9 @@ import java.util.logging.Logger;
 public abstract class PresetBlockAsset<T extends Display>
         implements BlobObject,
         PresetBlock<T> {
-    private final DisplayDecorator<T> decorator;
+    private DisplayDecorator<T> decorator;
+
+    private final DisplayPreset<T> preset;
     private final String key;
     private final DesignManagerDirector director;
 
@@ -115,9 +118,11 @@ public abstract class PresetBlockAsset<T extends Display>
 
     public PresetBlockAsset(String key,
                             DisplayDecorator<T> decorator,
+                            DisplayPreset<T> preset,
                             DesignManagerDirector director) {
         this.key = key;
         this.decorator = decorator;
+        this.preset = preset;
         this.director = director;
     }
 
@@ -142,5 +147,17 @@ public abstract class PresetBlockAsset<T extends Display>
 
     public DisplayDecorator<T> getDecorator() {
         return decorator;
+    }
+
+    public DisplayPreset<T> getDisplayPreset() {
+        return preset;
+    }
+
+    /**
+     * Respawns the entity at the spawn location and updates the decorator reference.
+     */
+    public void respawn() {
+        despawn(false);
+        this.decorator = preset.instantiateDecorator(getLocation());
     }
 }

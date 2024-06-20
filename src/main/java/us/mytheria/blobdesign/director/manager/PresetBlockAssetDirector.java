@@ -1,7 +1,11 @@
 package us.mytheria.blobdesign.director.manager;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
 import org.bukkit.World;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.util.BlockVector;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -13,8 +17,10 @@ import us.mytheria.bloblib.entities.ObjectDirectorData;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
-public class PresetBlockAssetDirector extends DesignObjectDirector<PresetBlockAsset<?>> {
+public class PresetBlockAssetDirector extends DesignObjectDirector<PresetBlockAsset<?>>
+        implements Listener {
     @NotNull
     private Map<String, WorldPresetBlockAssetManager> worldManagers;
 
@@ -24,6 +30,20 @@ public class PresetBlockAssetDirector extends DesignObjectDirector<PresetBlockAs
                 file -> PresetBlockAsset.fromFile(file, managerDirector),
                 false);
         worldManagers = new HashMap<>();
+    }
+
+    @EventHandler
+    public void onChunkLoad(ChunkLoadEvent event) {
+        World world = event.getWorld();
+        WorldPresetBlockAssetManager manager = worldManagers.get(world.getName());
+        if (manager == null)
+            return;
+        Chunk chunk = event.getChunk();
+        String identifier = manager.toIdentifier(chunk);
+        Set<PresetBlockAsset<?>> assets = manager.getChunks().get(identifier);
+        if (assets == null)
+            return;
+        assets.forEach(PresetBlockAsset::respawn);
     }
 
     @Override
@@ -85,10 +105,8 @@ public class PresetBlockAssetDirector extends DesignObjectDirector<PresetBlockAs
             @NotNull World world,
             @NotNull BlockVector reference) {
         WorldPresetBlockAssetManager manager = worldManagers.get(world.getName());
-        if (manager == null) {
-            manager = WorldPresetBlockAssetManager.of(world, this);
-            worldManagers.put(world.getName(), manager);
-        }
-        return manager.blocks().get(reference);
+        if (manager == null)
+            return null;
+        return manager.getSingle().get(reference);
     }
 }

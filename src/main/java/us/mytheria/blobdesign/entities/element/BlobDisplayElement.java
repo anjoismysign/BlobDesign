@@ -3,6 +3,7 @@ package us.mytheria.blobdesign.entities.element;
 import org.bukkit.entity.Display;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Transformation;
+import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.entities.DesignDisplayOperator;
 import us.mytheria.blobdesign.entities.DisplayPreset;
 import us.mytheria.bloblib.entities.display.DisplayData;
@@ -26,11 +27,11 @@ public class BlobDisplayElement<T extends Display> implements DisplayElement<T>,
         this.preset = preset;
     }
 
-    public DisplayDecorator<T> getDecorator() {
+    public @NotNull DisplayDecorator<T> getDecorator() {
         return decorator;
     }
 
-    public DisplayElementType getType() {
+    public @NotNull DisplayElementType getType() {
         return type;
     }
 
@@ -39,7 +40,7 @@ public class BlobDisplayElement<T extends Display> implements DisplayElement<T>,
      *
      * @return The preset that was used to create this element.
      */
-    public DisplayPreset<T> getDisplayPreset() {
+    public @NotNull DisplayPreset<T> getDisplayPreset() {
         return preset;
     }
 

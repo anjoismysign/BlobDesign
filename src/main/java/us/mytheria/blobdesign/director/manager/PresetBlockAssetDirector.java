@@ -22,7 +22,7 @@ import java.util.Set;
 public class PresetBlockAssetDirector extends DesignObjectDirector<PresetBlockAsset<?>>
         implements Listener {
     @NotNull
-    private Map<String, WorldPresetBlockAssetManager> worldManagers;
+    private final Map<String, WorldPresetBlockAssetManager> worldManagers;
 
     public PresetBlockAssetDirector(DesignManagerDirector managerDirector) {
         super(managerDirector, ObjectDirectorData.simple(managerDirector.getRealFileManager(),

@@ -49,7 +49,7 @@ public class ItemDisplayPresetBlockAsset
     }
 
     @Override
-    public DisplayElementType getType() {
+    public @NotNull DisplayElementType getType() {
         return DisplayElementType.ITEM_DISPLAY;
     }
 

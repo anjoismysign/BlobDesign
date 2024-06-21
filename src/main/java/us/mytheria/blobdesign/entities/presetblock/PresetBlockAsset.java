@@ -6,6 +6,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Display;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import us.mytheria.blobdesign.BlobDesignAPI;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
@@ -30,7 +31,6 @@ public abstract class PresetBlockAsset<T extends Display>
 
     private final DisplayPreset<T> preset;
     private final String key;
-    private final DesignManagerDirector director;
 
     @Nullable
     public static PresetBlockAsset<?> fromFile(File file, DesignManagerDirector director) {
@@ -123,7 +123,6 @@ public abstract class PresetBlockAsset<T extends Display>
         this.key = key;
         this.decorator = decorator;
         this.preset = preset;
-        this.director = director;
     }
 
     public String getKey() {
@@ -145,11 +144,11 @@ public abstract class PresetBlockAsset<T extends Display>
         return file;
     }
 
-    public DisplayDecorator<T> getDecorator() {
+    public @NotNull DisplayDecorator<T> getDecorator() {
         return decorator;
     }
 
-    public DisplayPreset<T> getDisplayPreset() {
+    public @NotNull DisplayPreset<T> getDisplayPreset() {
         return preset;
     }
 

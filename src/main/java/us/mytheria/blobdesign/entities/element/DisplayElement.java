@@ -1,6 +1,7 @@
 package us.mytheria.blobdesign.entities.element;
 
 import org.bukkit.entity.Display;
+import org.jetbrains.annotations.NotNull;
 import us.mytheria.blobdesign.entities.DisplayPreset;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 
@@ -21,6 +22,7 @@ public interface DisplayElement<T extends Display> {
      *
      * @return The decorator that holds the Display entity.
      */
+    @NotNull
     DisplayDecorator<T> getDecorator();
 
     /**
@@ -28,6 +30,7 @@ public interface DisplayElement<T extends Display> {
      *
      * @return The type of DisplayElement.
      */
+    @NotNull
     DisplayElementType getType();
 
     /**
@@ -35,6 +38,7 @@ public interface DisplayElement<T extends Display> {
      *
      * @return The preset that was used to create this element.
      */
+    @NotNull
     DisplayPreset<T> getDisplayPreset();
 
     /**
@@ -42,6 +46,7 @@ public interface DisplayElement<T extends Display> {
      *
      * @return The DisplayElement.
      */
+    @NotNull
     default DisplayElement<T> getDisplayElement() {
         return this;
     }

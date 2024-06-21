@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Display;
 import org.bukkit.util.BlockVector;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import us.mytheria.blobdesign.entities.element.DisplayElement;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
@@ -18,6 +19,7 @@ public interface PresetBlock<T extends Display> extends DisplayElement<T> {
      *
      * @return The reference of the asset
      */
+    @NotNull
     default BlockVector reference() {
         return getLocation().getBlock().getLocation().toVector().toBlockVector();
     }
@@ -32,10 +34,12 @@ public interface PresetBlock<T extends Display> extends DisplayElement<T> {
      *
      * @return The id of the asset
      */
+    @NotNull
     default String id() {
         return getWorld().getName() + "," + reference().toString();
     }
 
+    @NotNull
     default PresetBlock<T> getPresetBlock() {
         return this;
     }

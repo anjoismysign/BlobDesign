@@ -1,5 +1,7 @@
 package us.mytheria.blobdesign;
 
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -7,6 +9,7 @@ import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.*;
 import us.mytheria.blobdesign.entities.element.DisplayElementType;
 import us.mytheria.blobdesign.entities.inventory.InventoryType;
+import us.mytheria.blobdesign.entities.presetblock.PresetBlockAsset;
 import us.mytheria.bloblib.entities.inventory.BlobInventory;
 
 public class BlobDesignAPI {
@@ -102,5 +105,21 @@ public class BlobDesignAPI {
         if (placer == null)
             return null;
         return getPreset(placer.getPresetData());
+    }
+
+    /**
+     * Will check if the given location belongs to a preset block.
+     *
+     * @param location the location to check
+     * @return the PresetBlockAsset if the location belongs to a preset block. null otherwise
+     */
+    @Nullable
+    public static PresetBlockAsset<?> isPresetBlock(@Nullable Location location) {
+        if (location == null)
+            return null;
+        World world = location.getWorld();
+        if (world == null)
+            return null;
+        return director().getPresetBlockAssetDirector().get(world, location.getBlock().getLocation().toVector().toBlockVector());
     }
 }

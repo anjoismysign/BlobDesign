@@ -8,7 +8,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Display;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.util.BlockVector;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import us.mytheria.blobdesign.BlobDesignAPI;
@@ -161,8 +160,6 @@ public abstract class PresetBlockAsset<T extends Display>
      * @param respawnBlock Whether to respawn the block that provides hitbox
      */
     public void respawn(boolean respawnBlock) {
-        BlockVector reference = reference();
-        Bukkit.getLogger().severe("Respawning: " + reference);
         if (respawnBlock) {
             despawn(true);
             this.decorator = preset.instantiateDecorator(getLocation());

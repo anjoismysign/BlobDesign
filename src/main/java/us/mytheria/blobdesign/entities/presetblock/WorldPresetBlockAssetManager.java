@@ -18,15 +18,21 @@ public record WorldPresetBlockAssetManager(@NotNull Map<BlockVector, PresetBlock
                                            @NotNull String getWorldName,
                                            @NotNull PresetBlockAssetDirector getAssetDirector) {
 
-    public static WorldPresetBlockAssetManager of(@NotNull World world,
+    public static WorldPresetBlockAssetManager of(@NotNull String worldName,
                                                   @NotNull PresetBlockAssetDirector assetDirector) {
-        Objects.requireNonNull(world, "World cannot be null");
+        Objects.requireNonNull(worldName, "'worldName' cannot be null");
         Objects.requireNonNull(assetDirector, "PresetBlockAssetDirector cannot be null");
         return new WorldPresetBlockAssetManager(
                 new HashMap<>(),
                 new HashMap<>(),
-                world.getName(),
+                worldName,
                 assetDirector);
+    }
+
+    public static WorldPresetBlockAssetManager of(@NotNull World world,
+                                                  @NotNull PresetBlockAssetDirector assetDirector) {
+        Objects.requireNonNull(world, "World cannot be null");
+        return of(world.getName(), assetDirector);
     }
 
     @Nullable
@@ -82,6 +88,7 @@ public record WorldPresetBlockAssetManager(@NotNull Map<BlockVector, PresetBlock
      */
     public void remove(PresetBlockAsset<?> asset) {
         BlockVector reference = asset.reference();
+        Bukkit.getLogger().severe("Removing: " + reference);
         Location location = asset.getLocation();
         Chunk chunk = location.getChunk();
         getSingle.remove(reference);

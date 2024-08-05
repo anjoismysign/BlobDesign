@@ -2,10 +2,13 @@ package us.mytheria.blobdesign.entities.presetblock;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Display;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.BlockVector;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import us.mytheria.blobdesign.BlobDesignAPI;
@@ -154,9 +157,29 @@ public abstract class PresetBlockAsset<T extends Display>
 
     /**
      * Respawns the entity at the spawn location and updates the decorator reference.
+     *
+     * @param respawnBlock Whether to respawn the block that provides hitbox
      */
-    public void respawn() {
+    public void respawn(boolean respawnBlock) {
+        BlockVector reference = reference();
+        Bukkit.getLogger().severe("Respawning: " + reference);
+        if (respawnBlock) {
+            despawn(true);
+            this.decorator = preset.instantiateDecorator(getLocation());
+            Bukkit.getScheduler().runTask(preset.getPlugin(), () -> {
+                Block block = getLocation().getBlock();
+                block.setType(Material.BARRIER);
+            });
+            return;
+        }
         despawn(false);
         this.decorator = preset.instantiateDecorator(getLocation());
+    }
+
+    /**
+     * Respawns the entity at the spawn location and updates the decorator reference.
+     */
+    public void respawn() {
+        respawn(false);
     }
 }

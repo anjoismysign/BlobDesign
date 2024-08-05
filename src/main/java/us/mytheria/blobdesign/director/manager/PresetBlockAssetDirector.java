@@ -15,9 +15,10 @@ import us.mytheria.blobdesign.entities.presetblock.PresetBlockAsset;
 import us.mytheria.blobdesign.entities.presetblock.WorldPresetBlockAssetManager;
 import us.mytheria.bloblib.entities.ObjectDirectorData;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PresetBlockAssetDirector extends DesignObjectDirector<PresetBlockAsset<?>>
         implements Listener {
@@ -29,7 +30,7 @@ public class PresetBlockAssetDirector extends DesignObjectDirector<PresetBlockAs
                         "PresetBlock"),
                 file -> PresetBlockAsset.fromFile(file, managerDirector),
                 false);
-        worldManagers = new HashMap<>();
+        worldManagers = new ConcurrentHashMap<>();
     }
 
     @EventHandler
@@ -77,12 +78,9 @@ public class PresetBlockAssetDirector extends DesignObjectDirector<PresetBlockAs
      */
     public void add(PresetBlockAsset<?> asset) {
         World world = asset.getWorld();
-        WorldPresetBlockAssetManager manager = worldManagers.get(world.getName());
-        if (manager == null) {
-            manager = WorldPresetBlockAssetManager.of(world, this);
-            worldManagers.put(world.getName(), manager);
-        }
-        manager.add(asset);
+        Objects.requireNonNull(world, "World cannot be null");
+        String worldName = world.getName();
+        worldManagers.computeIfAbsent(worldName, k -> WorldPresetBlockAssetManager.of(k, this)).add(asset);
     }
 
     /**
@@ -92,12 +90,11 @@ public class PresetBlockAssetDirector extends DesignObjectDirector<PresetBlockAs
      */
     public void load(PresetBlockAsset<?> asset) {
         World world = asset.getWorld();
-        WorldPresetBlockAssetManager manager = worldManagers.get(world.getName());
-        if (manager == null) {
-            manager = WorldPresetBlockAssetManager.of(world, this);
-            worldManagers.put(world.getName(), manager);
-        }
-        manager.load(asset);
+        Objects.requireNonNull(world, "World cannot be null");
+        String worldName = world.getName();
+        worldManagers.computeIfAbsent(worldName, k ->
+                        WorldPresetBlockAssetManager.of(k, this))
+                .load(asset);
     }
 
     @Nullable

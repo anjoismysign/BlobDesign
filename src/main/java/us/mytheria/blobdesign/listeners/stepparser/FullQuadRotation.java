@@ -9,6 +9,8 @@ import us.mytheria.bloblib.entities.display.RotationAxis;
 import us.mytheria.bloblib.entities.display.TransformationStep;
 import us.mytheria.bloblib.entities.display.TransformationStepFactory;
 
+import java.util.Locale;
+
 public class FullQuadRotation extends DesignListener {
     public FullQuadRotation(DesignManagerDirector director) {
         super(director);
@@ -31,7 +33,7 @@ public class FullQuadRotation extends DesignListener {
         RotationAxis axis;
         int duration;
         try {
-            axis = RotationAxis.valueOf(readAxis.toUpperCase());
+            axis = RotationAxis.valueOf(readAxis.toUpperCase(Locale.ROOT));
             duration = Integer.parseInt(readDuration);
         } catch (Exception e) {
             getPlugin().getAnjoLogger().singleError("Invalid arguments for FullQuadRotation step: \nreadAxis:" +

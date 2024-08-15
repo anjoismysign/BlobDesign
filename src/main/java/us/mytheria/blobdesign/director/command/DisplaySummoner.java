@@ -14,6 +14,7 @@ import us.mytheria.blobdesign.director.manager.InventoryManager;
 import us.mytheria.bloblib.entities.BlobExecutor;
 
 import java.util.List;
+import java.util.Locale;
 
 public class DisplaySummoner extends BlobExecutor {
     public DisplaySummoner(DesignManagerDirector director) {
@@ -25,7 +26,7 @@ public class DisplaySummoner extends BlobExecutor {
                 sender.sendMessage("Usage: /disu <item_display/block_display>");
                 return true;
             }
-            String arg = args[0].toLowerCase();
+            String arg = args[0].toLowerCase(Locale.ROOT);
             switch (arg) {
                 case "block_display" -> {
                     if (!isInstanceOfPlayer(sender))

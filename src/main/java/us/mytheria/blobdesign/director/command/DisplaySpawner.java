@@ -9,6 +9,7 @@ import us.mytheria.bloblib.entities.BlobExecutor;
 import us.mytheria.bloblib.entities.BlobObject;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class DisplaySpawner extends BlobExecutor {
@@ -21,7 +22,7 @@ public class DisplaySpawner extends BlobExecutor {
                 sender.sendMessage("Usage: /displayspawner <block/item> <key>");
                 return true;
             }
-            String arg = args[0].toLowerCase();
+            String arg = args[0].toLowerCase(Locale.ROOT);
             String key = args[1];
             switch (arg) {
                 case "block" -> {
@@ -76,7 +77,7 @@ public class DisplaySpawner extends BlobExecutor {
                     return List.of("block", "item");
                 }
                 case 2 -> {
-                    String arg = args[0].toLowerCase();
+                    String arg = args[0].toLowerCase(Locale.ROOT);
                     switch (arg) {
                         case "block" -> {
                             return director

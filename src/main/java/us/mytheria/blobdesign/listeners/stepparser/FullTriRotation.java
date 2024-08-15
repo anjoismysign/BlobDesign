@@ -9,6 +9,8 @@ import us.mytheria.bloblib.entities.display.RotationAxis;
 import us.mytheria.bloblib.entities.display.TransformationStep;
 import us.mytheria.bloblib.entities.display.TransformationStepFactory;
 
+import java.util.Locale;
+
 public class FullTriRotation extends DesignListener {
     public FullTriRotation(DesignManagerDirector director) {
         super(director);
@@ -31,7 +33,7 @@ public class FullTriRotation extends DesignListener {
         RotationAxis axis;
         int duration;
         try {
-            axis = RotationAxis.valueOf(readAxis.toUpperCase());
+            axis = RotationAxis.valueOf(readAxis.toUpperCase(Locale.ROOT));
             duration = Integer.parseInt(readDuration);
         } catch (Exception e) {
             getPlugin().getAnjoLogger().singleError("Invalid arguments for FullTriRotation step");

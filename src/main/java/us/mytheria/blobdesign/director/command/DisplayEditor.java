@@ -10,6 +10,7 @@ import us.mytheria.bloblib.entities.BlobExecutor;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 
 import java.util.List;
+import java.util.Locale;
 
 public class DisplayEditor extends BlobExecutor {
     public DisplayEditor(DesignManagerDirector director) {
@@ -46,7 +47,7 @@ public class DisplayEditor extends BlobExecutor {
                 sender.sendMessage("Usage: /displayeditor <block/item/previous> <radius>");
                 return true;
             }
-            String arg = args[0].toLowerCase();
+            String arg = args[0].toLowerCase(Locale.ROOT);
             String input = args[1];
             switch (arg) {
                 case "block" -> {

@@ -6,6 +6,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Display;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.Nullable;
 import us.mytheria.blobdesign.BlobDesignAPI;
 import us.mytheria.blobdesign.director.DesignManagerDirector;
 import us.mytheria.blobdesign.entities.BlockDisplayPreset;
@@ -13,9 +14,12 @@ import us.mytheria.blobdesign.entities.DesignDisplayOperator;
 import us.mytheria.blobdesign.entities.DesignDisplayOperatorReader;
 import us.mytheria.blobdesign.entities.ItemDisplayPreset;
 import us.mytheria.bloblib.entities.BlobObject;
+import us.mytheria.bloblib.entities.positionable.Positionable;
+import us.mytheria.bloblib.entities.positionable.PositionableIO;
 import us.mytheria.bloblib.utilities.BukkitUtil;
 
 import java.io.File;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,12 +52,12 @@ public record DisplayElementAsset<T extends Display>(DisplayElement<T> element,
             logger.severe("Spawn-Location is not valid inside " + path);
             return null;
         }
-        ConfigurationSection spawnSection = config.getConfigurationSection("Spawn-Location");
-        Location location = BukkitUtil.deserializeLocationOrNull(spawnSection);
-        if (location == null) {
-            logger.severe("Spawn-Location is not valid inside " + path);
-            return null;
-        }
+        @Nullable ConfigurationSection spawnSection = config.getConfigurationSection("Spawn-Location");
+        Objects.requireNonNull(spawnSection, "'Spawn-Location' cannot be null in " + path);
+        Positionable positionable = PositionableIO.INSTANCE.read(spawnSection);
+        if (!positionable.getPositionableType().isLocatable())
+            throw new RuntimeException("'Spawn-Location' is missing 'World' attribute " + path);
+        Location location = positionable.toLocation();
         if (!config.isString("Display-Element-Type")) {
             logger.severe("Display-Element-Type is not valid inside " + path);
             return null;
@@ -181,8 +185,8 @@ public record DisplayElementAsset<T extends Display>(DisplayElement<T> element,
         }
         try {
             yaml.save(file);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
         return file;
     }

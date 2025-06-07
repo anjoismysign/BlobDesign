@@ -19,6 +19,8 @@ import us.mytheria.blobdesign.entities.ItemDisplayPreset;
 import us.mytheria.blobdesign.entities.element.DisplayElementType;
 import us.mytheria.bloblib.entities.BlobObject;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
+import us.mytheria.bloblib.entities.positionable.Positionable;
+import us.mytheria.bloblib.entities.positionable.PositionableIO;
 import us.mytheria.bloblib.utilities.BukkitUtil;
 
 import java.io.File;
@@ -50,11 +52,10 @@ public abstract class PresetBlockAsset<T extends Display>
             logger.severe("Spawn-Location is not valid inside " + path);
             return null;
         }
-        Location spawnLocation = BukkitUtil.deserializeLocationOrNull(spawnSection);
-        if (spawnLocation == null) {
-            logger.severe("Spawn-Location is not valid inside " + path);
-            return null;
-        }
+        Positionable positionable = PositionableIO.INSTANCE.read(spawnSection);
+        if (!positionable.getPositionableType().isLocatable())
+            throw new RuntimeException("'Spawn-Location' is missing 'World' attribute " + path);
+        Location location = positionable.toLocation();
         if (!config.isString("Display-Element-Type")) {
             logger.severe("Display-Element-Type is not valid inside " + path);
             return null;
@@ -77,7 +78,7 @@ public abstract class PresetBlockAsset<T extends Display>
                 Bukkit.getScheduler().runTask(plugin, () -> {
                     BlockDisplayPresetBlockAsset asset;
                     try {
-                        asset = BlockDisplayPresetBlockAsset.of(preset, key, spawnLocation,
+                        asset = BlockDisplayPresetBlockAsset.of(preset, key, location,
                                 director);
                         future.complete(asset);
                     } catch (Exception e) {
@@ -94,7 +95,7 @@ public abstract class PresetBlockAsset<T extends Display>
                 Bukkit.getScheduler().runTask(plugin, () -> {
                     ItemDisplayPresetBlockAsset asset;
                     try {
-                        asset = ItemDisplayPresetBlockAsset.of(preset, key, spawnLocation,
+                        asset = ItemDisplayPresetBlockAsset.of(preset, key, location,
                                 director);
                         future.complete(asset);
                     } catch (Exception e) {

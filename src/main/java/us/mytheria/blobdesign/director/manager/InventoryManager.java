@@ -211,7 +211,10 @@ public class InventoryManager extends DesignManager {
                     ItemStackBuilder builder = ItemStackBuilder.build(current);
                     builder.displayName(displayName);
                     return builder.build();
-                });
+                },
+                null,
+                null,
+                null);
     }
 
     public void openItemNavigator(Player player, double radius) {
@@ -237,6 +240,9 @@ public class InventoryManager extends DesignManager {
                     ItemStackBuilder builder = ItemStackBuilder.build(current);
                     builder.displayName(displayName);
                     return builder.build();
-                });
+                },
+                null,
+                null,
+                null);
     }
 }

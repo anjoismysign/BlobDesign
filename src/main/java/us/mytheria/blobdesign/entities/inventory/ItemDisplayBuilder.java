@@ -15,6 +15,7 @@ import us.mytheria.blobdesign.entities.proxy.DesignProxifier;
 import us.mytheria.blobdesign.entities.proxy.ItemDisplayPresetAssetProxy;
 import us.mytheria.bloblib.BlobLibAPI;
 import us.mytheria.bloblib.api.BlobLibInventoryAPI;
+import us.mytheria.bloblib.api.BlobLibListenerAPI;
 import us.mytheria.bloblib.api.BlobLibMessageAPI;
 import us.mytheria.bloblib.api.BlobLibSoundAPI;
 import us.mytheria.bloblib.entities.ObjectDirector;
@@ -24,6 +25,7 @@ import us.mytheria.bloblib.entities.inventory.ObjectBuilderButton;
 import us.mytheria.bloblib.entities.inventory.ObjectBuilderButtonBuilder;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
@@ -32,9 +34,10 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
     public static ItemDisplayBuilder build(UUID builderId,
                                            ObjectDirector<ItemDisplayPresetAssetProxy> objectDirector,
                                            DesignManagerDirector director) {
+        var carrier = BlobLibInventoryAPI.getInstance().getInventoryBuilderCarrier("ItemDisplayBuilder");
+        Objects.requireNonNull(carrier, "ItemDisplayBuilder cannot be null");
         return new ItemDisplayBuilder(
-                BlobLibInventoryAPI.getInstance()
-                        .getBlobInventory("ItemDisplayBuilder"),
+                BlobInventory.fromInventoryBuilderCarrier(carrier),
                 builderId, objectDirector, director);
     }
 
@@ -113,7 +116,7 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
                 .addObjectBuilderButton(rightRotationW)
                 .addObjectBuilderButton(itemDislayTransform)
                 .addObjectBuilderButton(new ObjectBuilderButton<>("UniformScale", Optional.empty(),
-                        (button, player) -> BlobLibAPI.addChatListener(player, 300, string -> {
+                        (button, player) -> BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                             try {
                                 if (string.equalsIgnoreCase("null")) {
                                     button.set(null);
@@ -130,7 +133,7 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
                         }, "Builder.UniformScale-Timeout", "Builder.UniformScale"),
                         uniformScaleFunction) {
                 }).addObjectBuilderButton(new ObjectBuilderButton<>("UniformTranslation", Optional.empty(),
-                        (button, player) -> BlobLibAPI.addChatListener(player, 300, string -> {
+                        (button, player) -> BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                             try {
                                 if (string.equalsIgnoreCase("null")) {
                                     button.set(null);

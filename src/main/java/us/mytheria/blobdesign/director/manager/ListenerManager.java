@@ -16,6 +16,7 @@ import us.mytheria.blobdesign.listeners.stepparser.FullQuadRotation;
 import us.mytheria.blobdesign.listeners.stepparser.FullTriRotation;
 import us.mytheria.blobdesign.util.EditorUtil;
 import us.mytheria.bloblib.BlobLibAPI;
+import us.mytheria.bloblib.api.BlobLibListenerAPI;
 import us.mytheria.bloblib.api.BlobLibSoundAPI;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
 import us.mytheria.bloblib.entities.inventory.InventoryButton;
@@ -62,7 +63,7 @@ public class ListenerManager extends DesignManager implements Listener {
             return;
         if (ifContainsSlot(player, slot, InventoryType.ITEM_DISPLAY_EDITOR, "Icon", button -> {
             player.closeInventory();
-            BlobLibAPI.addDropListener(player, item -> {
+            BlobLibListenerAPI.getInstance().addDropListener(player, item -> {
                 decorator.call().setItemStack(item);
             }, "Builder.Icon");
         }))
@@ -90,7 +91,7 @@ public class ListenerManager extends DesignManager implements Listener {
             throw new IllegalStateException("DisplayDecorator is null. Report to BlobDesign developer.");
         if (ifContainsSlot(player, slot, InventoryType.BLOCK_DISPLAY_EDITOR, "Icon", button -> {
             player.closeInventory();
-            BlobLibAPI.addPositionListener(player, 300, block -> {
+            BlobLibListenerAPI.getInstance().addPositionListener(player, 300, block -> {
                 decorator.call().setBlock(block.getBlockData());
             }, "Builder.Icon-Block-Timeout", "Builder.Icon-Block");
         }))

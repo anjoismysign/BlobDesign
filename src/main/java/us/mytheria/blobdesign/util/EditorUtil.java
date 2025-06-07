@@ -12,6 +12,7 @@ import us.mytheria.blobdesign.director.manager.InventoryManager;
 import us.mytheria.blobdesign.entities.DisplayController;
 import us.mytheria.blobdesign.entities.inventory.InventoryType;
 import us.mytheria.bloblib.BlobLibAPI;
+import us.mytheria.bloblib.api.BlobLibListenerAPI;
 import us.mytheria.bloblib.api.BlobLibMessageAPI;
 import us.mytheria.bloblib.api.BlobLibSoundAPI;
 import us.mytheria.bloblib.entities.display.DisplayDecorator;
@@ -56,7 +57,7 @@ public class EditorUtil {
         Display call = decorator.call();
         if (containsSlot(player, slot, inventoryType, "UniformScale", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).uniformScale(input);
@@ -71,7 +72,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "ScaleX", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).scaleX(input);
@@ -86,7 +87,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "ScaleY", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).scaleY(input);
@@ -101,7 +102,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "ScaleZ", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).scaleZ(input);
@@ -116,7 +117,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "LeftX", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).leftX(input);
@@ -131,7 +132,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "LeftY", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).leftY(input);
@@ -146,7 +147,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "LeftZ", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).leftZ(input);
@@ -161,7 +162,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "RightX", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).rightX(input);
@@ -176,7 +177,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "RightY", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).rightY(input);
@@ -191,7 +192,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "RightZ", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).rightZ(input);
@@ -238,7 +239,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "TranslationScaleFactor", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).translationScaleFactor(input);
@@ -253,7 +254,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "UniformTranslation", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).uniformTranslation(input);
@@ -268,7 +269,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "TranslationX", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).translationX(input);
@@ -283,7 +284,7 @@ public class EditorUtil {
             return;
         if (containsSlot(player, slot, inventoryType, "TranslationY", button -> {
             player.closeInventory();
-            BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                 try {
                     float input = Float.parseFloat(string);
                     DisplayController.of(call).translationY(input);
@@ -298,7 +299,7 @@ public class EditorUtil {
             return;
         containsSlot(player, slot, inventoryType, "TranslationZ", button -> {
                     player.closeInventory();
-                    BlobLibAPI.addChatListener(player, 300, string -> {
+            BlobLibListenerAPI.getInstance().addChatListener(player, 300, string -> {
                         try {
                             float input = Float.parseFloat(string);
                             DisplayController.of(call).translationZ(input);

@@ -19,6 +19,7 @@ import us.mytheria.bloblib.api.BlobLibListenerAPI;
 import us.mytheria.bloblib.api.BlobLibMessageAPI;
 import us.mytheria.bloblib.api.BlobLibSoundAPI;
 import us.mytheria.bloblib.entities.ObjectDirector;
+import us.mytheria.bloblib.entities.PlayerAddress;
 import us.mytheria.bloblib.entities.display.DisplayData;
 import us.mytheria.bloblib.entities.inventory.BlobInventory;
 import us.mytheria.bloblib.entities.inventory.ObjectBuilderButton;
@@ -36,11 +37,10 @@ public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAssetPr
     public static BlockDisplayBuilder build(UUID builderId,
                                             ObjectDirector<BlockDisplayPresetAssetProxy> objectDirector,
                                             DesignManagerDirector director) {
-        var carrier = BlobLibInventoryAPI.getInstance().getInventoryBuilderCarrier("BlockDisplayBuilder");
-        Objects.requireNonNull(carrier, "BlockDisplayBuilder cannot be null");
-        return new BlockDisplayBuilder(
-                BlobInventory.fromInventoryBuilderCarrier(carrier),
-                builderId, objectDirector, director);
+        BlobInventory inventory = BlobInventory
+                .fromBlobInventoryOrFail("BlockDisplayBuilder", PlayerAddress.builder()
+                        .setUuid(builderId).build());
+        return new BlockDisplayBuilder(inventory, builderId, objectDirector, director);
     }
 
     private BlockDisplayBuilder(BlobInventory blobInventory, UUID builderId,

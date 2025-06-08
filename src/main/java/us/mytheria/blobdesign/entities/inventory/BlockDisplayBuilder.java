@@ -38,8 +38,8 @@ public class BlockDisplayBuilder extends DesignBuilder<BlockDisplayPresetAssetPr
                                             ObjectDirector<BlockDisplayPresetAssetProxy> objectDirector,
                                             DesignManagerDirector director) {
         BlobInventory inventory = BlobInventory
-                .fromBlobInventoryOrFail("BlockDisplayBuilder", PlayerAddress.builder()
-                        .setUuid(builderId).build());
+                .ofKeyAddressOrThrow("BlockDisplayBuilder", PlayerAddress.builder()
+                        .setUUID(builderId).build());
         return new BlockDisplayBuilder(inventory, builderId, objectDirector, director);
     }
 

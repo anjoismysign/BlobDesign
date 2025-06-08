@@ -101,7 +101,7 @@ public class InventoryManager extends DesignManager {
         InventoryBuilderCarrier<InventoryButton> carrier = carriers.get(type);
         if (carrier == null)
             throw new IllegalArgumentException("No inventory for inventory type " + type.name());
-        return BlobInventory.fromInventoryBuilderCarrier(carrier);
+        return BlobInventory.ofInventoryBuilderCarrier(carrier);
     }
 
     /**

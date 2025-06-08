@@ -36,8 +36,8 @@ public class ItemDisplayBuilder extends DesignBuilder<ItemDisplayPresetAssetProx
                                            ObjectDirector<ItemDisplayPresetAssetProxy> objectDirector,
                                            DesignManagerDirector director) {
         BlobInventory inventory = BlobInventory
-                .fromBlobInventoryOrFail("ItemDisplayBuilder", PlayerAddress.builder()
-                        .setUuid(builderId).build());
+                .ofKeyAddressOrThrow("ItemDisplayBuilder", PlayerAddress.builder()
+                        .setUUID(builderId).build());
         return new ItemDisplayBuilder(inventory, builderId, objectDirector, director);
     }
 

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>us.mytheria</groupId>
+    <groupId>io.github.anjoismysign</groupId>
     <artifactId>blobdesign</artifactId>
     <version>1.2.6</version>
     <packaging>jar</packaging>
@@ -78,9 +78,15 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>us.mytheria</groupId>
+            <groupId>io.github.anjoismysign</groupId>
             <artifactId>bloblib</artifactId>
             <version>1.698.31</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>26.0.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

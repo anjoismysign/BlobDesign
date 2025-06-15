@@ -1,6 +1,6 @@
 name: BlobDesign
 version: ${project.version}
-main: us.mytheria.blobdesign.BlobDesign
+main: io.github.anjoismysign.blobdesign.BlobDesign
 api-version: 1.19
 load: STARTUP
 depend: [ BlobLib ]

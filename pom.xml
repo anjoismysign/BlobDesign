@@ -81,7 +81,7 @@
         <dependency>
             <groupId>io.github.anjoismysign</groupId>
             <artifactId>bloblib</artifactId>
-            <version>1.698.31</version>
+            <version>1.698.32</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

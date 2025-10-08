@@ -11,7 +11,7 @@ import io.github.anjoismysign.bloblib.entities.inventory.BlobInventory;
 import io.github.anjoismysign.bloblib.entities.inventory.InventoryBuilderCarrier;
 import io.github.anjoismysign.bloblib.entities.inventory.InventoryButton;
 import io.github.anjoismysign.bloblib.entities.inventory.InventoryDataRegistry;
-import io.github.anjoismysign.bloblib.itemstack.ItemStackBuilder;
+import io.github.anjoismysign.bloblib.middleman.itemstack.ItemStackBuilder;
 import io.github.anjoismysign.bloblib.utilities.ItemStackUtil;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.EntityType;

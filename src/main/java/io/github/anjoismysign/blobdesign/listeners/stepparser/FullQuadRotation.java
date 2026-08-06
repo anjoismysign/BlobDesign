@@ -3,9 +3,9 @@ package io.github.anjoismysign.blobdesign.listeners.stepparser;
 import io.github.anjoismysign.blobdesign.director.DesignManagerDirector;
 import io.github.anjoismysign.blobdesign.events.TransformationStepParseEvent;
 import io.github.anjoismysign.blobdesign.listeners.DesignListener;
-import io.github.anjoismysign.bloblib.entities.display.RotationAxis;
-import io.github.anjoismysign.bloblib.entities.display.TransformationStep;
-import io.github.anjoismysign.bloblib.entities.display.TransformationStepFactory;
+import io.github.anjoismysign.bloblib.display.RotationAxis;
+import io.github.anjoismysign.bloblib.display.TransformationStep;
+import io.github.anjoismysign.bloblib.display.TransformationStepFactory;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 

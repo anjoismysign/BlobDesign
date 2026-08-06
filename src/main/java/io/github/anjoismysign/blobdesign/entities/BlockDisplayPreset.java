@@ -4,7 +4,7 @@ import io.github.anjoismysign.blobdesign.entities.element.BlobDisplayElement;
 import io.github.anjoismysign.blobdesign.entities.element.DisplayElement;
 import io.github.anjoismysign.blobdesign.entities.element.DisplayElementType;
 import io.github.anjoismysign.blobdesign.entities.presetblock.PresetBlock;
-import io.github.anjoismysign.bloblib.entities.display.DisplayData;
+import io.github.anjoismysign.bloblib.display.DisplayData;
 import org.bukkit.Location;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.BlockDisplay;

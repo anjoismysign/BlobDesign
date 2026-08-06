@@ -4,8 +4,8 @@ import io.github.anjoismysign.blobdesign.director.DesignManagerDirector;
 import io.github.anjoismysign.blobdesign.entities.BlockDisplayPreset;
 import io.github.anjoismysign.blobdesign.entities.ItemDisplayPreset;
 import io.github.anjoismysign.bloblib.api.BlobLibMessageAPI;
-import io.github.anjoismysign.bloblib.entities.BlobExecutor;
-import io.github.anjoismysign.bloblib.entities.BlobObject;
+import io.github.anjoismysign.bloblib.command.BlobExecutor;
+import io.github.anjoismysign.bloblib.domain.BlobObject;
 import org.bukkit.entity.Player;
 
 import java.util.List;

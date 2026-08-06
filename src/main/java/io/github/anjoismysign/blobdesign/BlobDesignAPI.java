@@ -9,7 +9,7 @@ import io.github.anjoismysign.blobdesign.entities.PresetPlacer;
 import io.github.anjoismysign.blobdesign.entities.element.DisplayElementType;
 import io.github.anjoismysign.blobdesign.entities.inventory.InventoryType;
 import io.github.anjoismysign.blobdesign.entities.presetblock.PresetBlockAsset;
-import io.github.anjoismysign.bloblib.entities.inventory.BlobInventory;
+import io.github.anjoismysign.bloblib.inventory.BlobInventory;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.persistence.PersistentDataContainer;

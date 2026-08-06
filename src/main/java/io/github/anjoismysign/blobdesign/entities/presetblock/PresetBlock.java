@@ -1,7 +1,7 @@
 package io.github.anjoismysign.blobdesign.entities.presetblock;
 
 import io.github.anjoismysign.blobdesign.entities.element.DisplayElement;
-import io.github.anjoismysign.bloblib.entities.display.DisplayDecorator;
+import io.github.anjoismysign.bloblib.display.DisplayDecorator;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;

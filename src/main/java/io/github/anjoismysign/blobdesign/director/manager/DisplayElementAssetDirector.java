@@ -3,7 +3,7 @@ package io.github.anjoismysign.blobdesign.director.manager;
 import io.github.anjoismysign.blobdesign.director.DesignManagerDirector;
 import io.github.anjoismysign.blobdesign.director.DesignObjectDirector;
 import io.github.anjoismysign.blobdesign.entities.element.DisplayElementAsset;
-import io.github.anjoismysign.bloblib.entities.ObjectDirectorData;
+import io.github.anjoismysign.bloblib.manager.ObjectDirectorData;
 import org.bukkit.Bukkit;
 
 public class DisplayElementAssetDirector extends DesignObjectDirector<DisplayElementAsset<?>> {

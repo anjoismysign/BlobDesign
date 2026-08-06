@@ -1,6 +1,6 @@
 package io.github.anjoismysign.blobdesign.events;
 
-import io.github.anjoismysign.bloblib.entities.display.TransformationStep;
+import io.github.anjoismysign.bloblib.display.TransformationStep;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;

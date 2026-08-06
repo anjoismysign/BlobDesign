@@ -1,8 +1,8 @@
 package io.github.anjoismysign.blobdesign.entities;
 
-import io.github.anjoismysign.bloblib.entities.display.DisplayData;
-import io.github.anjoismysign.bloblib.entities.display.DisplayOperator;
-import io.github.anjoismysign.bloblib.entities.display.DisplayOperatorReader;
+import io.github.anjoismysign.bloblib.display.DisplayData;
+import io.github.anjoismysign.bloblib.display.DisplayOperator;
+import io.github.anjoismysign.bloblib.display.DisplayOperatorReader;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Transformation;

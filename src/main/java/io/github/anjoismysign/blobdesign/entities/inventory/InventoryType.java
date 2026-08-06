@@ -1,8 +1,8 @@
 package io.github.anjoismysign.blobdesign.entities.inventory;
 
 import io.github.anjoismysign.bloblib.api.BlobLibInventoryAPI;
-import io.github.anjoismysign.bloblib.entities.inventory.InventoryButton;
-import io.github.anjoismysign.bloblib.entities.inventory.InventoryDataRegistry;
+import io.github.anjoismysign.bloblib.inventory.InventoryButton;
+import io.github.anjoismysign.bloblib.inventory.InventoryDataRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;

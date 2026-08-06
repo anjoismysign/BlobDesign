@@ -2,8 +2,8 @@ package io.github.anjoismysign.blobdesign.entities;
 
 import io.github.anjoismysign.blobdesign.entities.element.DisplayElement;
 import io.github.anjoismysign.blobdesign.entities.presetblock.PresetBlock;
-import io.github.anjoismysign.bloblib.entities.display.DisplayDecorator;
-import io.github.anjoismysign.bloblib.entities.display.DisplayWriter;
+import io.github.anjoismysign.bloblib.display.DisplayDecorator;
+import io.github.anjoismysign.bloblib.display.DisplayWriter;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;

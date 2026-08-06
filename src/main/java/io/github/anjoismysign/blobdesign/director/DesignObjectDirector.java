@@ -1,8 +1,8 @@
 package io.github.anjoismysign.blobdesign.director;
 
-import io.github.anjoismysign.bloblib.entities.BlobObject;
-import io.github.anjoismysign.bloblib.entities.ObjectDirector;
-import io.github.anjoismysign.bloblib.entities.ObjectDirectorData;
+import io.github.anjoismysign.bloblib.domain.BlobObject;
+import io.github.anjoismysign.bloblib.manager.ObjectDirector;
+import io.github.anjoismysign.bloblib.manager.ObjectDirectorData;
 
 import java.io.File;
 import java.util.function.Function;

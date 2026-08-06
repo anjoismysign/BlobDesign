@@ -1,7 +1,7 @@
 package io.github.anjoismysign.blobdesign.entities.presetblock;
 
 import io.github.anjoismysign.blobdesign.director.manager.PresetBlockAssetDirector;
-import io.github.anjoismysign.bloblib.entities.ObjectManager;
+import io.github.anjoismysign.bloblib.manager.ObjectManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;

@@ -3,7 +3,7 @@ package io.github.anjoismysign.blobdesign.director.manager;
 import io.github.anjoismysign.blobdesign.BlobDesign;
 import io.github.anjoismysign.blobdesign.director.DesignManager;
 import io.github.anjoismysign.blobdesign.director.DesignManagerDirector;
-import io.github.anjoismysign.bloblib.entities.SimpleEventListener;
+import io.github.anjoismysign.bloblib.listener.SimpleEventListener;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigManager extends DesignManager {

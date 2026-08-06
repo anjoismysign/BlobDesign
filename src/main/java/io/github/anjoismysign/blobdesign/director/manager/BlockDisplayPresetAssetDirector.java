@@ -8,9 +8,9 @@ import io.github.anjoismysign.blobdesign.entities.BlockDisplayPresetAsset;
 import io.github.anjoismysign.blobdesign.entities.inventory.BlockDisplayBuilder;
 import io.github.anjoismysign.blobdesign.entities.proxy.BlockDisplayPresetAssetProxy;
 import io.github.anjoismysign.bloblib.api.BlobLibMessageAPI;
-import io.github.anjoismysign.bloblib.entities.BlobChildCommand;
-import io.github.anjoismysign.bloblib.entities.BlobExecutor;
-import io.github.anjoismysign.bloblib.entities.ObjectDirectorData;
+import io.github.anjoismysign.bloblib.command.BlobChildCommand;
+import io.github.anjoismysign.bloblib.command.BlobExecutor;
+import io.github.anjoismysign.bloblib.manager.ObjectDirectorData;
 
 import java.util.ArrayList;
 import java.util.List;

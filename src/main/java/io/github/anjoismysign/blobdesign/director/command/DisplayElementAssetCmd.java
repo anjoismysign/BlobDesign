@@ -2,7 +2,7 @@ package io.github.anjoismysign.blobdesign.director.command;
 
 import io.github.anjoismysign.blobdesign.director.DesignManagerDirector;
 import io.github.anjoismysign.bloblib.api.BlobLibMessageAPI;
-import io.github.anjoismysign.bloblib.entities.BlobExecutor;
+import io.github.anjoismysign.bloblib.command.BlobExecutor;
 
 import java.util.List;
 

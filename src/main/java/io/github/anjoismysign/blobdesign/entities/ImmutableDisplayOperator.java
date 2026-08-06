@@ -1,6 +1,6 @@
 package io.github.anjoismysign.blobdesign.entities;
 
-import io.github.anjoismysign.bloblib.entities.display.DisplayData;
+import io.github.anjoismysign.bloblib.display.DisplayData;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Transformation;
 

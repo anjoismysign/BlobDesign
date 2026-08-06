@@ -6,9 +6,9 @@ import io.github.anjoismysign.blobdesign.director.command.DisplayElementAssetCmd
 import io.github.anjoismysign.blobdesign.director.command.DisplaySpawner;
 import io.github.anjoismysign.blobdesign.director.command.DisplaySummoner;
 import io.github.anjoismysign.blobdesign.director.command.HeadPresetBlock;
-import io.github.anjoismysign.bloblib.entities.PluginUpdater;
-import io.github.anjoismysign.bloblib.managers.BlobPlugin;
-import io.github.anjoismysign.bloblib.managers.IManagerDirector;
+import io.github.anjoismysign.bloblib.manager.BlobPlugin;
+import io.github.anjoismysign.bloblib.manager.IManagerDirector;
+import io.github.anjoismysign.bloblib.updater.PluginUpdater;
 import org.jetbrains.annotations.NotNull;
 
 public class BlobDesign extends BlobPlugin {

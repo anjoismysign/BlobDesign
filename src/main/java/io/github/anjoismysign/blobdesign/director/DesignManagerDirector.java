@@ -8,7 +8,7 @@ import io.github.anjoismysign.blobdesign.director.manager.InventoryManager;
 import io.github.anjoismysign.blobdesign.director.manager.ItemDisplayPresetAssetDirector;
 import io.github.anjoismysign.blobdesign.director.manager.ListenerManager;
 import io.github.anjoismysign.blobdesign.director.manager.PresetBlockAssetDirector;
-import io.github.anjoismysign.bloblib.entities.GenericManagerDirector;
+import io.github.anjoismysign.bloblib.manager.GenericManagerDirector;
 
 public class DesignManagerDirector extends GenericManagerDirector<BlobDesign> {
     private final BlockDisplayPresetAssetDirector blockDisplayAssetDirector;

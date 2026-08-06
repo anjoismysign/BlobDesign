@@ -4,7 +4,7 @@ import io.github.anjoismysign.blobdesign.director.DesignManagerDirector;
 import io.github.anjoismysign.blobdesign.director.DesignObjectDirector;
 import io.github.anjoismysign.blobdesign.entities.presetblock.PresetBlockAsset;
 import io.github.anjoismysign.blobdesign.entities.presetblock.WorldPresetBlockAssetManager;
-import io.github.anjoismysign.bloblib.entities.ObjectDirectorData;
+import io.github.anjoismysign.bloblib.manager.ObjectDirectorData;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;

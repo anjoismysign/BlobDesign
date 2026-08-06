@@ -2,7 +2,7 @@ package io.github.anjoismysign.blobdesign.entities;
 
 import io.github.anjoismysign.anjo.entities.Uber;
 import io.github.anjoismysign.blobdesign.events.TransformationStepParseEvent;
-import io.github.anjoismysign.bloblib.entities.display.TransformationStep;
+import io.github.anjoismysign.bloblib.display.TransformationStep;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.util.Transformation;

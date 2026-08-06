@@ -1,6 +1,6 @@
 package io.github.anjoismysign.blobdesign.entities;
 
-import io.github.anjoismysign.bloblib.entities.display.DisplayOperator;
+import io.github.anjoismysign.bloblib.display.DisplayOperator;
 
 /**
  * Represents an object that can hold Display entities

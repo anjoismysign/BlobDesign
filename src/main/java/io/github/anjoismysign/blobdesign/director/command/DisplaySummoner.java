@@ -2,7 +2,7 @@ package io.github.anjoismysign.blobdesign.director.command;
 
 import io.github.anjoismysign.blobdesign.director.DesignManagerDirector;
 import io.github.anjoismysign.blobdesign.director.manager.InventoryManager;
-import io.github.anjoismysign.bloblib.entities.BlobExecutor;
+import io.github.anjoismysign.bloblib.command.BlobExecutor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.BlockDisplay;

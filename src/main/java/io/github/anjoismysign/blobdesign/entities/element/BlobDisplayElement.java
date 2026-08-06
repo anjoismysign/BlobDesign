@@ -2,8 +2,8 @@ package io.github.anjoismysign.blobdesign.entities.element;
 
 import io.github.anjoismysign.blobdesign.entities.DesignDisplayOperator;
 import io.github.anjoismysign.blobdesign.entities.DisplayPreset;
-import io.github.anjoismysign.bloblib.entities.display.DisplayData;
-import io.github.anjoismysign.bloblib.entities.display.DisplayDecorator;
+import io.github.anjoismysign.bloblib.display.DisplayData;
+import io.github.anjoismysign.bloblib.display.DisplayDecorator;
 import org.bukkit.entity.Display;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Transformation;

@@ -2,7 +2,7 @@ package io.github.anjoismysign.blobdesign.entities;
 
 import io.github.anjoismysign.blobdesign.entities.element.BlobDisplayElement;
 import io.github.anjoismysign.blobdesign.entities.element.DisplayElementType;
-import io.github.anjoismysign.bloblib.entities.display.DisplayData;
+import io.github.anjoismysign.bloblib.display.DisplayData;
 import org.bukkit.Location;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.inventory.ItemStack;

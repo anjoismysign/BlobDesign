@@ -5,7 +5,7 @@ import io.github.anjoismysign.blobdesign.entities.BlockDisplayPreset;
 import io.github.anjoismysign.blobdesign.entities.element.DisplayElementType;
 import io.github.anjoismysign.bloblib.display.DisplayDecorator;
 import io.github.anjoismysign.bloblib.domain.BlobObject;
-import io.github.anjoismysign.bloblib.updater.BukkitPluginOperator;
+import io.github.anjoismysign.bloblib.scheduler.BukkitPluginOperator;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.BlockDisplay;

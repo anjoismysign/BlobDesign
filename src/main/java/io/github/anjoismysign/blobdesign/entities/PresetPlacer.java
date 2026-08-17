@@ -3,7 +3,7 @@ package io.github.anjoismysign.blobdesign.entities;
 import io.github.anjoismysign.blobdesign.BlobDesignAPI;
 import io.github.anjoismysign.blobdesign.entities.element.DisplayElementType;
 import io.github.anjoismysign.bloblib.middleman.itemstack.ItemStackModder;
-import io.github.anjoismysign.bloblib.updater.BukkitPluginOperator;
+import io.github.anjoismysign.bloblib.scheduler.BukkitPluginOperator;
 import io.github.anjoismysign.bloblib.utility.TextColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;

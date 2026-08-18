@@ -86,4 +86,12 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub anjoismysign Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/anjoismysign/BlobDesign</url>
+        </repository>
+    </distributionManagement>
+
 </project>

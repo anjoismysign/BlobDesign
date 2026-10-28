@@ -22,7 +22,7 @@ public class FullQuadRotation extends DesignListener {
         String[] args = event.getArgs();
         int length = args.length;
         if (length != 3) {
-            getPlugin().getAnjoLogger().singleError("Invalid arguments for FullQuadRotation step: \nlength: " + length);
+            getPlugin().getLogger().severe("Invalid arguments for FullQuadRotation step: \nlength: " + length);
             return;
         }
         String type = args[0];
@@ -36,7 +36,7 @@ public class FullQuadRotation extends DesignListener {
             axis = RotationAxis.valueOf(readAxis.toUpperCase(Locale.ROOT));
             duration = Integer.parseInt(readDuration);
         } catch (Exception e) {
-            getPlugin().getAnjoLogger().singleError("Invalid arguments for FullQuadRotation step: \nreadAxis:" +
+            getPlugin().getLogger().severe("Invalid arguments for FullQuadRotation step: \nreadAxis:" +
                     readAxis + "\nreadDuration: "
                     + readDuration);
             return;

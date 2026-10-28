@@ -6,13 +6,13 @@
 
     <groupId>io.github.anjoismysign</groupId>
     <artifactId>blobdesign</artifactId>
-    <version>1.702.0</version>
+    <version>1.703.0</version>
     <packaging>jar</packaging>
 
     <name>BlobDesign</name>
 
     <properties>
-        <minecraft.version>1.21.11</minecraft.version>
+        <minecraft.version>26.3</minecraft.version>
         <java.version>25</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -70,13 +70,13 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>${minecraft.version}-R0.1-SNAPSHOT</version>
+            <version>[${minecraft.version}.build,)</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.github.anjoismysign</groupId>
             <artifactId>bloblib</artifactId>
-            <version>1.702</version>
+            <version>1.703</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
